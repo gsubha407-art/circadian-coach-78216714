@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Trip } from '@/types/trip';
 import { sampleTrips } from '@/data/sampleTrips';
 import { Plane, Clock, MapPin, Users } from 'lucide-react';
+import { CustomTripForm } from './CustomTripForm';
 
 interface TripSelectorProps {
   onTripSelect: (trip: Trip) => void;
@@ -12,11 +13,25 @@ interface TripSelectorProps {
 
 export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
   const [selectedTrip, setSelectedTrip] = useState<string | null>(null);
+  const [showCustomForm, setShowCustomForm] = useState(false);
 
   const handleTripClick = (trip: Trip) => {
     setSelectedTrip(trip.id);
     onTripSelect(trip);
   };
+
+  const handleCustomTripCreate = (trip: Trip) => {
+    onTripSelect(trip);
+  };
+
+  if (showCustomForm) {
+    return (
+      <CustomTripForm
+        onBack={() => setShowCustomForm(false)}
+        onTripCreate={handleCustomTripCreate}
+      />
+    );
+  }
 
   const getSensitivityColor = (sensitivity: string) => {
     switch (sensitivity) {
@@ -115,7 +130,7 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
       </div>
 
       <div className="text-center">
-        <Button variant="outline" size="lg">
+        <Button variant="outline" size="lg" onClick={() => setShowCustomForm(true)}>
           <Plane className="h-4 w-4 mr-2" />
           Create Custom Trip
         </Button>
