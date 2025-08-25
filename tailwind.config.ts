@@ -52,6 +52,35 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// Circadian rhythm specific colors
+				sleep: {
+					DEFAULT: 'hsl(var(--sleep))',
+					foreground: 'hsl(var(--sleep-foreground))',
+					light: 'hsl(var(--sleep-light))'
+				},
+				'light-seek': {
+					DEFAULT: 'hsl(var(--light-seek))',
+					foreground: 'hsl(var(--light-seek-foreground))'
+				},
+				'light-avoid': {
+					DEFAULT: 'hsl(var(--light-avoid))',
+					foreground: 'hsl(var(--light-avoid-foreground))'
+				},
+				melatonin: {
+					DEFAULT: 'hsl(var(--melatonin))',
+					foreground: 'hsl(var(--melatonin-foreground))',
+					light: 'hsl(var(--melatonin-light))'
+				},
+				caffeine: {
+					DEFAULT: 'hsl(var(--caffeine))',
+					foreground: 'hsl(var(--caffeine-foreground))',
+					light: 'hsl(var(--caffeine-light))'
+				},
+				nap: {
+					DEFAULT: 'hsl(var(--nap))',
+					foreground: 'hsl(var(--nap-foreground))',
+					light: 'hsl(var(--nap-light))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -67,6 +96,21 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			backgroundImage: {
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-sleep': 'var(--gradient-sleep)',
+				'gradient-light': 'var(--gradient-light)',
+				'gradient-card': 'var(--gradient-card)'
+			},
+			boxShadow: {
+				'card': 'var(--shadow-card)',
+				'timeline': 'var(--shadow-timeline)',
+				'glow': 'var(--shadow-glow)'
+			},
+			transitionTimingFunction: {
+				'smooth': 'var(--transition-smooth)',
+				'bounce': 'var(--transition-bounce)'
 			},
 			keyframes: {
 				'accordion-down': {
