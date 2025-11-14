@@ -26,30 +26,55 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
   };
 
   // Helper functions defined before useMemo
-  const getNextAction = (plan: any): string => {
+  const getNextAction = (plan: any): { text: string; show: boolean } => {
     const now = new Date();
     const currentDate = now.toISOString().split('T')[0];
     const currentTime = now.toTimeString().slice(0, 5); // HH:MM
 
-    // Find today's plan
+    if (!plan.days || plan.days.length === 0) {
+      return { text: "", show: false };
+    }
+
+    const firstPlanDate = plan.days[0].date;
+    const lastPlanDate = plan.days[plan.days.length - 1].date;
+
+    // Plan dates have passed - don't show recommendation
+    if (currentDate > lastPlanDate) {
+      return { text: "", show: false };
+    }
+
+    // Plan hasn't started yet - show first day's activities
+    if (currentDate < firstPlanDate) {
+      const firstDay = plan.days[0];
+      if (firstDay.activities && firstDay.activities.length > 0) {
+        const firstActivity = firstDay.activities[0];
+        return { 
+          text: `Plan starts ${firstPlanDate}: ${firstActivity.description} at ${firstActivity.startTime}`,
+          show: true 
+        };
+      }
+      return { text: "Your plan will begin soon", show: true };
+    }
+
+    // Plan is ongoing - find today's plan
     const todayPlan = plan.days.find((day: any) => day.date === currentDate);
     
     if (!todayPlan) {
-      return "Start your plan soon";
+      return { text: "Check your plan for today", show: true };
     }
 
     // Find current or next activity
     for (const activity of todayPlan.activities) {
       if (currentTime < activity.endTime) {
         if (currentTime >= activity.startTime) {
-          return `Now: ${activity.description}`;
+          return { text: `Now: ${activity.description}`, show: true };
         } else {
-          return `Next: ${activity.description} at ${activity.startTime}`;
+          return { text: `Next: ${activity.description} at ${activity.startTime}`, show: true };
         }
       }
     }
 
-    return "Check your plan for tomorrow";
+    return { text: "Check your plan for tomorrow", show: true };
   };
 
   const getRouteString = (trip: Trip): string => {
@@ -65,8 +90,8 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
     return sampleTrips.map(trip => {
       const optimizer = new CircadianOptimizer(trip);
       const plan = optimizer.generateOptimizationPlan();
-      const nextAction = getNextAction(plan);
-      return { trip, nextAction };
+      const recommendation = getNextAction(plan);
+      return { trip, recommendation };
     });
   }, []);
 
@@ -106,7 +131,7 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
       </div>
 
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 max-w-4xl mx-auto">
-        {tripsWithNextActions.map(({ trip, nextAction }) => (
+        {tripsWithNextActions.map(({ trip, recommendation }) => (
           <Card 
             key={trip.id}
             className={`cursor-pointer transition-all duration-200 hover:shadow-card ${
@@ -137,20 +162,22 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
                   <span className="text-sm">{getRouteString(trip)}</span>
                 </div>
 
-                {/* Next Action - Highlighted */}
-                <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
-                  <div className="flex items-start gap-3">
-                    <Clock className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                    <div>
-                      <div className="text-xs font-medium text-primary uppercase tracking-wide mb-1">
-                        Current Recommendation
-                      </div>
-                      <div className="text-sm font-medium text-foreground">
-                        {nextAction}
+                {/* Next Action - Highlighted (only show if recommendation.show is true) */}
+                {recommendation.show && (
+                  <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                    <div className="flex items-start gap-3">
+                      <Clock className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                      <div>
+                        <div className="text-xs font-medium text-primary uppercase tracking-wide mb-1">
+                          Current Recommendation
+                        </div>
+                        <div className="text-sm font-medium text-foreground">
+                          {recommendation.text}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                )}
               </div>
             </CardHeader>
             <CardContent>
