@@ -51,6 +51,12 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
           Minimize jet lag with personalized circadian shift plans. Select a sample trip below to see the optimization in action.
         </p>
+        <div>
+          <Button variant="outline" size="lg" onClick={() => setShowCustomForm(true)}>
+            <Plane className="h-4 w-4 mr-2" />
+            Create Custom Trip
+          </Button>
+        </div>
       </div>
 
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 max-w-4xl mx-auto">
@@ -127,13 +133,6 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
             </CardContent>
           </Card>
         ))}
-      </div>
-
-      <div className="text-center">
-        <Button variant="outline" size="lg" onClick={() => setShowCustomForm(true)}>
-          <Plane className="h-4 w-4 mr-2" />
-          Create Custom Trip
-        </Button>
       </div>
     </div>
   );
