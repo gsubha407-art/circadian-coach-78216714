@@ -8,11 +8,15 @@ const Index = () => {
   const [selectedTrip, setSelectedTrip] = useState<Trip | null>(null);
   const [optimizationPlan, setOptimizationPlan] = useState<OptimizationPlanType | null>(null);
 
-  const handleTripSelect = (trip: Trip) => {
+  const handleTripSelect = (trip: Trip, existingPlan?: OptimizationPlanType) => {
     setSelectedTrip(trip);
-    const optimizer = new CircadianOptimizer(trip);
-    const plan = optimizer.generateOptimizationPlan();
-    setOptimizationPlan(plan);
+    if (existingPlan) {
+      setOptimizationPlan(existingPlan);
+    } else {
+      const optimizer = new CircadianOptimizer(trip);
+      const plan = optimizer.generateOptimizationPlan();
+      setOptimizationPlan(plan);
+    }
   };
 
   const handleBack = () => {
@@ -23,8 +27,8 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
-        {optimizationPlan ? (
-          <OptimizationPlan plan={optimizationPlan} onBack={handleBack} />
+        {optimizationPlan && selectedTrip ? (
+          <OptimizationPlan plan={optimizationPlan} trip={selectedTrip} onBack={handleBack} />
         ) : (
           <TripSelector onTripSelect={handleTripSelect} />
         )}
