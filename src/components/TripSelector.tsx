@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Trip } from '@/types/trip';
 import { sampleTrips } from '@/data/sampleTrips';
-import { Plane, Clock, MapPin, Users } from 'lucide-react';
+import { Plane, Clock, MapPin, Users, ArrowRight } from 'lucide-react';
 import { CustomTripForm } from './CustomTripForm';
+import { CircadianOptimizer } from '@/lib/circadianOptimizer';
 
 interface TripSelectorProps {
   onTripSelect: (trip: Trip) => void;
@@ -22,6 +23,50 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
 
   const handleCustomTripCreate = (trip: Trip) => {
     onTripSelect(trip);
+  };
+
+  // Generate plans and next actions for all trips
+  const tripsWithNextActions = useMemo(() => {
+    return sampleTrips.map(trip => {
+      const optimizer = new CircadianOptimizer(trip);
+      const plan = optimizer.generateOptimizationPlan();
+      const nextAction = getNextAction(plan);
+      return { trip, nextAction };
+    });
+  }, []);
+
+  const getNextAction = (plan: any): string => {
+    const now = new Date();
+    const currentDate = now.toISOString().split('T')[0];
+    const currentTime = now.toTimeString().slice(0, 5); // HH:MM
+
+    // Find today's plan
+    const todayPlan = plan.days.find((day: any) => day.date === currentDate);
+    
+    if (!todayPlan) {
+      return "Start your plan soon";
+    }
+
+    // Find current or next activity
+    for (const activity of todayPlan.activities) {
+      if (currentTime < activity.endTime) {
+        if (currentTime >= activity.startTime) {
+          return `Now: ${activity.description}`;
+        } else {
+          return `Next: ${activity.description} at ${activity.startTime}`;
+        }
+      }
+    }
+
+    return "Check your plan for tomorrow";
+  };
+
+  const getRouteString = (trip: Trip): string => {
+    if (trip.legs.length === 1) {
+      return `${trip.legs[0].originCity} → ${trip.legs[0].destCity}`;
+    }
+    const cities = [trip.legs[0].originCity, ...trip.legs.map(leg => leg.destCity)];
+    return cities.join(' → ');
   };
 
   if (showCustomForm) {
@@ -60,7 +105,7 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
       </div>
 
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 max-w-4xl mx-auto">
-        {sampleTrips.map((trip) => (
+        {tripsWithNextActions.map(({ trip, nextAction }) => (
           <Card 
             key={trip.id}
             className={`cursor-pointer transition-all duration-200 hover:shadow-card ${
@@ -69,66 +114,62 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
             onClick={() => handleTripClick(trip)}
           >
             <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="space-y-2">
-                  <CardTitle className="text-xl">{trip.name}</CardTitle>
-                  <CardDescription className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4" />
-                    {trip.legs.length === 1 
-                      ? `${trip.legs[0].originCity} → ${trip.legs[0].destCity}`
-                      : `${trip.legs[0].originCity} → ${trip.legs[trip.legs.length - 1].destCity} (${trip.legs.length} legs)`
-                    }
-                  </CardDescription>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <Badge className={getSensitivityColor(trip.sensitivity)}>
-                    {trip.sensitivity} sensitivity
-                  </Badge>
-                  {trip.melatoninOptIn && (
-                    <Badge variant="outline" className="text-melatonin border-melatonin">
-                      Melatonin
+              <div className="space-y-4">
+                {/* Trip Name */}
+                <div className="flex items-start justify-between">
+                  <CardTitle className="text-2xl">{trip.name}</CardTitle>
+                  <div className="flex flex-col gap-2">
+                    <Badge className={getSensitivityColor(trip.sensitivity)}>
+                      {trip.sensitivity} sensitivity
                     </Badge>
-                  )}
+                    {trip.melatoninOptIn && (
+                      <Badge variant="outline" className="text-melatonin border-melatonin">
+                        Melatonin
+                      </Badge>
+                    )}
+                  </div>
+                </div>
+
+                {/* Route */}
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="h-4 w-4 flex-shrink-0" />
+                  <span className="text-sm">{getRouteString(trip)}</span>
+                </div>
+
+                {/* Next Action - Highlighted */}
+                <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                  <div className="flex items-start gap-3">
+                    <Clock className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                    <div>
+                      <div className="text-xs font-medium text-primary uppercase tracking-wide mb-1">
+                        Current Recommendation
+                      </div>
+                      <div className="text-sm font-medium text-foreground">
+                        {nextAction}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {/* Flight segments */}
-                <div className="space-y-2">
-                  {trip.legs.map((leg, index) => (
-                    <div key={leg.id} className="flex items-center justify-between p-3 bg-secondary/50 rounded-lg">
-                      <div className="flex items-center gap-3">
-                        <Plane className="h-4 w-4 text-muted-foreground" />
-                        <span className="font-medium">{leg.originCode} → {leg.destCode}</span>
-                      </div>
-                      <div className="text-sm text-muted-foreground">
-                        {new Date(leg.departLocal).toLocaleDateString()} • 
-                        {new Date(leg.departLocal).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Trip details */}
-                <div className="flex items-center justify-between text-sm">
-                  <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-1">
-                      <Clock className="h-4 w-4 text-muted-foreground" />
-                      <span>Sleep: {trip.usualSleepStart} - {trip.usualSleepEnd}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Users className="h-4 w-4 text-muted-foreground" />
-                      <span className="capitalize">{trip.cabinType}</span>
-                    </div>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    <span>Sleep: {trip.usualSleepStart} - {trip.usualSleepEnd}</span>
                   </div>
-                  <Button 
-                    variant={selectedTrip === trip.id ? "default" : "outline"}
-                    size="sm"
-                  >
-                    {selectedTrip === trip.id ? "Selected" : "View Plan"}
-                  </Button>
+                  <div className="flex items-center gap-1">
+                    <Users className="h-4 w-4" />
+                    <span className="capitalize">{trip.cabinType}</span>
+                  </div>
                 </div>
+                <Button 
+                  variant={selectedTrip === trip.id ? "default" : "outline"}
+                  size="sm"
+                >
+                  {selectedTrip === trip.id ? "Selected" : "View Plan"}
+                </Button>
               </div>
             </CardContent>
           </Card>
