@@ -25,16 +25,7 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
     onTripSelect(trip);
   };
 
-  // Generate plans and next actions for all trips
-  const tripsWithNextActions = useMemo(() => {
-    return sampleTrips.map(trip => {
-      const optimizer = new CircadianOptimizer(trip);
-      const plan = optimizer.generateOptimizationPlan();
-      const nextAction = getNextAction(plan);
-      return { trip, nextAction };
-    });
-  }, []);
-
+  // Helper functions defined before useMemo
   const getNextAction = (plan: any): string => {
     const now = new Date();
     const currentDate = now.toISOString().split('T')[0];
@@ -68,6 +59,16 @@ export const TripSelector = ({ onTripSelect }: TripSelectorProps) => {
     const cities = [trip.legs[0].originCity, ...trip.legs.map(leg => leg.destCity)];
     return cities.join(' → ');
   };
+
+  // Generate plans and next actions for all trips
+  const tripsWithNextActions = useMemo(() => {
+    return sampleTrips.map(trip => {
+      const optimizer = new CircadianOptimizer(trip);
+      const plan = optimizer.generateOptimizationPlan();
+      const nextAction = getNextAction(plan);
+      return { trip, nextAction };
+    });
+  }, []);
 
   if (showCustomForm) {
     return (
