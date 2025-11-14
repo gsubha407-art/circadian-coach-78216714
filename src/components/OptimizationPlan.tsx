@@ -2,17 +2,39 @@ import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { OptimizationPlan as OptimizationPlanType, ActivityBlock } from '@/types/trip';
-import { ArrowLeft, Download, Share2, Clock, Moon, Sun, Coffee, Power, Lightbulb } from 'lucide-react';
+import { OptimizationPlan as OptimizationPlanType, ActivityBlock, Trip } from '@/types/trip';
+import { ArrowLeft, Download, Share2, Clock, Moon, Sun, Coffee, Power, Lightbulb, Save, Check } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { saveTrip, isTripSaved } from '@/lib/savedTrips';
+import { useToast } from '@/hooks/use-toast';
 
 interface OptimizationPlanProps {
   plan: OptimizationPlanType;
+  trip: Trip;
   onBack: () => void;
 }
 
-export const OptimizationPlan = ({ plan, onBack }: OptimizationPlanProps) => {
+export const OptimizationPlan = ({ plan, trip, onBack }: OptimizationPlanProps) => {
   const [selectedDay, setSelectedDay] = useState(0);
+  const [saved, setSaved] = useState(isTripSaved(trip.id));
+  const { toast } = useToast();
+
+  const handleSaveTrip = () => {
+    try {
+      saveTrip(trip, plan);
+      setSaved(true);
+      toast({
+        title: "Trip saved!",
+        description: "You can now access this trip from the main page.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error saving trip",
+        description: "Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
 
   const getActivityIcon = (type: string) => {
     switch (type) {
@@ -64,6 +86,24 @@ export const OptimizationPlan = ({ plan, onBack }: OptimizationPlanProps) => {
           Back to Trips
         </Button>
         <div className="flex gap-2">
+          <Button 
+            variant={saved ? "default" : "outline"} 
+            size="sm"
+            onClick={handleSaveTrip}
+            disabled={saved}
+          >
+            {saved ? (
+              <>
+                <Check className="h-4 w-4 mr-2" />
+                Saved
+              </>
+            ) : (
+              <>
+                <Save className="h-4 w-4 mr-2" />
+                Save Trip
+              </>
+            )}
+          </Button>
           <Button variant="outline" size="sm">
             <Share2 className="h-4 w-4 mr-2" />
             Share Plan
