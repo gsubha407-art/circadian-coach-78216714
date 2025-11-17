@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
@@ -11,6 +11,7 @@ import { Switch } from '@/components/ui/switch';
 import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import { Trip, Leg } from '@/types/trip';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { airports } from '@/data/airports';
 
 const tripSchema = z.object({
   name: z.string().min(1, 'Trip name is required'),
@@ -115,53 +116,15 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
     onTripCreate(trip);
   };
 
-  const cities = [
-    { name: 'New York', timezone: 'America/New_York' },
-    { name: 'Los Angeles', timezone: 'America/Los_Angeles' },
-    { name: 'Chicago', timezone: 'America/Chicago' },
-    { name: 'Denver', timezone: 'America/Denver' },
-    { name: 'San Francisco', timezone: 'America/Los_Angeles' },
-    { name: 'Miami', timezone: 'America/New_York' },
-    { name: 'Boston', timezone: 'America/New_York' },
-    { name: 'London', timezone: 'Europe/London' },
-    { name: 'Paris', timezone: 'Europe/Paris' },
-    { name: 'Berlin', timezone: 'Europe/Berlin' },
-    { name: 'Rome', timezone: 'Europe/Rome' },
-    { name: 'Madrid', timezone: 'Europe/Madrid' },
-    { name: 'Amsterdam', timezone: 'Europe/Amsterdam' },
-    { name: 'Moscow', timezone: 'Europe/Moscow' },
-    { name: 'Dubai', timezone: 'Asia/Dubai' },
-    { name: 'Singapore', timezone: 'Asia/Singapore' },
-    { name: 'Tokyo', timezone: 'Asia/Tokyo' },
-    { name: 'Hong Kong', timezone: 'Asia/Hong_Kong' },
-    { name: 'Shanghai', timezone: 'Asia/Shanghai' },
-    { name: 'Beijing', timezone: 'Asia/Shanghai' },
-    { name: 'Seoul', timezone: 'Asia/Seoul' },
-    { name: 'Mumbai', timezone: 'Asia/Kolkata' },
-    { name: 'Bangkok', timezone: 'Asia/Bangkok' },
-    { name: 'Sydney', timezone: 'Australia/Sydney' },
-    { name: 'Melbourne', timezone: 'Australia/Melbourne' },
-    { name: 'Auckland', timezone: 'Pacific/Auckland' },
-    { name: 'Honolulu', timezone: 'Pacific/Honolulu' },
-    { name: 'Toronto', timezone: 'America/Toronto' },
-    { name: 'Vancouver', timezone: 'America/Vancouver' },
-    { name: 'Mexico City', timezone: 'America/Mexico_City' },
-    { name: 'São Paulo', timezone: 'America/Sao_Paulo' },
-    { name: 'Buenos Aires', timezone: 'America/Argentina/Buenos_Aires' },
-    { name: 'Istanbul', timezone: 'Europe/Istanbul' },
-    { name: 'Cairo', timezone: 'Africa/Cairo' },
-    { name: 'Johannesburg', timezone: 'Africa/Johannesburg' },
-  ];
-
   const handleCityChange = (index: number, field: 'origin' | 'dest', cityName: string) => {
-    const city = cities.find(c => c.name === cityName);
-    if (city) {
+    const airport = airports.find(a => a.city === cityName);
+    if (airport) {
       if (field === 'origin') {
-        updateLeg(index, 'originCity', city.name);
-        updateLeg(index, 'originTZ', city.timezone);
+        updateLeg(index, 'originCity', airport.city);
+        updateLeg(index, 'originTZ', airport.timezone);
       } else {
-        updateLeg(index, 'destCity', city.name);
-        updateLeg(index, 'destTZ', city.timezone);
+        updateLeg(index, 'destCity', airport.city);
+        updateLeg(index, 'destTZ', airport.timezone);
       }
     }
   };
@@ -410,9 +373,9 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                           <SelectValue placeholder="Select city" />
                         </SelectTrigger>
                         <SelectContent>
-                          {cities.map((city) => (
-                            <SelectItem key={city.name} value={city.name}>
-                              {city.name}
+                          {airports.map((airport) => (
+                            <SelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
+                              {airport.city}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -446,9 +409,9 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                           <SelectValue placeholder="Select city" />
                         </SelectTrigger>
                         <SelectContent>
-                          {cities.map((city) => (
-                            <SelectItem key={city.name} value={city.name}>
-                              {city.name}
+                          {airports.map((airport) => (
+                            <SelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
+                              {airport.city}
                             </SelectItem>
                           ))}
                         </SelectContent>
