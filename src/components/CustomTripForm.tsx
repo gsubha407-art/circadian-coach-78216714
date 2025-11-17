@@ -8,10 +8,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
-import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
+import { ArrowLeft, Plus, Trash2, Check, ChevronsUpDown } from 'lucide-react';
 import { Trip, Leg } from '@/types/trip';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { airports } from '@/data/airports';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { cn } from '@/lib/utils';
 
 const tripSchema = z.object({
   name: z.string().min(1, 'Trip name is required'),
@@ -365,21 +368,46 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                     {/* Origin */}
                     <div className="space-y-2">
                       <Label>Origin City</Label>
-                      <Select
-                        value={leg.originCity}
-                        onValueChange={(value) => handleCityChange(index, 'origin', value)}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select city" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-background z-50">
-                          {airports.map((airport) => (
-                            <SelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
-                              {airport.city}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            className={cn(
+                              "w-full justify-between",
+                              !leg.originCity && "text-muted-foreground"
+                            )}
+                          >
+                            {leg.originCity || "Select city"}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-full p-0" align="start">
+                          <Command>
+                            <CommandInput placeholder="Search city..." />
+                            <CommandList>
+                              <CommandEmpty>No city found.</CommandEmpty>
+                              <CommandGroup>
+                                {airports.map((airport) => (
+                                  <CommandItem
+                                    key={`${airport.city}-${airport.iataCode}`}
+                                    value={airport.city}
+                                    onSelect={() => handleCityChange(index, 'origin', airport.city)}
+                                  >
+                                    <Check
+                                      className={cn(
+                                        "mr-2 h-4 w-4",
+                                        leg.originCity === airport.city ? "opacity-100" : "opacity-0"
+                                      )}
+                                    />
+                                    {airport.city}
+                                  </CommandItem>
+                                ))}
+                              </CommandGroup>
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
                       <Label className="text-sm text-muted-foreground">Time Zone</Label>
                       <Select
                         value={leg.originTZ}
@@ -401,21 +429,46 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                     {/* Destination */}
                     <div className="space-y-2">
                       <Label>Destination City</Label>
-                      <Select
-                        value={leg.destCity}
-                        onValueChange={(value) => handleCityChange(index, 'dest', value)}
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select city" />
-                        </SelectTrigger>
-                        <SelectContent className="bg-background z-50">
-                          {airports.map((airport) => (
-                            <SelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
-                              {airport.city}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="outline"
+                            role="combobox"
+                            className={cn(
+                              "w-full justify-between",
+                              !leg.destCity && "text-muted-foreground"
+                            )}
+                          >
+                            {leg.destCity || "Select city"}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-full p-0" align="start">
+                          <Command>
+                            <CommandInput placeholder="Search city..." />
+                            <CommandList>
+                              <CommandEmpty>No city found.</CommandEmpty>
+                              <CommandGroup>
+                                {airports.map((airport) => (
+                                  <CommandItem
+                                    key={`${airport.city}-${airport.iataCode}`}
+                                    value={airport.city}
+                                    onSelect={() => handleCityChange(index, 'dest', airport.city)}
+                                  >
+                                    <Check
+                                      className={cn(
+                                        "mr-2 h-4 w-4",
+                                        leg.destCity === airport.city ? "opacity-100" : "opacity-0"
+                                      )}
+                                    />
+                                    {airport.city}
+                                  </CommandItem>
+                                ))}
+                              </CommandGroup>
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
                       <Label className="text-sm text-muted-foreground">Time Zone</Label>
                       <Select
                         value={leg.destTZ}
