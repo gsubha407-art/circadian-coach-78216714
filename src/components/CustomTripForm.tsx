@@ -26,10 +26,8 @@ type TripFormData = z.infer<typeof tripSchema>;
 
 interface FlightLeg {
   originCity: string;
-  originCode: string;
   originTZ: string;
   destCity: string;
-  destCode: string;
   destTZ: string;
   departLocal: string;
   arriveLocal: string;
@@ -44,10 +42,8 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
   const [legs, setLegs] = useState<FlightLeg[]>([
     {
       originCity: '',
-      originCode: '',
       originTZ: 'America/New_York',
       destCity: '',
-      destCode: '',
       destTZ: 'Europe/London',
       departLocal: '',
       arriveLocal: '',
@@ -71,10 +67,8 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
     const lastLeg = legs[legs.length - 1];
     setLegs([...legs, {
       originCity: lastLeg.destCity,
-      originCode: lastLeg.destCode,
       originTZ: lastLeg.destTZ,
       destCity: '',
-      destCode: '',
       destTZ: 'Europe/London',
       departLocal: '',
       arriveLocal: '',
@@ -97,10 +91,10 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
     const tripLegs: Leg[] = legs.map((leg, index) => ({
       id: `leg-${index + 1}`,
       originCity: leg.originCity,
-      originCode: leg.originCode,
+      originCode: leg.originCity.substring(0, 3).toUpperCase(),
       originTZ: leg.originTZ,
       destCity: leg.destCity,
-      destCode: leg.destCode,
+      destCode: leg.destCity.substring(0, 3).toUpperCase(),
       destTZ: leg.destTZ,
       departLocal: new Date(`${leg.departLocal}`).toISOString(),
       arriveLocal: new Date(`${leg.arriveLocal}`).toISOString(),
@@ -121,20 +115,89 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
     onTripCreate(trip);
   };
 
+  const cities = [
+    { name: 'New York', timezone: 'America/New_York' },
+    { name: 'Los Angeles', timezone: 'America/Los_Angeles' },
+    { name: 'Chicago', timezone: 'America/Chicago' },
+    { name: 'Denver', timezone: 'America/Denver' },
+    { name: 'San Francisco', timezone: 'America/Los_Angeles' },
+    { name: 'Miami', timezone: 'America/New_York' },
+    { name: 'Boston', timezone: 'America/New_York' },
+    { name: 'London', timezone: 'Europe/London' },
+    { name: 'Paris', timezone: 'Europe/Paris' },
+    { name: 'Berlin', timezone: 'Europe/Berlin' },
+    { name: 'Rome', timezone: 'Europe/Rome' },
+    { name: 'Madrid', timezone: 'Europe/Madrid' },
+    { name: 'Amsterdam', timezone: 'Europe/Amsterdam' },
+    { name: 'Moscow', timezone: 'Europe/Moscow' },
+    { name: 'Dubai', timezone: 'Asia/Dubai' },
+    { name: 'Singapore', timezone: 'Asia/Singapore' },
+    { name: 'Tokyo', timezone: 'Asia/Tokyo' },
+    { name: 'Hong Kong', timezone: 'Asia/Hong_Kong' },
+    { name: 'Shanghai', timezone: 'Asia/Shanghai' },
+    { name: 'Beijing', timezone: 'Asia/Shanghai' },
+    { name: 'Seoul', timezone: 'Asia/Seoul' },
+    { name: 'Mumbai', timezone: 'Asia/Kolkata' },
+    { name: 'Bangkok', timezone: 'Asia/Bangkok' },
+    { name: 'Sydney', timezone: 'Australia/Sydney' },
+    { name: 'Melbourne', timezone: 'Australia/Melbourne' },
+    { name: 'Auckland', timezone: 'Pacific/Auckland' },
+    { name: 'Honolulu', timezone: 'Pacific/Honolulu' },
+    { name: 'Toronto', timezone: 'America/Toronto' },
+    { name: 'Vancouver', timezone: 'America/Vancouver' },
+    { name: 'Mexico City', timezone: 'America/Mexico_City' },
+    { name: 'São Paulo', timezone: 'America/Sao_Paulo' },
+    { name: 'Buenos Aires', timezone: 'America/Argentina/Buenos_Aires' },
+    { name: 'Istanbul', timezone: 'Europe/Istanbul' },
+    { name: 'Cairo', timezone: 'Africa/Cairo' },
+    { name: 'Johannesburg', timezone: 'Africa/Johannesburg' },
+  ];
+
+  const handleCityChange = (index: number, field: 'origin' | 'dest', cityName: string) => {
+    const city = cities.find(c => c.name === cityName);
+    if (city) {
+      if (field === 'origin') {
+        updateLeg(index, 'originCity', city.name);
+        updateLeg(index, 'originTZ', city.timezone);
+      } else {
+        updateLeg(index, 'destCity', city.name);
+        updateLeg(index, 'destTZ', city.timezone);
+      }
+    }
+  };
+
   const commonTimezones = [
     { value: 'America/New_York', label: 'Eastern Time (New York)' },
     { value: 'America/Chicago', label: 'Central Time (Chicago)' },
     { value: 'America/Denver', label: 'Mountain Time (Denver)' },
     { value: 'America/Los_Angeles', label: 'Pacific Time (Los Angeles)' },
+    { value: 'America/Toronto', label: 'Eastern Time (Toronto)' },
+    { value: 'America/Vancouver', label: 'Pacific Time (Vancouver)' },
+    { value: 'America/Mexico_City', label: 'Central Time (Mexico City)' },
+    { value: 'America/Sao_Paulo', label: 'Brasília Time (São Paulo)' },
+    { value: 'America/Argentina/Buenos_Aires', label: 'Argentina Time (Buenos Aires)' },
     { value: 'Europe/London', label: 'GMT (London)' },
     { value: 'Europe/Paris', label: 'CET (Paris)' },
+    { value: 'Europe/Berlin', label: 'CET (Berlin)' },
+    { value: 'Europe/Rome', label: 'CET (Rome)' },
+    { value: 'Europe/Madrid', label: 'CET (Madrid)' },
+    { value: 'Europe/Amsterdam', label: 'CET (Amsterdam)' },
     { value: 'Europe/Moscow', label: 'MSK (Moscow)' },
+    { value: 'Europe/Istanbul', label: 'TRT (Istanbul)' },
     { value: 'Asia/Dubai', label: 'GST (Dubai)' },
+    { value: 'Asia/Singapore', label: 'SGT (Singapore)' },
     { value: 'Asia/Tokyo', label: 'JST (Tokyo)' },
+    { value: 'Asia/Hong_Kong', label: 'HKT (Hong Kong)' },
     { value: 'Asia/Shanghai', label: 'CST (Shanghai)' },
+    { value: 'Asia/Seoul', label: 'KST (Seoul)' },
     { value: 'Asia/Kolkata', label: 'IST (Mumbai)' },
+    { value: 'Asia/Bangkok', label: 'ICT (Bangkok)' },
     { value: 'Australia/Sydney', label: 'AEDT (Sydney)' },
+    { value: 'Australia/Melbourne', label: 'AEDT (Melbourne)' },
+    { value: 'Pacific/Auckland', label: 'NZDT (Auckland)' },
     { value: 'Pacific/Honolulu', label: 'HST (Honolulu)' },
+    { value: 'Africa/Cairo', label: 'EET (Cairo)' },
+    { value: 'Africa/Johannesburg', label: 'SAST (Johannesburg)' },
   ];
 
   return (
@@ -338,19 +401,23 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   <div className="grid md:grid-cols-2 gap-4">
                     {/* Origin */}
                     <div className="space-y-2">
-                      <Label>Origin</Label>
-                      <div className="grid grid-cols-2 gap-2">
-                        <Input
-                          placeholder="City"
-                          value={leg.originCity}
-                          onChange={(e) => updateLeg(index, 'originCity', e.target.value)}
-                        />
-                        <Input
-                          placeholder="Code"
-                          value={leg.originCode}
-                          onChange={(e) => updateLeg(index, 'originCode', e.target.value)}
-                        />
-                      </div>
+                      <Label>Origin City</Label>
+                      <Select
+                        value={leg.originCity}
+                        onValueChange={(value) => handleCityChange(index, 'origin', value)}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select city" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {cities.map((city) => (
+                            <SelectItem key={city.name} value={city.name}>
+                              {city.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Label className="text-sm text-muted-foreground">Time Zone</Label>
                       <Select
                         value={leg.originTZ}
                         onValueChange={(value) => updateLeg(index, 'originTZ', value)}
@@ -370,19 +437,23 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
 
                     {/* Destination */}
                     <div className="space-y-2">
-                      <Label>Destination</Label>
-                      <div className="grid grid-cols-2 gap-2">
-                        <Input
-                          placeholder="City"
-                          value={leg.destCity}
-                          onChange={(e) => updateLeg(index, 'destCity', e.target.value)}
-                        />
-                        <Input
-                          placeholder="Code"
-                          value={leg.destCode}
-                          onChange={(e) => updateLeg(index, 'destCode', e.target.value)}
-                        />
-                      </div>
+                      <Label>Destination City</Label>
+                      <Select
+                        value={leg.destCity}
+                        onValueChange={(value) => handleCityChange(index, 'dest', value)}
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select city" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {cities.map((city) => (
+                            <SelectItem key={city.name} value={city.name}>
+                              {city.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <Label className="text-sm text-muted-foreground">Time Zone</Label>
                       <Select
                         value={leg.destTZ}
                         onValueChange={(value) => updateLeg(index, 'destTZ', value)}
