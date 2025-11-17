@@ -370,9 +370,11 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                         onValueChange={(value) => handleCityChange(index, 'origin', value)}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select city" />
+                          <SelectValue placeholder="Select city">
+                            {leg.originCity || "Select city"}
+                          </SelectValue>
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-background z-50">
                           {airports.map((airport) => (
                             <SelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
                               {airport.city}
@@ -406,9 +408,11 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                         onValueChange={(value) => handleCityChange(index, 'dest', value)}
                       >
                         <SelectTrigger>
-                          <SelectValue placeholder="Select city" />
+                          <SelectValue placeholder="Select city">
+                            {leg.destCity || "Select city"}
+                          </SelectValue>
                         </SelectTrigger>
-                        <SelectContent>
+                        <SelectContent className="bg-background z-50">
                           {airports.map((airport) => (
                             <SelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
                               {airport.city}
