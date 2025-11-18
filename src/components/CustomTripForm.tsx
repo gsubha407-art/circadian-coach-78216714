@@ -135,7 +135,8 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
   );
 
   const handleCityChange = (index: number, field: 'origin' | 'dest', cityName: string) => {
-    const airport = uniqueCities.find(a => a.city === cityName);
+    // Command component lowercases values, so we need case-insensitive search
+    const airport = uniqueCities.find(a => a.city.toLowerCase() === cityName.toLowerCase());
     if (airport) {
       if (field === 'origin') {
         updateLeg(index, 'originCity', airport.city);
