@@ -11,7 +11,7 @@ import { Switch } from '@/components/ui/switch';
 import { ArrowLeft, Plus, Trash2, Check, ChevronsUpDown } from 'lucide-react';
 import { Trip, Leg } from '@/types/trip';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { airports } from '@/data/airports';
+import airportsData from '@/data/airports.json';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { cn } from '@/lib/utils';
@@ -121,8 +121,21 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
     onTripCreate(trip);
   };
 
+  // Convert airports JSON to array format
+  const airports = Object.values(airportsData).map((airport: any) => ({
+    city: airport.city,
+    timezone: airport.tz,
+    name: airport.name,
+    icao: airport.icao,
+  }));
+
+  // Get unique cities (since multiple airports may serve same city)
+  const uniqueCities = Array.from(
+    new Map(airports.map(a => [a.city, a])).values()
+  );
+
   const handleCityChange = (index: number, field: 'origin' | 'dest', cityName: string) => {
-    const airport = airports.find(a => a.city === cityName);
+    const airport = uniqueCities.find(a => a.city === cityName);
     if (airport) {
       if (field === 'origin') {
         updateLeg(index, 'originCity', airport.city);
@@ -395,9 +408,9 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                             <CommandList>
                               <CommandEmpty>No city found.</CommandEmpty>
                               <CommandGroup>
-                                {airports.map((airport) => (
+                                {uniqueCities.map((airport) => (
                                   <CommandItem
-                                    key={`${airport.city}-${airport.iataCode}`}
+                                    key={`${airport.city}-${airport.icao}`}
                                     value={airport.city}
                                     onSelect={() => handleCityChange(index, 'origin', airport.city)}
                                   >
@@ -459,9 +472,9 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                             <CommandList>
                               <CommandEmpty>No city found.</CommandEmpty>
                               <CommandGroup>
-                                {airports.map((airport) => (
+                                {uniqueCities.map((airport) => (
                                   <CommandItem
-                                    key={`${airport.city}-${airport.iataCode}`}
+                                    key={`${airport.city}-${airport.icao}`}
                                     value={airport.city}
                                     onSelect={() => handleCityChange(index, 'dest', airport.city)}
                                   >
