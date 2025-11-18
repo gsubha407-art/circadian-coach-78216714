@@ -3,7 +3,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { OptimizationPlan as OptimizationPlanType, ActivityBlock, Trip } from '@/types/trip';
-import { ArrowLeft, Download, Share2, Clock, Moon, Sun, Coffee, Power, Lightbulb, Save, Check } from 'lucide-react';
+import { ArrowLeft, Download, Clock, Moon, Sun, Coffee, Power, Lightbulb, Save, Check } from 'lucide-react';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import { cn } from '@/lib/utils';
 import { saveTrip, isTripSaved } from '@/lib/savedTrips';
 import { useToast } from '@/hooks/use-toast';
@@ -77,8 +79,45 @@ export const OptimizationPlan = ({ plan, trip, onBack }: OptimizationPlanProps) 
     }
   };
 
+  const handleExportPDF = async () => {
+    try {
+      const element = document.getElementById('optimization-plan-content');
+      if (!element) return;
+
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        useCORS: true,
+        logging: false,
+      });
+
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4',
+      });
+
+      const imgWidth = 210;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      
+      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      pdf.save(`${trip.name || 'trip'}-optimization-plan.pdf`);
+
+      toast({
+        title: "PDF exported!",
+        description: "Your optimization plan has been downloaded.",
+      });
+    } catch (error) {
+      toast({
+        title: "Error exporting PDF",
+        description: "Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
-    <div className="space-y-6">
+    <div id="optimization-plan-content" className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={onBack} className="gap-2">
@@ -104,11 +143,7 @@ export const OptimizationPlan = ({ plan, trip, onBack }: OptimizationPlanProps) 
               </>
             )}
           </Button>
-          <Button variant="outline" size="sm">
-            <Share2 className="h-4 w-4 mr-2" />
-            Share Plan
-          </Button>
-          <Button size="sm">
+          <Button size="sm" onClick={handleExportPDF}>
             <Download className="h-4 w-4 mr-2" />
             Export PDF
           </Button>
