@@ -11,7 +11,7 @@ import { Switch } from '@/components/ui/switch';
 import { ArrowLeft, Plus, Trash2, Check, ChevronsUpDown } from 'lucide-react';
 import { Trip, Leg } from '@/types/trip';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import airportsData from '@/data/airports.json';
+import { airports } from '@/data/airports';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 import { cn } from '@/lib/utils';
@@ -120,14 +120,6 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
 
     onTripCreate(trip);
   };
-
-  // Convert airports JSON to array format
-  const airports = Object.values(airportsData).map((airport: any) => ({
-    city: airport.city,
-    timezone: airport.tz,
-    name: airport.name,
-    icao: airport.icao,
-  }));
 
   // Get unique cities (since multiple airports may serve same city)
   const uniqueCities = Array.from(
@@ -411,7 +403,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                               <CommandGroup>
                                 {uniqueCities.map((airport) => (
                                   <CommandItem
-                                    key={`${airport.city}-${airport.icao}`}
+                                  key={`${airport.city}-${airport.iataCode}`}
                                     value={airport.city}
                                     onSelect={() => handleCityChange(index, 'origin', airport.city)}
                                   >
@@ -475,7 +467,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                               <CommandGroup>
                                 {uniqueCities.map((airport) => (
                                   <CommandItem
-                                    key={`${airport.city}-${airport.icao}`}
+                                    key={`${airport.city}-${airport.iataCode}`}
                                     value={airport.city}
                                     onSelect={() => handleCityChange(index, 'dest', airport.city)}
                                   >
