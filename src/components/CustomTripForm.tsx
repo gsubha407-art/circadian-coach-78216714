@@ -54,6 +54,8 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
     }
   ]);
 
+  const [openPopovers, setOpenPopovers] = useState<Record<string, boolean>>({});
+
   const form = useForm<TripFormData>({
     resolver: zodResolver(tripSchema),
     defaultValues: {
@@ -129,6 +131,8 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
         updateLeg(index, 'destCity', airport.city);
         updateLeg(index, 'destTZ', airport.timezone);
       }
+      // Close the popover after selection
+      setOpenPopovers(prev => ({ ...prev, [`${index}-${field}`]: false }));
     }
   };
 
@@ -368,7 +372,10 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                     {/* Origin */}
                     <div className="space-y-2">
                       <Label>Origin City</Label>
-                      <Popover>
+                      <Popover 
+                        open={openPopovers[`${index}-origin`] || false}
+                        onOpenChange={(open) => setOpenPopovers(prev => ({ ...prev, [`${index}-origin`]: open }))}
+                      >
                         <PopoverTrigger asChild>
                           <Button
                             variant="outline"
@@ -429,7 +436,10 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                     {/* Destination */}
                     <div className="space-y-2">
                       <Label>Destination City</Label>
-                      <Popover>
+                      <Popover 
+                        open={openPopovers[`${index}-dest`] || false}
+                        onOpenChange={(open) => setOpenPopovers(prev => ({ ...prev, [`${index}-dest`]: open }))}
+                      >
                         <PopoverTrigger asChild>
                           <Button
                             variant="outline"
