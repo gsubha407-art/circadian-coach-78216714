@@ -130,13 +130,21 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
     // Command component lowercases values, so we need case-insensitive search
     const airport = uniqueCities.find(a => a.city.toLowerCase() === cityName.toLowerCase());
     if (airport) {
+      const updatedLegs = [...legs];
       if (field === 'origin') {
-        updateLeg(index, 'originCity', airport.city);
-        updateLeg(index, 'originTZ', airport.timezone);
+        updatedLegs[index] = {
+          ...updatedLegs[index],
+          originCity: airport.city,
+          originTZ: airport.timezone,
+        };
       } else {
-        updateLeg(index, 'destCity', airport.city);
-        updateLeg(index, 'destTZ', airport.timezone);
+        updatedLegs[index] = {
+          ...updatedLegs[index],
+          destCity: airport.city,
+          destTZ: airport.timezone,
+        };
       }
+      setLegs(updatedLegs);
       // Close the popover after selection
       setOpenPopovers(prev => ({ ...prev, [`${index}-${field}`]: false }));
     }
