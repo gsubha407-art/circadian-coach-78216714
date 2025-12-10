@@ -270,52 +270,6 @@ export const OptimizationPlan = ({ plan, trip, onBack }: OptimizationPlanProps) 
         </Card>
       )}
 
-      {/* Timeline visualization */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Daily Timeline Overview</CardTitle>
-          <CardDescription>Color-coded blocks show your optimization schedule</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {plan.days.slice(0, 7).map((day, dayIndex) => (
-              <div key={dayIndex} className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <div className="font-medium">
-                    {new Date(day.date).toLocaleDateString(undefined, { 
-                      month: 'short', 
-                      day: 'numeric' 
-                    })}
-                  </div>
-                  <div className="text-sm text-muted-foreground">
-                    {day.activities.length} activities
-                  </div>
-                </div>
-                <div className="flex gap-1 h-8">
-                  {Array.from({ length: 24 }, (_, hour) => {
-                    const timeStr = `${hour.toString().padStart(2, '0')}:00`;
-                    const activity = day.activities.find(act => 
-                      act.startTime <= timeStr && 
-                      (act.endTime > timeStr || act.endTime === '00:00')
-                    );
-                    
-                    return (
-                      <div
-                        key={hour}
-                        className={cn(
-                          "flex-1 h-full border border-border/20",
-                          activity ? getActivityColor(activity.type) : 'bg-secondary/20'
-                        )}
-                        title={activity ? `${activity.type}: ${activity.description}` : `${hour}:00`}
-                      />
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
     </div>
   );
 };
