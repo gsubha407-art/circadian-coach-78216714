@@ -46,9 +46,9 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
   const [legs, setLegs] = useState<FlightLeg[]>([
     {
       originCity: '',
-      originTZ: 'America/New_York',
+      originTZ: '',
       destCity: '',
-      destTZ: 'Europe/London',
+      destTZ: '',
       departLocal: '',
       arriveLocal: '',
     }
@@ -75,7 +75,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
       originCity: lastLeg.destCity,
       originTZ: lastLeg.destTZ,
       destCity: '',
-      destTZ: 'Europe/London',
+      destTZ: '',
       departLocal: '',
       arriveLocal: '',
     }]);
@@ -435,7 +435,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                         onValueChange={(value) => updateLeg(index, 'originTZ', value)}
                       >
                         <SelectTrigger>
-                          <SelectValue />
+                          <SelectValue placeholder="Select Time Zone" />
                         </SelectTrigger>
                         <SelectContent>
                           {commonTimezones.map((tz) => (
@@ -499,7 +499,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                         onValueChange={(value) => updateLeg(index, 'destTZ', value)}
                       >
                         <SelectTrigger>
-                          <SelectValue />
+                          <SelectValue placeholder="Select Time Zone" />
                         </SelectTrigger>
                         <SelectContent>
                           {commonTimezones.map((tz) => (
