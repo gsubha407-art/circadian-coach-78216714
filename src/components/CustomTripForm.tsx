@@ -186,10 +186,10 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4">
+      <div className="space-y-4">
         <Button variant="ghost" size="sm" onClick={onBack}>
           <ArrowLeft className="h-4 w-4 mr-2" />
-          Back to Trips
+          Back
         </Button>
         <div>
           <h1 className="text-3xl font-bold bg-gradient-hero bg-clip-text text-transparent">
