@@ -196,8 +196,12 @@ export const OptimizationPlan = ({ plan, trip, onBack }: OptimizationPlanProps) 
       </Card>
 
       {/* Day selector */}
-      <div className="flex gap-2 overflow-x-auto pb-2">
-        {plan.days.map((day, index) => (
+      <div className="space-y-2">
+        <p className="text-sm text-muted-foreground">
+          Your plan focuses on key adjustment days: pre-travel preparation and post-arrival adaptation. Days without activities are skipped to keep your schedule focused.
+        </p>
+        <div className="flex gap-2 overflow-x-auto pb-2">
+          {plan.days.map((day, index) => (
           <Button
             key={index}
             variant={selectedDay === index ? "default" : "outline"}
@@ -211,6 +215,7 @@ export const OptimizationPlan = ({ plan, trip, onBack }: OptimizationPlanProps) 
             })}
           </Button>
         ))}
+        </div>
       </div>
 
       {/* Selected day details */}
