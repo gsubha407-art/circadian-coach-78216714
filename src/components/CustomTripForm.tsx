@@ -42,6 +42,16 @@ interface CustomTripFormProps {
   onTripCreate: (trip: Trip) => void;
 }
 
+const getCurrentDateTimeLocal = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+};
+
 export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) => {
   const [legs, setLegs] = useState<FlightLeg[]>([
     {
@@ -49,11 +59,12 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
       originTZ: '',
       destCity: '',
       destTZ: '',
-      departLocal: '',
-      arriveLocal: '',
+      departLocal: getCurrentDateTimeLocal(),
+      arriveLocal: getCurrentDateTimeLocal(),
     }
   ]);
 
+  const [legErrors, setLegErrors] = useState<Record<number, string>>({});
   const [openPopovers, setOpenPopovers] = useState<Record<string, boolean>>({});
 
   const form = useForm<TripFormData>({
@@ -76,8 +87,8 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
       originTZ: lastLeg.destTZ,
       destCity: '',
       destTZ: '',
-      departLocal: '',
-      arriveLocal: '',
+      departLocal: getCurrentDateTimeLocal(),
+      arriveLocal: getCurrentDateTimeLocal(),
     }]);
   };
 
@@ -90,6 +101,33 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
   const updateLeg = (index: number, field: keyof FlightLeg, value: string) => {
     const updatedLegs = [...legs];
     updatedLegs[index] = { ...updatedLegs[index], [field]: value };
+    
+    const leg = updatedLegs[index];
+    const newErrors = { ...legErrors };
+    
+    if (field === 'departLocal' || field === 'arriveLocal') {
+      const departTime = field === 'departLocal' ? value : leg.departLocal;
+      const arriveTime = field === 'arriveLocal' ? value : leg.arriveLocal;
+      
+      if (departTime && arriveTime) {
+        const departDate = new Date(departTime);
+        const arriveDate = new Date(arriveTime);
+        
+        if (arriveDate < departDate) {
+          if (field === 'arriveLocal') {
+            newErrors[index] = 'Arrival time cannot be before departure time';
+          } else {
+            newErrors[index] = 'Departure time cannot be after arrival time';
+          }
+        } else {
+          delete newErrors[index];
+        }
+      } else {
+        delete newErrors[index];
+      }
+    }
+    
+    setLegErrors(newErrors);
     setLegs(updatedLegs);
   };
 
@@ -519,6 +557,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                         type="datetime-local"
                         value={leg.departLocal}
                         onChange={(e) => updateLeg(index, 'departLocal', e.target.value)}
+                        className={legErrors[index] ? "border-destructive" : ""}
                       />
                     </div>
                     <div className="space-y-2">
@@ -527,9 +566,13 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                         type="datetime-local"
                         value={leg.arriveLocal}
                         onChange={(e) => updateLeg(index, 'arriveLocal', e.target.value)}
+                        className={legErrors[index] ? "border-destructive" : ""}
                       />
                     </div>
                   </div>
+                  {legErrors[index] && (
+                    <p className="text-sm text-destructive">{legErrors[index]}</p>
+                  )}
                 </div>
               ))}
             </CardContent>
@@ -539,7 +582,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
             <Button type="button" variant="outline" onClick={onBack}>
               Cancel
             </Button>
-            <Button type="submit">
+            <Button type="submit" disabled={Object.keys(legErrors).length > 0}>
               Create Optimization Plan
             </Button>
           </div>
