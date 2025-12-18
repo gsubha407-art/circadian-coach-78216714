@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { OutlinedTextField } from '@/components/ui/outlined-text-field';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
@@ -557,24 +556,20 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label>Departure</Label>
-                      <Input
-                        type="datetime-local"
-                        value={leg.departLocal}
-                        onChange={(e) => updateLeg(index, 'departLocal', e.target.value)}
-                        className={legErrors[index] ? "border-destructive" : ""}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label>Arrival</Label>
-                      <Input
-                        type="datetime-local"
-                        value={leg.arriveLocal}
-                        onChange={(e) => updateLeg(index, 'arriveLocal', e.target.value)}
-                        className={legErrors[index] ? "border-destructive" : ""}
-                      />
-                    </div>
+                    <OutlinedTextField
+                      label="Departure"
+                      type="datetime-local"
+                      value={leg.departLocal}
+                      onChange={(e) => updateLeg(index, 'departLocal', e.target.value)}
+                      error={!!legErrors[index]}
+                    />
+                    <OutlinedTextField
+                      label="Arrival"
+                      type="datetime-local"
+                      value={leg.arriveLocal}
+                      onChange={(e) => updateLeg(index, 'arriveLocal', e.target.value)}
+                      error={!!legErrors[index]}
+                    />
                   </div>
                   {legErrors[index] && (
                     <p className="text-sm text-destructive">{legErrors[index]}</p>
