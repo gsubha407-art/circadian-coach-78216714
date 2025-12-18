@@ -6,7 +6,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { OutlinedTextField } from '@/components/ui/outlined-text-field';
 import { Label } from '@/components/ui/label';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { 
   OutlinedSelect, 
   OutlinedSelectContent, 
@@ -427,8 +426,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
 
                   <div className="grid md:grid-cols-2 gap-4">
                     {/* Origin */}
-                    <div className="space-y-2">
-                      <Label>Origin City</Label>
+                    <div className="space-y-4">
                       <Popover 
                         open={openPopovers[`${index}-origin`] || false}
                         onOpenChange={(open) => setOpenPopovers(prev => ({ ...prev, [`${index}-origin`]: open }))}
@@ -438,11 +436,11 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                             variant="outline"
                             role="combobox"
                             className={cn(
-                              "w-full justify-between",
+                              "w-full h-14 justify-between",
                               !leg.originCity && "text-muted-foreground"
                             )}
                           >
-                            {leg.originCity || "Select city"}
+                            {leg.originCity || "Select Origin City"}
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </PopoverTrigger>
@@ -472,27 +470,25 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                           </Command>
                         </PopoverContent>
                       </Popover>
-                      <Label className="text-sm text-muted-foreground">Time Zone</Label>
-                      <Select
+                      <OutlinedSelect
                         value={leg.originTZ}
                         onValueChange={(value) => updateLeg(index, 'originTZ', value)}
                       >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Time Zone" />
-                        </SelectTrigger>
-                        <SelectContent>
+                        <OutlinedSelectTrigger label="Origin Time Zone">
+                          <OutlinedSelectValue placeholder="Select Time Zone" />
+                        </OutlinedSelectTrigger>
+                        <OutlinedSelectContent>
                           {commonTimezones.map((tz) => (
-                            <SelectItem key={tz.value} value={tz.value}>
+                            <OutlinedSelectItem key={tz.value} value={tz.value}>
                               {tz.label}
-                            </SelectItem>
+                            </OutlinedSelectItem>
                           ))}
-                        </SelectContent>
-                      </Select>
+                        </OutlinedSelectContent>
+                      </OutlinedSelect>
                     </div>
 
                     {/* Destination */}
-                    <div className="space-y-2">
-                      <Label>Destination City</Label>
+                    <div className="space-y-4">
                       <Popover 
                         open={openPopovers[`${index}-dest`] || false}
                         onOpenChange={(open) => setOpenPopovers(prev => ({ ...prev, [`${index}-dest`]: open }))}
@@ -502,11 +498,11 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                             variant="outline"
                             role="combobox"
                             className={cn(
-                              "w-full justify-between",
+                              "w-full h-14 justify-between",
                               !leg.destCity && "text-muted-foreground"
                             )}
                           >
-                            {leg.destCity || "Select city"}
+                            {leg.destCity || "Select Destination City"}
                             <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </PopoverTrigger>
@@ -536,22 +532,21 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                           </Command>
                         </PopoverContent>
                       </Popover>
-                      <Label className="text-sm text-muted-foreground">Time Zone</Label>
-                      <Select
+                      <OutlinedSelect
                         value={leg.destTZ}
                         onValueChange={(value) => updateLeg(index, 'destTZ', value)}
                       >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select Time Zone" />
-                        </SelectTrigger>
-                        <SelectContent>
+                        <OutlinedSelectTrigger label="Destination Time Zone">
+                          <OutlinedSelectValue placeholder="Select Time Zone" />
+                        </OutlinedSelectTrigger>
+                        <OutlinedSelectContent>
                           {commonTimezones.map((tz) => (
-                            <SelectItem key={tz.value} value={tz.value}>
+                            <OutlinedSelectItem key={tz.value} value={tz.value}>
                               {tz.label}
-                            </SelectItem>
+                            </OutlinedSelectItem>
                           ))}
-                        </SelectContent>
-                      </Select>
+                        </OutlinedSelectContent>
+                      </OutlinedSelect>
                     </div>
                   </div>
 
