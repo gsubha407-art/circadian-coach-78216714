@@ -162,7 +162,7 @@ export const TripSelector = ({
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card className="border-primary/20">
             <CardHeader>
-              <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
+              <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Users className="h-6 w-6 text-primary" />
               </div>
               <CardTitle className="text-lg">Personalized Profile</CardTitle>
@@ -176,7 +176,7 @@ export const TripSelector = ({
 
           <Card className="border-primary/20">
             <CardHeader>
-              <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
+              <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <MapPin className="h-6 w-6 text-primary" />
               </div>
               <CardTitle className="text-lg">Detailed Trip Modeling</CardTitle>
@@ -190,7 +190,7 @@ export const TripSelector = ({
 
           <Card className="border-primary/20">
             <CardHeader>
-              <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
+              <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Clock className="h-6 w-6 text-primary" />
               </div>
               <CardTitle className="text-lg">Jet Lag Sensitivity</CardTitle>
@@ -204,7 +204,7 @@ export const TripSelector = ({
 
           <Card className="border-primary/20">
             <CardHeader>
-              <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
+              <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Badge className="h-6 w-6 flex items-center justify-center bg-melatonin text-white">M</Badge>
               </div>
               <CardTitle className="text-lg">Melatonin Integration</CardTitle>
@@ -218,7 +218,7 @@ export const TripSelector = ({
 
           <Card className="border-primary/20">
             <CardHeader>
-              <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
+              <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Plane className="h-6 w-6 text-primary" />
               </div>
               <CardTitle className="text-lg">Cabin Context</CardTitle>
@@ -232,7 +232,7 @@ export const TripSelector = ({
 
           <Card className="border-primary/20">
             <CardHeader>
-              <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-2">
+              <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <MapPin className="h-6 w-6 text-primary" />
               </div>
               <CardTitle className="text-lg">Complex Journeys</CardTitle>
