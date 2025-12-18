@@ -4,17 +4,33 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+  "inline-flex items-center rounded-lg px-3 py-1 text-sm font-medium transition-colors duration-short ease-standard focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
   {
     variants: {
       variant: {
+        // MD3 Filled badge
         default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+          "bg-primary text-primary-foreground",
+        // MD3 Tonal badge
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "bg-secondary-container text-secondary-on-container",
+        // MD3 Error badge  
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        outline: "text-foreground",
+          "bg-destructive-container text-destructive-on-container",
+        // MD3 Outlined badge
+        outline: 
+          "border border-outline text-foreground bg-transparent",
+        // Circadian specific badges
+        sleep:
+          "bg-sleep-light text-sleep",
+        melatonin:
+          "bg-melatonin-light text-melatonin",
+        caffeine:
+          "bg-caffeine-light text-caffeine",
+        nap:
+          "bg-nap-light text-nap",
+        light:
+          "bg-light-seek/20 text-light-seek-foreground",
       },
     },
     defaultVariants: {

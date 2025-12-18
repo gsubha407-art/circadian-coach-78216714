@@ -2,180 +2,236 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Time Zone Sleep Optimizer Design System
-All colors, gradients, fonts, and animations for the circadian rhythm app.
+/* Material Design 3 Design System
+Implementing MD3 color tokens, typography, elevation, and motion.
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Core background and text */
-    --background: 245 12% 98%;
-    --foreground: 225 15% 15%;
-
-    /* Card and surface colors */
-    --card: 0 0% 100%;
-    --card-foreground: 225 15% 15%;
-
+    /* MD3 Core Colors - Light Theme */
+    --background: 270 100% 99%;
+    --foreground: 270 5% 10%;
+    
+    /* Surface colors - MD3 uses tonal surfaces */
+    --surface: 270 100% 99%;
+    --surface-dim: 270 20% 95%;
+    --surface-bright: 0 0% 100%;
+    --surface-container-lowest: 0 0% 100%;
+    --surface-container-low: 270 30% 97%;
+    --surface-container: 270 30% 94%;
+    --surface-container-high: 270 30% 92%;
+    --surface-container-highest: 270 25% 90%;
+    
+    /* MD3 Primary palette - Deep Purple */
+    --primary: 265 89% 40%;
+    --primary-foreground: 0 0% 100%;
+    --on-primary-container: 265 100% 15%;
+    --primary-container: 265 100% 92%;
+    
+    /* MD3 Secondary palette - Deep Purple variant */
+    --secondary: 265 30% 45%;
+    --secondary-foreground: 0 0% 100%;
+    --on-secondary-container: 265 50% 15%;
+    --secondary-container: 265 60% 92%;
+    
+    /* MD3 Tertiary palette - Teal for circadian rhythm */
+    --tertiary: 175 50% 35%;
+    --tertiary-foreground: 0 0% 100%;
+    --on-tertiary-container: 175 100% 10%;
+    --tertiary-container: 175 70% 90%;
+    
+    /* MD3 Error colors */
+    --destructive: 0 75% 42%;
+    --destructive-foreground: 0 0% 100%;
+    --error-container: 0 100% 92%;
+    --on-error-container: 0 100% 20%;
+    
+    /* MD3 Outline and system */
+    --outline: 265 10% 50%;
+    --outline-variant: 265 15% 80%;
+    
+    /* Mapped to shadcn tokens */
+    --card: 270 30% 97%;
+    --card-foreground: 270 5% 10%;
+    
     --popover: 0 0% 100%;
-    --popover-foreground: 225 15% 15%;
-
-    /* Brand colors - deep space theme for circadian rhythm */
-    --primary: 245 50% 25%;
-    --primary-foreground: 0 0% 98%;
-
-    /* Sleep and night colors */
-    --sleep: 245 60% 25%;
-    --sleep-foreground: 0 0% 98%;
-    --sleep-light: 245 40% 85%;
-
-    /* Light exposure colors */
-    --light-seek: 45 95% 60%;
-    --light-seek-foreground: 30 20% 20%;
-    --light-avoid: 265 60% 35%;
-    --light-avoid-foreground: 0 0% 98%;
-
-    /* Melatonin colors */
-    --melatonin: 280 60% 50%;
-    --melatonin-foreground: 0 0% 98%;
-    --melatonin-light: 280 40% 90%;
-
-    /* Caffeine colors */
-    --caffeine: 25 70% 45%;
-    --caffeine-foreground: 0 0% 98%;
-    --caffeine-light: 25 50% 90%;
-
-    /* Nap colors */
-    --nap: 195 65% 55%;
-    --nap-foreground: 0 0% 98%;
-    --nap-light: 195 40% 90%;
-
-    /* System colors */
-    --secondary: 220 15% 95%;
-    --secondary-foreground: 225 15% 25%;
-
-    --muted: 220 15% 96%;
-    --muted-foreground: 215 15% 45%;
-
-    --accent: 245 20% 92%;
-    --accent-foreground: 245 60% 25%;
-
-    --destructive: 0 70% 55%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 220 15% 88%;
-    --input: 220 15% 94%;
-    --ring: 245 50% 25%;
-
-    /* Gradients for beautiful backgrounds */
-    --gradient-hero: linear-gradient(135deg, hsl(245 60% 25%) 0%, hsl(265 50% 35%) 50%, hsl(280 60% 45%) 100%);
-    --gradient-sleep: linear-gradient(90deg, hsl(245 60% 25%) 0%, hsl(255 50% 30%) 100%);
-    --gradient-light: linear-gradient(90deg, hsl(45 95% 60%) 0%, hsl(35 85% 65%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(245 20% 98%) 100%);
-
-    /* Shadows with circadian theme */
-    --shadow-card: 0 4px 20px -2px hsl(245 50% 25% / 0.08);
-    --shadow-timeline: 0 2px 8px -1px hsl(245 50% 25% / 0.12);
-    --shadow-glow: 0 0 20px hsl(245 60% 50% / 0.3);
-
-    /* Animation variables */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --popover-foreground: 270 5% 10%;
+    
+    --muted: 270 20% 95%;
+    --muted-foreground: 270 10% 40%;
+    
+    --accent: 265 60% 92%;
+    --accent-foreground: 265 100% 15%;
+    
+    --border: 265 15% 80%;
+    --input: 265 15% 85%;
+    --ring: 265 89% 40%;
+    
+    /* Circadian rhythm specific colors - MD3 style */
+    --sleep: 250 60% 45%;
+    --sleep-foreground: 0 0% 100%;
+    --sleep-light: 250 70% 92%;
+    
+    --light-seek: 45 95% 50%;
+    --light-seek-foreground: 45 100% 15%;
+    
+    --light-avoid: 280 60% 45%;
+    --light-avoid-foreground: 0 0% 100%;
+    
+    --melatonin: 290 60% 50%;
+    --melatonin-foreground: 0 0% 100%;
+    --melatonin-light: 290 70% 92%;
+    
+    --caffeine: 30 80% 45%;
+    --caffeine-foreground: 0 0% 100%;
+    --caffeine-light: 30 80% 92%;
+    
+    --nap: 185 70% 40%;
+    --nap-foreground: 0 0% 100%;
+    --nap-light: 185 70% 92%;
+    
+    /* MD3 Elevation - using surface tint instead of shadows */
+    --elevation-1: 0 0% 100%;
+    --elevation-2: 265 40% 97%;
+    --elevation-3: 265 35% 95%;
+    --elevation-4: 265 30% 94%;
+    --elevation-5: 265 25% 92%;
+    
+    /* MD3 State layers */
+    --state-hover: 0.08;
+    --state-focus: 0.12;
+    --state-pressed: 0.12;
+    --state-dragged: 0.16;
+    
+    /* MD3 Motion - Emphasized easing */
+    --motion-easing-emphasized: cubic-bezier(0.2, 0.0, 0, 1.0);
+    --motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
+    --motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0.0, 0.8, 0.15);
+    --motion-easing-standard: cubic-bezier(0.2, 0.0, 0, 1.0);
+    --motion-duration-short: 200ms;
+    --motion-duration-medium: 400ms;
+    --motion-duration-long: 600ms;
+    
+    /* MD3 Shape - Full rounded for FABs, pills */
+    --radius: 0.75rem;
+    --radius-xs: 0.25rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.75rem;
+    --radius-full: 9999px;
+    
+    /* Sidebar tokens */
+    --sidebar-background: 270 30% 97%;
+    --sidebar-foreground: 270 5% 25%;
+    --sidebar-primary: 265 89% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 265 60% 92%;
+    --sidebar-accent-foreground: 265 100% 15%;
+    --sidebar-border: 265 15% 85%;
+    --sidebar-ring: 265 89% 40%;
   }
 
   .dark {
-    /* Dark mode for circadian rhythm app */
-    --background: 245 25% 8%;
-    --foreground: 245 15% 92%;
-
-    --card: 245 20% 12%;
-    --card-foreground: 245 15% 92%;
-
-    --popover: 245 20% 12%;
-    --popover-foreground: 245 15% 92%;
-
-    --primary: 245 60% 60%;
-    --primary-foreground: 245 25% 8%;
-
-    /* Sleep and night colors - darker theme */
-    --sleep: 245 70% 35%;
-    --sleep-foreground: 0 0% 98%;
-    --sleep-light: 245 30% 20%;
-
-    /* Light exposure colors - adjusted for dark mode */
+    /* MD3 Dark Theme */
+    --background: 270 15% 8%;
+    --foreground: 270 20% 92%;
+    
+    /* Surface colors - Dark theme */
+    --surface: 270 15% 8%;
+    --surface-dim: 270 15% 6%;
+    --surface-bright: 270 12% 18%;
+    --surface-container-lowest: 270 20% 4%;
+    --surface-container-low: 270 15% 10%;
+    --surface-container: 270 12% 12%;
+    --surface-container-high: 270 10% 15%;
+    --surface-container-highest: 270 8% 20%;
+    
+    /* MD3 Primary - Light version for dark theme */
+    --primary: 265 100% 80%;
+    --primary-foreground: 265 100% 15%;
+    --on-primary-container: 265 100% 92%;
+    --primary-container: 265 60% 30%;
+    
+    /* MD3 Secondary - Dark theme */
+    --secondary: 265 50% 75%;
+    --secondary-foreground: 265 50% 15%;
+    --on-secondary-container: 265 60% 92%;
+    --secondary-container: 265 30% 25%;
+    
+    /* MD3 Tertiary - Dark theme */
+    --tertiary: 175 60% 70%;
+    --tertiary-foreground: 175 100% 10%;
+    --on-tertiary-container: 175 70% 90%;
+    --tertiary-container: 175 40% 25%;
+    
+    /* MD3 Error - Dark theme */
+    --destructive: 0 90% 75%;
+    --destructive-foreground: 0 100% 20%;
+    --error-container: 0 50% 25%;
+    --on-error-container: 0 100% 90%;
+    
+    /* MD3 Outline - Dark theme */
+    --outline: 265 15% 55%;
+    --outline-variant: 265 10% 30%;
+    
+    /* Mapped to shadcn tokens */
+    --card: 270 12% 12%;
+    --card-foreground: 270 20% 92%;
+    
+    --popover: 270 15% 10%;
+    --popover-foreground: 270 20% 92%;
+    
+    --muted: 270 10% 15%;
+    --muted-foreground: 270 15% 60%;
+    
+    --accent: 265 30% 25%;
+    --accent-foreground: 265 100% 92%;
+    
+    --border: 265 10% 25%;
+    --input: 265 10% 20%;
+    --ring: 265 100% 80%;
+    
+    /* Circadian colors - Dark theme */
+    --sleep: 250 70% 65%;
+    --sleep-foreground: 250 100% 10%;
+    --sleep-light: 250 40% 20%;
+    
     --light-seek: 45 90% 65%;
-    --light-seek-foreground: 30 20% 15%;
-    --light-avoid: 265 70% 45%;
-    --light-avoid-foreground: 0 0% 98%;
-
-    /* Melatonin colors - darker theme */
-    --melatonin: 280 70% 60%;
-    --melatonin-foreground: 0 0% 98%;
-    --melatonin-light: 280 40% 25%;
-
-    /* Caffeine colors - darker theme */
-    --caffeine: 25 80% 55%;
-    --caffeine-foreground: 0 0% 98%;
-    --caffeine-light: 25 30% 20%;
-
-    /* Nap colors - darker theme */
-    --nap: 195 75% 65%;
-    --nap-foreground: 0 0% 98%;
-    --nap-light: 195 40% 25%;
-
-    --secondary: 245 15% 18%;
-    --secondary-foreground: 245 15% 85%;
-
-    --muted: 245 15% 15%;
-    --muted-foreground: 245 10% 60%;
-
-    --accent: 245 25% 20%;
-    --accent-foreground: 245 60% 70%;
-
-    --destructive: 0 75% 60%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 245 15% 22%;
-    --input: 245 15% 18%;
-    --ring: 245 60% 60%;
-
-    /* Dark mode gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(245 70% 15%) 0%, hsl(265 60% 20%) 50%, hsl(280 70% 25%) 100%);
-    --gradient-sleep: linear-gradient(90deg, hsl(245 70% 20%) 0%, hsl(255 60% 25%) 100%);
-    --gradient-light: linear-gradient(90deg, hsl(45 90% 40%) 0%, hsl(35 80% 45%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(245 20% 12%) 0%, hsl(245 25% 15%) 100%);
-
-    /* Dark mode shadows */
-    --shadow-card: 0 4px 20px -2px hsl(245 70% 5% / 0.4);
-    --shadow-timeline: 0 2px 8px -1px hsl(245 70% 5% / 0.3);
-    --shadow-glow: 0 0 20px hsl(245 70% 50% / 0.4);
-
-    --sidebar-background: 245 25% 8%;
-    --sidebar-foreground: 245 15% 85%;
-    --sidebar-primary: 245 60% 60%;
-    --sidebar-primary-foreground: 245 25% 8%;
-    --sidebar-accent: 245 20% 15%;
-    --sidebar-accent-foreground: 245 15% 85%;
-    --sidebar-border: 245 15% 22%;
-    --sidebar-ring: 245 60% 60%;
+    --light-seek-foreground: 45 100% 10%;
+    
+    --light-avoid: 280 70% 65%;
+    --light-avoid-foreground: 280 100% 10%;
+    
+    --melatonin: 290 70% 70%;
+    --melatonin-foreground: 290 100% 10%;
+    --melatonin-light: 290 40% 25%;
+    
+    --caffeine: 30 80% 60%;
+    --caffeine-foreground: 30 100% 10%;
+    --caffeine-light: 30 40% 20%;
+    
+    --nap: 185 70% 60%;
+    --nap-foreground: 185 100% 10%;
+    --nap-light: 185 40% 20%;
+    
+    /* Elevation - Dark theme uses lighter tints */
+    --elevation-1: 270 12% 12%;
+    --elevation-2: 270 10% 15%;
+    --elevation-3: 270 8% 17%;
+    --elevation-4: 270 8% 19%;
+    --elevation-5: 270 6% 22%;
+    
+    /* Sidebar - Dark theme */
+    --sidebar-background: 270 12% 12%;
+    --sidebar-foreground: 270 20% 85%;
+    --sidebar-primary: 265 100% 80%;
+    --sidebar-primary-foreground: 265 100% 15%;
+    --sidebar-accent: 265 30% 25%;
+    --sidebar-accent-foreground: 265 100% 92%;
+    --sidebar-border: 265 10% 25%;
+    --sidebar-ring: 265 100% 80%;
   }
 }
 
@@ -185,6 +241,75 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Roboto', system-ui, sans-serif;
+  }
+  
+  /* MD3 Typography Scale */
+  h1 {
+    @apply text-4xl font-normal tracking-tight;
+    font-family: 'Roboto', system-ui, sans-serif;
+  }
+  
+  h2 {
+    @apply text-3xl font-normal tracking-tight;
+  }
+  
+  h3 {
+    @apply text-2xl font-normal;
+  }
+  
+  h4 {
+    @apply text-xl font-medium;
+  }
+  
+  h5 {
+    @apply text-lg font-medium;
+  }
+  
+  h6 {
+    @apply text-base font-medium;
+  }
+}
+
+@layer utilities {
+  /* MD3 Elevation surfaces */
+  .surface-1 {
+    @apply bg-[hsl(var(--elevation-1))];
+  }
+  .surface-2 {
+    @apply bg-[hsl(var(--elevation-2))];
+  }
+  .surface-3 {
+    @apply bg-[hsl(var(--elevation-3))];
+  }
+  .surface-4 {
+    @apply bg-[hsl(var(--elevation-4))];
+  }
+  .surface-5 {
+    @apply bg-[hsl(var(--elevation-5))];
+  }
+  
+  /* MD3 State layer utilities */
+  .state-layer {
+    @apply relative overflow-hidden;
+  }
+  
+  .state-layer::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity;
+    background-color: currentColor;
+  }
+  
+  .state-layer:hover::before {
+    opacity: 0.08;
+  }
+  
+  .state-layer:focus-visible::before {
+    opacity: 0.12;
+  }
+  
+  .state-layer:active::before {
+    opacity: 0.12;
   }
 }
