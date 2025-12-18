@@ -11,7 +11,16 @@ export interface OutlinedTextFieldProps
 const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldProps>(
   ({ className, type, label, error, supportingText, id, value, defaultValue, ...props }, ref) => {
     const [isFocused, setIsFocused] = React.useState(false)
-    const [internalValue, setInternalValue] = React.useState(defaultValue || '')
+    const [internalValue, setInternalValue] = React.useState(defaultValue || "")
+    const containerRef = React.useRef<HTMLDivElement>(null)
+    const inputRef = React.useRef<HTMLInputElement>(null)
+
+    const setRefs = (node: HTMLInputElement | null) => {
+      inputRef.current = node
+      if (typeof ref === "function") ref(node)
+      else if (ref) (ref as React.MutableRefObject<HTMLInputElement | null>).current = node
+    }
+
     const inputId = id || React.useId()
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -42,8 +51,27 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
     const currentValue = value !== undefined ? value : internalValue
     const isFloating = isFocused || hasContent(currentValue)
 
+    // Ensure "outfocus" happens even if something prevents native blur (e.g. overlays)
+    React.useEffect(() => {
+      if (!isFocused) return
+
+      const onPointerDownCapture = (e: PointerEvent) => {
+        const container = containerRef.current
+        const input = inputRef.current
+        if (!container || !input) return
+
+        const target = e.target as Node | null
+        if (target && !container.contains(target)) {
+          input.blur()
+        }
+      }
+
+      document.addEventListener("pointerdown", onPointerDownCapture, true)
+      return () => document.removeEventListener("pointerdown", onPointerDownCapture, true)
+    }, [isFocused])
+
     return (
-      <div className="relative w-full">
+      <div ref={containerRef} className="relative w-full">
         <div
           className={cn(
             "relative flex items-center rounded-md border bg-transparent transition-all duration-short ease-standard",
@@ -60,7 +88,7 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
           <input
             type={type}
             id={inputId}
-            ref={ref}
+            ref={setRefs}
             value={value}
             defaultValue={value === undefined ? defaultValue : undefined}
             className={cn(
