@@ -9,9 +9,8 @@ export interface OutlinedTextFieldProps
 }
 
 const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldProps>(
-  ({ className, type, label, error, supportingText, id, ...props }, ref) => {
+  ({ className, type, label, error, supportingText, id, value, defaultValue, ...props }, ref) => {
     const [isFocused, setIsFocused] = React.useState(false)
-    const [hasValue, setHasValue] = React.useState(false)
     const inputId = id || React.useId()
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -21,16 +20,17 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
       setIsFocused(false)
-      setHasValue(!!e.target.value)
       props.onBlur?.(e)
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setHasValue(!!e.target.value)
-      props.onChange?.(e)
+    // Check if there's actual content (not just empty string)
+    const hasContent = (val: unknown): boolean => {
+      if (typeof val === 'string') return val.length > 0
+      if (typeof val === 'number') return true
+      return false
     }
 
-    const isFloating = isFocused || hasValue || !!props.value || !!props.defaultValue
+    const isFloating = isFocused || hasContent(value) || hasContent(defaultValue)
 
     return (
       <div className="relative w-full">
@@ -51,6 +51,8 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
             type={type}
             id={inputId}
             ref={ref}
+            value={value}
+            defaultValue={defaultValue}
             className={cn(
               "peer flex h-14 w-full bg-transparent px-4 pt-4 pb-2 text-base text-foreground outline-none placeholder:text-transparent disabled:cursor-not-allowed disabled:opacity-38",
               type === "time" && "appearance-none"
@@ -58,7 +60,6 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
             placeholder={label}
             onFocus={handleFocus}
             onBlur={handleBlur}
-            onChange={handleChange}
             {...props}
           />
           <label
