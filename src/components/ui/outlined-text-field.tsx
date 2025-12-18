@@ -11,6 +11,7 @@ export interface OutlinedTextFieldProps
 const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldProps>(
   ({ className, type, label, error, supportingText, id, value, defaultValue, ...props }, ref) => {
     const [isFocused, setIsFocused] = React.useState(false)
+    const [internalValue, setInternalValue] = React.useState(defaultValue || '')
     const inputId = id || React.useId()
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
@@ -20,7 +21,14 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
 
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
       setIsFocused(false)
+      // Update internal value from the actual input on blur
+      setInternalValue(e.target.value)
       props.onBlur?.(e)
+    }
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setInternalValue(e.target.value)
+      props.onChange?.(e)
     }
 
     // Check if there's actual content (not just empty string)
@@ -30,7 +38,9 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
       return false
     }
 
-    const isFloating = isFocused || hasContent(value) || hasContent(defaultValue)
+    // Use controlled value if provided, otherwise use internal tracking
+    const currentValue = value !== undefined ? value : internalValue
+    const isFloating = isFocused || hasContent(currentValue)
 
     return (
       <div className="relative w-full">
@@ -52,7 +62,7 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
             id={inputId}
             ref={ref}
             value={value}
-            defaultValue={defaultValue}
+            defaultValue={value === undefined ? defaultValue : undefined}
             className={cn(
               "peer flex h-14 w-full bg-transparent px-4 pt-4 pb-2 text-base text-foreground outline-none placeholder:text-transparent disabled:cursor-not-allowed disabled:opacity-38",
               type === "time" && "appearance-none"
@@ -60,6 +70,7 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
             placeholder={label}
             onFocus={handleFocus}
             onBlur={handleBlur}
+            onChange={handleChange}
             {...props}
           />
           <label
