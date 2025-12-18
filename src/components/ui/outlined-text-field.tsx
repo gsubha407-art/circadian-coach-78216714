@@ -36,7 +36,7 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
       <div className="relative w-full">
         <div
           className={cn(
-            "relative flex items-center rounded-xs border bg-transparent transition-all duration-short ease-standard",
+            "relative flex items-center rounded-md border bg-transparent transition-all duration-short ease-standard",
             isFocused
               ? error
                 ? "border-2 border-error"
