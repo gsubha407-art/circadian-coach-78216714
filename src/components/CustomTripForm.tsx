@@ -5,8 +5,16 @@ import * as z from 'zod';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { OutlinedTextField } from '@/components/ui/outlined-text-field';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { 
+  OutlinedSelect, 
+  OutlinedSelectContent, 
+  OutlinedSelectItem, 
+  OutlinedSelectTrigger, 
+  OutlinedSelectValue 
+} from '@/components/ui/outlined-select';
 import { Switch } from '@/components/ui/switch';
 import { ArrowLeft, Plus, Trash2, Check, ChevronsUpDown } from 'lucide-react';
 import { Trip, Leg } from '@/types/trip';
@@ -254,9 +262,12 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Trip Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g., Tokyo Business Trip" {...field} />
+                      <OutlinedTextField 
+                        label="Trip Name" 
+                        placeholder="e.g., Tokyo Business Trip" 
+                        {...field} 
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -269,9 +280,8 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   name="usualSleepStart"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Usual Bedtime</FormLabel>
                       <FormControl>
-                        <Input type="time" {...field} />
+                        <OutlinedTextField label="Usual Bedtime" type="time" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -283,9 +293,8 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   name="usualSleepEnd"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Usual Wake Time</FormLabel>
                       <FormControl>
-                        <Input type="time" {...field} />
+                        <OutlinedTextField label="Usual Wake Time" type="time" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -299,19 +308,18 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   name="sensitivity"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Jet Lag Sensitivity</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <OutlinedSelect onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
+                          <OutlinedSelectTrigger label="Jet Lag Sensitivity">
+                            <OutlinedSelectValue />
+                          </OutlinedSelectTrigger>
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="low">Low</SelectItem>
-                          <SelectItem value="medium">Medium</SelectItem>
-                          <SelectItem value="high">High</SelectItem>
-                        </SelectContent>
-                      </Select>
+                        <OutlinedSelectContent>
+                          <OutlinedSelectItem value="low">Low</OutlinedSelectItem>
+                          <OutlinedSelectItem value="medium">Medium</OutlinedSelectItem>
+                          <OutlinedSelectItem value="high">High</OutlinedSelectItem>
+                        </OutlinedSelectContent>
+                      </OutlinedSelect>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -322,20 +330,19 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   name="cabinType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Cabin Type</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <OutlinedSelect onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
+                          <OutlinedSelectTrigger label="Cabin Type">
+                            <OutlinedSelectValue />
+                          </OutlinedSelectTrigger>
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="economy">Economy</SelectItem>
-                          <SelectItem value="premium">Premium Economy</SelectItem>
-                          <SelectItem value="business">Business</SelectItem>
-                          <SelectItem value="first">First</SelectItem>
-                        </SelectContent>
-                      </Select>
+                        <OutlinedSelectContent>
+                          <OutlinedSelectItem value="economy">Economy</OutlinedSelectItem>
+                          <OutlinedSelectItem value="premium">Premium Economy</OutlinedSelectItem>
+                          <OutlinedSelectItem value="business">Business</OutlinedSelectItem>
+                          <OutlinedSelectItem value="first">First</OutlinedSelectItem>
+                        </OutlinedSelectContent>
+                      </OutlinedSelect>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -348,20 +355,19 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   name="caffeineHabits"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Caffeine Habits</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <OutlinedSelect onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue />
-                          </SelectTrigger>
+                          <OutlinedSelectTrigger label="Caffeine Habits">
+                            <OutlinedSelectValue />
+                          </OutlinedSelectTrigger>
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="none">None</SelectItem>
-                          <SelectItem value="light">Light (1 cup/day)</SelectItem>
-                          <SelectItem value="moderate">Moderate (2-3 cups/day)</SelectItem>
-                          <SelectItem value="heavy">Heavy (4+ cups/day)</SelectItem>
-                        </SelectContent>
-                      </Select>
+                        <OutlinedSelectContent>
+                          <OutlinedSelectItem value="none">None</OutlinedSelectItem>
+                          <OutlinedSelectItem value="light">Light (1 cup/day)</OutlinedSelectItem>
+                          <OutlinedSelectItem value="moderate">Moderate (2-3 cups/day)</OutlinedSelectItem>
+                          <OutlinedSelectItem value="heavy">Heavy (4+ cups/day)</OutlinedSelectItem>
+                        </OutlinedSelectContent>
+                      </OutlinedSelect>
                       <FormMessage />
                     </FormItem>
                   )}
