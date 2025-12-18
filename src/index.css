@@ -23,17 +23,17 @@ All colors MUST be HSL.
     --surface-container-high: 270 30% 92%;
     --surface-container-highest: 270 25% 90%;
     
-    /* MD3 Primary palette - Deep Purple */
-    --primary: 265 89% 40%;
+    /* MD3 Primary palette - Brand Blue #175CD3 */
+    --primary: 218 80% 46%;
     --primary-foreground: 0 0% 100%;
-    --on-primary-container: 265 100% 15%;
-    --primary-container: 265 100% 92%;
+    --on-primary-container: 218 100% 15%;
+    --primary-container: 218 90% 92%;
     
-    /* MD3 Secondary palette - Deep Purple variant */
-    --secondary: 265 30% 45%;
+    /* MD3 Secondary palette - Blue variant */
+    --secondary: 218 40% 45%;
     --secondary-foreground: 0 0% 100%;
-    --on-secondary-container: 265 50% 15%;
-    --secondary-container: 265 60% 92%;
+    --on-secondary-container: 218 50% 15%;
+    --secondary-container: 218 60% 92%;
     
     /* MD3 Tertiary palette - Teal for circadian rhythm */
     --tertiary: 175 50% 35%;
@@ -48,8 +48,8 @@ All colors MUST be HSL.
     --on-error-container: 0 100% 20%;
     
     /* MD3 Outline and system */
-    --outline: 265 10% 50%;
-    --outline-variant: 265 15% 80%;
+    --outline: 218 10% 50%;
+    --outline-variant: 218 15% 80%;
     
     /* Mapped to shadcn tokens */
     --card: 270 30% 97%;
@@ -61,12 +61,12 @@ All colors MUST be HSL.
     --muted: 270 20% 95%;
     --muted-foreground: 270 10% 40%;
     
-    --accent: 265 60% 92%;
-    --accent-foreground: 265 100% 15%;
+    --accent: 218 60% 92%;
+    --accent-foreground: 218 100% 15%;
     
-    --border: 265 15% 80%;
-    --input: 265 15% 85%;
-    --ring: 265 89% 40%;
+    --border: 218 15% 80%;
+    --input: 218 15% 85%;
+    --ring: 218 80% 46%;
     
     /* Circadian rhythm specific colors - MD3 style */
     --sleep: 250 60% 45%;
@@ -93,10 +93,10 @@ All colors MUST be HSL.
     
     /* MD3 Elevation - using surface tint instead of shadows */
     --elevation-1: 0 0% 100%;
-    --elevation-2: 265 40% 97%;
-    --elevation-3: 265 35% 95%;
-    --elevation-4: 265 30% 94%;
-    --elevation-5: 265 25% 92%;
+    --elevation-2: 218 40% 97%;
+    --elevation-3: 218 35% 95%;
+    --elevation-4: 218 30% 94%;
+    --elevation-5: 218 25% 92%;
     
     /* MD3 State layers */
     --state-hover: 0.08;
@@ -123,42 +123,42 @@ All colors MUST be HSL.
     --radius-full: 9999px;
     
     /* Sidebar tokens */
-    --sidebar-background: 270 30% 97%;
-    --sidebar-foreground: 270 5% 25%;
-    --sidebar-primary: 265 89% 40%;
+    --sidebar-background: 218 30% 97%;
+    --sidebar-foreground: 218 5% 25%;
+    --sidebar-primary: 218 80% 46%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 265 60% 92%;
-    --sidebar-accent-foreground: 265 100% 15%;
-    --sidebar-border: 265 15% 85%;
-    --sidebar-ring: 265 89% 40%;
+    --sidebar-accent: 218 60% 92%;
+    --sidebar-accent-foreground: 218 100% 15%;
+    --sidebar-border: 218 15% 85%;
+    --sidebar-ring: 218 80% 46%;
   }
 
   .dark {
     /* MD3 Dark Theme */
-    --background: 270 15% 8%;
-    --foreground: 270 20% 92%;
+    --background: 218 15% 8%;
+    --foreground: 218 20% 92%;
     
     /* Surface colors - Dark theme */
-    --surface: 270 15% 8%;
-    --surface-dim: 270 15% 6%;
-    --surface-bright: 270 12% 18%;
-    --surface-container-lowest: 270 20% 4%;
-    --surface-container-low: 270 15% 10%;
-    --surface-container: 270 12% 12%;
-    --surface-container-high: 270 10% 15%;
-    --surface-container-highest: 270 8% 20%;
+    --surface: 218 15% 8%;
+    --surface-dim: 218 15% 6%;
+    --surface-bright: 218 12% 18%;
+    --surface-container-lowest: 218 20% 4%;
+    --surface-container-low: 218 15% 10%;
+    --surface-container: 218 12% 12%;
+    --surface-container-high: 218 10% 15%;
+    --surface-container-highest: 218 8% 20%;
     
     /* MD3 Primary - Light version for dark theme */
-    --primary: 265 100% 80%;
-    --primary-foreground: 265 100% 15%;
-    --on-primary-container: 265 100% 92%;
-    --primary-container: 265 60% 30%;
+    --primary: 218 90% 70%;
+    --primary-foreground: 218 100% 15%;
+    --on-primary-container: 218 100% 92%;
+    --primary-container: 218 60% 30%;
     
     /* MD3 Secondary - Dark theme */
-    --secondary: 265 50% 75%;
-    --secondary-foreground: 265 50% 15%;
-    --on-secondary-container: 265 60% 92%;
-    --secondary-container: 265 30% 25%;
+    --secondary: 218 50% 70%;
+    --secondary-foreground: 218 50% 15%;
+    --on-secondary-container: 218 60% 92%;
+    --secondary-container: 218 30% 25%;
     
     /* MD3 Tertiary - Dark theme */
     --tertiary: 175 60% 70%;
@@ -173,25 +173,25 @@ All colors MUST be HSL.
     --on-error-container: 0 100% 90%;
     
     /* MD3 Outline - Dark theme */
-    --outline: 265 15% 55%;
-    --outline-variant: 265 10% 30%;
+    --outline: 218 15% 55%;
+    --outline-variant: 218 10% 30%;
     
     /* Mapped to shadcn tokens */
-    --card: 270 12% 12%;
-    --card-foreground: 270 20% 92%;
+    --card: 218 12% 12%;
+    --card-foreground: 218 20% 92%;
     
-    --popover: 270 15% 10%;
-    --popover-foreground: 270 20% 92%;
+    --popover: 218 15% 10%;
+    --popover-foreground: 218 20% 92%;
     
-    --muted: 270 10% 15%;
-    --muted-foreground: 270 15% 60%;
+    --muted: 218 10% 15%;
+    --muted-foreground: 218 15% 60%;
     
-    --accent: 265 30% 25%;
-    --accent-foreground: 265 100% 92%;
+    --accent: 218 30% 25%;
+    --accent-foreground: 218 100% 92%;
     
-    --border: 265 10% 25%;
-    --input: 265 10% 20%;
-    --ring: 265 100% 80%;
+    --border: 218 10% 25%;
+    --input: 218 10% 20%;
+    --ring: 218 90% 70%;
     
     /* Circadian colors - Dark theme */
     --sleep: 250 70% 65%;
@@ -217,21 +217,21 @@ All colors MUST be HSL.
     --nap-light: 185 40% 20%;
     
     /* Elevation - Dark theme uses lighter tints */
-    --elevation-1: 270 12% 12%;
-    --elevation-2: 270 10% 15%;
-    --elevation-3: 270 8% 17%;
-    --elevation-4: 270 8% 19%;
-    --elevation-5: 270 6% 22%;
+    --elevation-1: 218 12% 12%;
+    --elevation-2: 218 10% 15%;
+    --elevation-3: 218 8% 17%;
+    --elevation-4: 218 8% 19%;
+    --elevation-5: 218 6% 22%;
     
     /* Sidebar - Dark theme */
-    --sidebar-background: 270 12% 12%;
-    --sidebar-foreground: 270 20% 85%;
-    --sidebar-primary: 265 100% 80%;
-    --sidebar-primary-foreground: 265 100% 15%;
-    --sidebar-accent: 265 30% 25%;
-    --sidebar-accent-foreground: 265 100% 92%;
-    --sidebar-border: 265 10% 25%;
-    --sidebar-ring: 265 100% 80%;
+    --sidebar-background: 218 12% 12%;
+    --sidebar-foreground: 218 20% 85%;
+    --sidebar-primary: 218 90% 70%;
+    --sidebar-primary-foreground: 218 100% 15%;
+    --sidebar-accent: 218 30% 25%;
+    --sidebar-accent-foreground: 218 100% 92%;
+    --sidebar-border: 218 10% 25%;
+    --sidebar-ring: 218 90% 70%;
   }
 }
 
