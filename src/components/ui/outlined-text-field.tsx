@@ -86,6 +86,7 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
           )}
         >
           <input
+            {...props}
             type={type}
             id={inputId}
             ref={setRefs}
@@ -99,7 +100,6 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
             onFocus={handleFocus}
             onBlur={handleBlur}
             onChange={handleChange}
-            {...props}
           />
           <label
             htmlFor={inputId}
