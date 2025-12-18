@@ -2,73 +2,163 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Material Design 3 Design System
-Implementing MD3 color tokens, typography, elevation, and motion.
-All colors MUST be HSL.
+/* Design System based on uploaded guidelines
+   Primary brand: #175CD3 (Blue)
+   Font: Inter
+   All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* MD3 Core Colors - Light Theme */
-    --background: 270 100% 99%;
-    --foreground: 270 5% 10%;
+    /* Brand/Primary - #175CD3 Blue */
+    --brand: 216 80% 46%;
+    --brand-foreground: 0 0% 100%;
+    --brand-container: 216 90% 95%;
+    --brand-soft: 216 85% 85%;
+    --brand-bold: 216 85% 38%;
+    --on-brand-container: 216 85% 38%;
     
-    /* Surface colors - MD3 uses tonal surfaces */
-    --surface: 270 100% 99%;
-    --surface-dim: 270 20% 95%;
-    --surface-bright: 0 0% 100%;
-    --surface-container-lowest: 0 0% 100%;
-    --surface-container-low: 270 30% 97%;
-    --surface-container: 270 30% 94%;
-    --surface-container-high: 270 30% 92%;
-    --surface-container-highest: 270 25% 90%;
-    
-    /* MD3 Primary palette - Brand Blue #175CD3 */
-    --primary: 218 80% 46%;
+    /* Primary (alias for brand) */
+    --primary: 216 80% 46%;
     --primary-foreground: 0 0% 100%;
-    --on-primary-container: 218 100% 15%;
-    --primary-container: 218 90% 92%;
+    --primary-container: 216 90% 95%;
+    --on-primary-container: 216 85% 38%;
     
-    /* MD3 Secondary palette - Blue variant */
-    --secondary: 218 40% 45%;
-    --secondary-foreground: 0 0% 100%;
-    --on-secondary-container: 218 50% 15%;
-    --secondary-container: 218 60% 92%;
+    /* UI Colors */
+    --background: 0 0% 99%;
+    --foreground: 213 27% 10%;
     
-    /* MD3 Tertiary palette - Teal for circadian rhythm */
-    --tertiary: 175 50% 35%;
-    --tertiary-foreground: 0 0% 100%;
-    --on-tertiary-container: 175 100% 10%;
-    --tertiary-container: 175 70% 90%;
+    --surface: 0 0% 99%;
+    --interface-light: 150 8% 96%;
+    --interface-dark: 165 4% 91%;
+    --divider-light: 168 5% 88%;
+    --divider-dark: 165 5% 79%;
+    --overlay: 210 100% 3%;
     
-    /* MD3 Error colors */
-    --destructive: 0 75% 42%;
+    /* Text Colors */
+    --text-primary: 213 27% 10%;
+    --text-secondary: 214 7% 38%;
+    --text-tertiary: 217 5% 57%;
+    
+    /* Success - #49A27A */
+    --success: 154 38% 46%;
+    --success-foreground: 0 0% 100%;
+    --success-container: 133 75% 93%;
+    --success-soft: 154 38% 46%;
+    --success-bold: 154 38% 46%;
+    --on-success-container: 154 38% 46%;
+    
+    /* Warning - #F1BF4D */
+    --warning: 42 85% 63%;
+    --warning-foreground: 42 100% 10%;
+    --warning-container: 47 100% 86%;
+    --warning-soft: 42 85% 63%;
+    --warning-bold: 42 85% 63%;
+    --on-warning-container: 42 85% 63%;
+    
+    /* Error - #C01100 */
+    --error: 5 100% 38%;
+    --error-foreground: 0 0% 100%;
+    --error-container: 6 100% 95%;
+    --error-soft: 5 100% 38%;
+    --error-bold: 5 100% 38%;
+    --on-error-container: 5 100% 38%;
+    
+    /* Destructive (alias for error) */
+    --destructive: 5 100% 38%;
     --destructive-foreground: 0 0% 100%;
-    --error-container: 0 100% 92%;
-    --on-error-container: 0 100% 20%;
     
-    /* MD3 Outline and system */
-    --outline: 218 10% 50%;
-    --outline-variant: 218 15% 80%;
+    /* Extra Colors - Pink */
+    --pink: 320 66% 62%;
+    --pink-container: 330 100% 96%;
+    --pink-soft: 320 66% 62%;
+    --pink-bold: 320 66% 62%;
+    --on-pink-container: 320 70% 29%;
+    
+    /* Extra Colors - Violet */
+    --violet: 280 90% 68%;
+    --violet-container: 274 100% 94%;
+    --violet-soft: 280 90% 68%;
+    --violet-bold: 280 90% 68%;
+    --on-violet-container: 280 80% 34%;
+    
+    /* Extra Colors - Blue */
+    --blue: 224 60% 65%;
+    --blue-container: 224 100% 96%;
+    --blue-soft: 224 60% 65%;
+    --blue-bold: 224 60% 65%;
+    --on-blue-container: 224 72% 28%;
+    
+    /* Extra Colors - Teal */
+    --teal: 180 38% 45%;
+    --teal-container: 163 55% 91%;
+    --teal-soft: 180 38% 45%;
+    --teal-bold: 180 38% 45%;
+    --on-teal-container: 181 40% 18%;
+    
+    /* Extra Colors - Green */
+    --green: 154 38% 46%;
+    --green-container: 133 75% 93%;
+    --green-soft: 154 38% 46%;
+    --green-bold: 154 38% 46%;
+    --on-green-container: 156 42% 22%;
+    
+    /* Extra Colors - Orange */
+    --orange: 22 83% 65%;
+    --orange-container: 30 100% 91%;
+    --orange-soft: 22 83% 65%;
+    --orange-bold: 22 83% 65%;
+    --on-orange-container: 16 62% 32%;
+    
+    /* Extra Colors - Yellow */
+    --yellow: 45 80% 59%;
+    --yellow-container: 47 100% 90%;
+    --yellow-soft: 45 80% 59%;
+    --yellow-bold: 45 80% 59%;
+    --on-yellow-container: 40 64% 28%;
+    
+    /* Extra Colors - Red */
+    --red: 357 72% 64%;
+    --red-container: 356 100% 96%;
+    --red-soft: 357 72% 64%;
+    --red-bold: 357 72% 64%;
+    --on-red-container: 343 67% 30%;
+    
+    /* Extra Colors - Coral */
+    --coral: 0 85% 68%;
+    --coral-container: 14 100% 94%;
+    --coral-soft: 0 85% 68%;
+    --coral-bold: 0 85% 68%;
+    --on-coral-container: 359 58% 32%;
+    
+    /* Secondary */
+    --secondary: 214 7% 38%;
+    --secondary-foreground: 0 0% 100%;
+    --secondary-container: 165 4% 91%;
+    --on-secondary-container: 213 27% 10%;
     
     /* Mapped to shadcn tokens */
-    --card: 270 30% 97%;
-    --card-foreground: 270 5% 10%;
+    --card: 150 8% 96%;
+    --card-foreground: 213 27% 10%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 270 5% 10%;
+    --popover-foreground: 213 27% 10%;
     
-    --muted: 270 20% 95%;
-    --muted-foreground: 270 10% 40%;
+    --muted: 165 4% 91%;
+    --muted-foreground: 214 7% 38%;
     
-    --accent: 218 60% 92%;
-    --accent-foreground: 218 100% 15%;
+    --accent: 216 90% 95%;
+    --accent-foreground: 216 85% 38%;
     
-    --border: 218 15% 80%;
-    --input: 218 15% 85%;
-    --ring: 218 80% 46%;
+    --border: 168 5% 88%;
+    --input: 165 5% 79%;
+    --ring: 216 80% 46%;
     
-    /* Circadian rhythm specific colors - MD3 style */
+    /* Outline */
+    --outline: 165 5% 79%;
+    --outline-variant: 168 5% 88%;
+    
+    /* Circadian rhythm specific colors */
     --sleep: 250 60% 45%;
     --sleep-foreground: 0 0% 100%;
     --sleep-light: 250 70% 92%;
@@ -91,20 +181,16 @@ All colors MUST be HSL.
     --nap-foreground: 0 0% 100%;
     --nap-light: 185 70% 92%;
     
-    /* MD3 Elevation - using surface tint instead of shadows */
-    --elevation-1: 0 0% 100%;
-    --elevation-2: 218 40% 97%;
-    --elevation-3: 218 35% 95%;
-    --elevation-4: 218 30% 94%;
-    --elevation-5: 218 25% 92%;
+    /* Shape - Border Radius */
+    --radius: 0.5rem;
+    --radius-xs: 0.25rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.75rem;
+    --radius-full: 1000px;
     
-    /* MD3 State layers */
-    --state-hover: 0.08;
-    --state-focus: 0.12;
-    --state-pressed: 0.12;
-    --state-dragged: 0.16;
-    
-    /* MD3 Motion - Emphasized easing */
+    /* Motion */
     --motion-easing-emphasized: cubic-bezier(0.2, 0.0, 0, 1.0);
     --motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1.0);
     --motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0.0, 0.8, 0.15);
@@ -113,85 +199,130 @@ All colors MUST be HSL.
     --motion-duration-medium: 400ms;
     --motion-duration-long: 600ms;
     
-    /* MD3 Shape - Full rounded for FABs, pills */
-    --radius: 0.75rem;
-    --radius-xs: 0.25rem;
-    --radius-sm: 0.5rem;
-    --radius-md: 0.75rem;
-    --radius-lg: 1rem;
-    --radius-xl: 1.75rem;
-    --radius-full: 9999px;
-    
     /* Sidebar tokens */
-    --sidebar-background: 218 30% 97%;
-    --sidebar-foreground: 218 5% 25%;
-    --sidebar-primary: 218 80% 46%;
+    --sidebar-background: 150 8% 96%;
+    --sidebar-foreground: 214 7% 38%;
+    --sidebar-primary: 216 80% 46%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 218 60% 92%;
-    --sidebar-accent-foreground: 218 100% 15%;
-    --sidebar-border: 218 15% 85%;
-    --sidebar-ring: 218 80% 46%;
+    --sidebar-accent: 216 90% 95%;
+    --sidebar-accent-foreground: 216 85% 38%;
+    --sidebar-border: 168 5% 88%;
+    --sidebar-ring: 216 80% 46%;
   }
 
   .dark {
-    /* MD3 Dark Theme */
-    --background: 218 15% 8%;
-    --foreground: 218 20% 92%;
+    /* Brand/Primary - Blue (light version for dark theme) */
+    --brand: 216 90% 70%;
+    --brand-foreground: 216 100% 15%;
+    --brand-container: 216 60% 25%;
+    --brand-soft: 216 70% 55%;
+    --brand-bold: 216 85% 75%;
+    --on-brand-container: 216 100% 92%;
     
-    /* Surface colors - Dark theme */
-    --surface: 218 15% 8%;
-    --surface-dim: 218 15% 6%;
-    --surface-bright: 218 12% 18%;
-    --surface-container-lowest: 218 20% 4%;
-    --surface-container-low: 218 15% 10%;
-    --surface-container: 218 12% 12%;
-    --surface-container-high: 218 10% 15%;
-    --surface-container-highest: 218 8% 20%;
+    --primary: 216 90% 70%;
+    --primary-foreground: 216 100% 15%;
+    --primary-container: 216 60% 25%;
+    --on-primary-container: 216 100% 92%;
     
-    /* MD3 Primary - Light version for dark theme */
-    --primary: 218 90% 70%;
-    --primary-foreground: 218 100% 15%;
-    --on-primary-container: 218 100% 92%;
-    --primary-container: 218 60% 30%;
+    /* UI Colors - Dark theme */
+    --background: 210 15% 8%;
+    --foreground: 0 0% 95%;
     
-    /* MD3 Secondary - Dark theme */
-    --secondary: 218 50% 70%;
-    --secondary-foreground: 218 50% 15%;
-    --on-secondary-container: 218 60% 92%;
-    --secondary-container: 218 30% 25%;
+    --surface: 210 15% 8%;
+    --interface-light: 210 10% 12%;
+    --interface-dark: 210 8% 18%;
+    --divider-light: 210 6% 22%;
+    --divider-dark: 210 5% 30%;
+    --overlay: 210 100% 3%;
     
-    /* MD3 Tertiary - Dark theme */
-    --tertiary: 175 60% 70%;
-    --tertiary-foreground: 175 100% 10%;
-    --on-tertiary-container: 175 70% 90%;
-    --tertiary-container: 175 40% 25%;
+    /* Text Colors - Dark theme */
+    --text-primary: 0 0% 95%;
+    --text-secondary: 0 0% 70%;
+    --text-tertiary: 0 0% 50%;
     
-    /* MD3 Error - Dark theme */
-    --destructive: 0 90% 75%;
-    --destructive-foreground: 0 100% 20%;
-    --error-container: 0 50% 25%;
-    --on-error-container: 0 100% 90%;
+    /* Success - Dark theme */
+    --success: 154 50% 55%;
+    --success-foreground: 154 100% 10%;
+    --success-container: 154 40% 20%;
+    --on-success-container: 154 70% 85%;
     
-    /* MD3 Outline - Dark theme */
-    --outline: 218 15% 55%;
-    --outline-variant: 218 10% 30%;
+    /* Warning - Dark theme */
+    --warning: 42 90% 65%;
+    --warning-foreground: 42 100% 10%;
+    --warning-container: 42 50% 20%;
+    --on-warning-container: 42 90% 85%;
     
-    /* Mapped to shadcn tokens */
-    --card: 218 12% 12%;
-    --card-foreground: 218 20% 92%;
+    /* Error - Dark theme */
+    --error: 5 90% 65%;
+    --error-foreground: 5 100% 10%;
+    --error-container: 5 50% 20%;
+    --on-error-container: 5 90% 85%;
     
-    --popover: 218 15% 10%;
-    --popover-foreground: 218 20% 92%;
+    --destructive: 5 90% 65%;
+    --destructive-foreground: 5 100% 10%;
     
-    --muted: 218 10% 15%;
-    --muted-foreground: 218 15% 60%;
+    /* Extra Colors - Dark theme */
+    --pink: 320 70% 70%;
+    --pink-container: 320 40% 25%;
+    --on-pink-container: 320 90% 85%;
     
-    --accent: 218 30% 25%;
-    --accent-foreground: 218 100% 92%;
+    --violet: 280 80% 75%;
+    --violet-container: 280 40% 25%;
+    --on-violet-container: 280 90% 85%;
     
-    --border: 218 10% 25%;
-    --input: 218 10% 20%;
-    --ring: 218 90% 70%;
+    --blue: 224 70% 70%;
+    --blue-container: 224 40% 25%;
+    --on-blue-container: 224 90% 85%;
+    
+    --teal: 180 50% 55%;
+    --teal-container: 180 35% 20%;
+    --on-teal-container: 180 70% 85%;
+    
+    --green: 154 50% 55%;
+    --green-container: 154 40% 20%;
+    --on-green-container: 154 70% 85%;
+    
+    --orange: 22 85% 65%;
+    --orange-container: 22 50% 25%;
+    --on-orange-container: 22 90% 85%;
+    
+    --yellow: 45 85% 60%;
+    --yellow-container: 45 50% 25%;
+    --on-yellow-container: 45 90% 85%;
+    
+    --red: 357 75% 65%;
+    --red-container: 357 50% 25%;
+    --on-red-container: 357 90% 85%;
+    
+    --coral: 0 80% 70%;
+    --coral-container: 0 50% 25%;
+    --on-coral-container: 0 90% 85%;
+    
+    /* Secondary - Dark theme */
+    --secondary: 0 0% 70%;
+    --secondary-foreground: 210 15% 8%;
+    --secondary-container: 210 10% 18%;
+    --on-secondary-container: 0 0% 90%;
+    
+    /* Shadcn tokens - Dark theme */
+    --card: 210 10% 12%;
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 210 15% 10%;
+    --popover-foreground: 0 0% 95%;
+    
+    --muted: 210 8% 18%;
+    --muted-foreground: 0 0% 60%;
+    
+    --accent: 216 60% 25%;
+    --accent-foreground: 216 100% 92%;
+    
+    --border: 210 6% 22%;
+    --input: 210 8% 18%;
+    --ring: 216 90% 70%;
+    
+    --outline: 210 5% 30%;
+    --outline-variant: 210 6% 22%;
     
     /* Circadian colors - Dark theme */
     --sleep: 250 70% 65%;
@@ -216,22 +347,15 @@ All colors MUST be HSL.
     --nap-foreground: 185 100% 10%;
     --nap-light: 185 40% 20%;
     
-    /* Elevation - Dark theme uses lighter tints */
-    --elevation-1: 218 12% 12%;
-    --elevation-2: 218 10% 15%;
-    --elevation-3: 218 8% 17%;
-    --elevation-4: 218 8% 19%;
-    --elevation-5: 218 6% 22%;
-    
     /* Sidebar - Dark theme */
-    --sidebar-background: 218 12% 12%;
-    --sidebar-foreground: 218 20% 85%;
-    --sidebar-primary: 218 90% 70%;
-    --sidebar-primary-foreground: 218 100% 15%;
-    --sidebar-accent: 218 30% 25%;
-    --sidebar-accent-foreground: 218 100% 92%;
-    --sidebar-border: 218 10% 25%;
-    --sidebar-ring: 218 90% 70%;
+    --sidebar-background: 210 10% 12%;
+    --sidebar-foreground: 0 0% 85%;
+    --sidebar-primary: 216 90% 70%;
+    --sidebar-primary-foreground: 216 100% 15%;
+    --sidebar-accent: 216 60% 25%;
+    --sidebar-accent-foreground: 216 100% 92%;
+    --sidebar-border: 210 6% 22%;
+    --sidebar-ring: 216 90% 70%;
   }
 }
 
@@ -242,55 +366,156 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Roboto', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
-  /* MD3 Typography Scale */
+  /* Typography Scale from Design Guidelines */
+  /* Display */
+  .display-large {
+    font-size: 3.5rem; /* 56px */
+    line-height: 4rem; /* 64px */
+    font-weight: 400;
+    letter-spacing: -0.25px;
+  }
+  
+  .display-medium {
+    font-size: 2.8125rem; /* 45px */
+    line-height: 3.25rem; /* 52px */
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  
+  .display-small {
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.75rem; /* 44px */
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  
+  /* Headline */
+  .headline-large {
+    font-size: 2rem; /* 32px */
+    line-height: 2.5rem; /* 40px */
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  
+  .headline-medium {
+    font-size: 1.75rem; /* 28px */
+    line-height: 2.25rem; /* 36px */
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  
+  .headline-small {
+    font-size: 1.5rem; /* 24px */
+    line-height: 2rem; /* 32px */
+    font-weight: 500;
+    letter-spacing: 0.15px;
+  }
+  
+  /* Title */
+  .title-large {
+    font-size: 1.375rem; /* 22px */
+    line-height: 1.75rem; /* 28px */
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+  
+  .title-medium {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.375rem; /* 22px */
+    font-weight: 600;
+    letter-spacing: 0.15px;
+  }
+  
+  .title-small {
+    font-size: 1rem; /* 16px */
+    line-height: 1.5rem; /* 24px */
+    font-weight: 600;
+    letter-spacing: 0.15px;
+  }
+  
+  /* Label */
+  .label-large {
+    font-size: 1rem; /* 16px */
+    line-height: 1.5rem; /* 24px */
+    font-weight: 500;
+    letter-spacing: 0.15px;
+  }
+  
+  .label-medium {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  
+  .label-small {
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem; /* 16px */
+    font-weight: 600;
+    letter-spacing: 0.25px;
+  }
+  
+  /* Body */
+  .body-large {
+    font-size: 1rem; /* 16px */
+    line-height: 1.5rem; /* 24px */
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  
+  .body-medium {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.25rem; /* 20px */
+    font-weight: 450;
+    letter-spacing: 0.25px;
+  }
+  
+  .body-small {
+    font-size: 0.75rem; /* 12px */
+    line-height: 1rem; /* 16px */
+    font-weight: 450;
+    letter-spacing: 0.4px;
+  }
+  
+  /* Micro */
+  .micro-small {
+    font-size: 0.6875rem; /* 11px */
+    line-height: 1rem; /* 16px */
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Default heading styles */
   h1 {
-    @apply text-4xl font-normal tracking-tight;
-    font-family: 'Roboto', system-ui, sans-serif;
+    @apply headline-large;
   }
   
   h2 {
-    @apply text-3xl font-normal tracking-tight;
+    @apply headline-medium;
   }
   
   h3 {
-    @apply text-2xl font-normal;
+    @apply headline-small;
   }
   
   h4 {
-    @apply text-xl font-medium;
+    @apply title-large;
   }
   
   h5 {
-    @apply text-lg font-medium;
+    @apply title-medium;
   }
   
   h6 {
-    @apply text-base font-medium;
+    @apply title-small;
   }
 }
 
 @layer utilities {
-  /* MD3 Elevation surfaces */
-  .surface-1 {
-    @apply bg-[hsl(var(--elevation-1))];
-  }
-  .surface-2 {
-    @apply bg-[hsl(var(--elevation-2))];
-  }
-  .surface-3 {
-    @apply bg-[hsl(var(--elevation-3))];
-  }
-  .surface-4 {
-    @apply bg-[hsl(var(--elevation-4))];
-  }
-  .surface-5 {
-    @apply bg-[hsl(var(--elevation-5))];
-  }
-  
-  /* MD3 State layer utilities */
+  /* State layer utilities */
   .state-layer {
     @apply relative overflow-hidden;
   }
@@ -311,5 +536,22 @@ All colors MUST be HSL.
   
   .state-layer:active::before {
     opacity: 0.12;
+  }
+  
+  /* Text color utilities */
+  .text-on-brand {
+    color: hsl(var(--brand-foreground));
+  }
+  
+  .text-on-success {
+    color: hsl(var(--success-foreground));
+  }
+  
+  .text-on-warning {
+    color: hsl(var(--warning-foreground));
+  }
+  
+  .text-on-error {
+    color: hsl(var(--error-foreground));
   }
 }
