@@ -154,19 +154,17 @@ export const TripSelector = ({
 
       {/* Key Features */}
       <div className="max-w-5xl mx-auto py-8">
-        <h2 className="text-3xl font-bold text-center mb-8">Key Features</h2>
+        <h2 className="text-3xl font-bold text-center mb-8">We create a plan that helps with</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card className="border-primary/20">
             <CardHeader>
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Users className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-lg">Personalized Profile</CardTitle>
+              <CardTitle className="text-lg">Understands your entire journey</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Input your usual sleep schedule and caffeine habits so the plan is tailored specifically to you.
-              </p>
+              <p className="text-sm text-muted-foreground">Considers every flight, time zone, and your cabin experience to guide rest along the way.</p>
             </CardContent>
           </Card>
 
@@ -175,12 +173,11 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <MapPin className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-lg">Detailed Trip Modeling</CardTitle>
+              <CardTitle className="text-lg">Adapts to how 
+jet lag affects you</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Analyzes multi-leg journeys, incorporating time zones of your cities with local departure and arrival times.
-              </p>
+              <p className="text-sm text-muted-foreground">Shapes your plan around how strongly you tend to feel jet lag.</p>
             </CardContent>
           </Card>
 
@@ -189,12 +186,10 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Clock className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-lg">Jet Lag Sensitivity</CardTitle>
+              <CardTitle className="text-lg">Optional melatonin guidance</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Adjust the plan based on your personal sensitivity to jet lag for optimal results.
-              </p>
+              <p className="text-sm text-muted-foreground">Gentle suggestions on when melatonin may help support your adjustment.</p>
             </CardContent>
           </Card>
 
