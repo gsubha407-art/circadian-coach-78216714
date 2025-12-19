@@ -324,9 +324,9 @@ export const CustomTripForm = ({
                           </OutlinedSelectTrigger>
                         </FormControl>
                         <OutlinedSelectContent>
-                          <OutlinedSelectItem value="low">Low</OutlinedSelectItem>
-                          <OutlinedSelectItem value="medium">Medium</OutlinedSelectItem>
-                          <OutlinedSelectItem value="high">High</OutlinedSelectItem>
+                          <OutlinedSelectItem value="low">I adjust quickly</OutlinedSelectItem>
+                          <OutlinedSelectItem value="medium">It takes a day or two</OutlinedSelectItem>
+                          <OutlinedSelectItem value="high">It takes several days to feel normal</OutlinedSelectItem>
                         </OutlinedSelectContent>
                       </OutlinedSelect>
                       <FormMessage />
