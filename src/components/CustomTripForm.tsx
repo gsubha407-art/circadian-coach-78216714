@@ -14,13 +14,10 @@ import {
   OutlinedSelectValue 
 } from '@/components/ui/outlined-select';
 import { Switch } from '@/components/ui/switch';
-import { ArrowLeft, Plus, Trash2, Check, ChevronsUpDown } from 'lucide-react';
+import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import { Trip, Leg } from '@/types/trip';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { airports } from '@/data/airports';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
-import { cn } from '@/lib/utils';
 
 const tripSchema = z.object({
   name: z.string().min(1, 'Trip name is required'),
@@ -71,7 +68,6 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
   ]);
 
   const [legErrors, setLegErrors] = useState<Record<number, string>>({});
-  const [openPopovers, setOpenPopovers] = useState<Record<string, boolean>>({});
 
   const form = useForm<TripFormData>({
     resolver: zodResolver(tripSchema),
@@ -171,8 +167,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
   );
 
   const handleCityChange = (index: number, field: 'origin' | 'dest', cityName: string) => {
-    // Command component lowercases values, so we need case-insensitive search
-    const airport = uniqueCities.find(a => a.city.toLowerCase() === cityName.toLowerCase());
+    const airport = uniqueCities.find(a => a.city === cityName);
     if (airport) {
       const updatedLegs = [...legs];
       if (field === 'origin') {
@@ -189,8 +184,6 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
         };
       }
       setLegs(updatedLegs);
-      // Close the popover after selection
-      setOpenPopovers(prev => ({ ...prev, [`${index}-${field}`]: false }));
     }
   };
 
@@ -427,49 +420,21 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   <div className="grid md:grid-cols-2 gap-4">
                     {/* Origin */}
                     <div className="space-y-4">
-                      <Popover 
-                        open={openPopovers[`${index}-origin`] || false}
-                        onOpenChange={(open) => setOpenPopovers(prev => ({ ...prev, [`${index}-origin`]: open }))}
+                      <OutlinedSelect
+                        value={leg.originCity}
+                        onValueChange={(value) => handleCityChange(index, 'origin', value)}
                       >
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant="outline"
-                            role="combobox"
-                            className={cn(
-                              "w-full h-14 justify-between",
-                              !leg.originCity && "text-muted-foreground"
-                            )}
-                          >
-                            {leg.originCity || "Select Origin City"}
-                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-full p-0" align="start">
-                          <Command>
-                            <CommandInput placeholder="Search city..." />
-                            <CommandList>
-                              <CommandEmpty>No city found.</CommandEmpty>
-                              <CommandGroup>
-                                {uniqueCities.map((airport) => (
-                                  <CommandItem
-                                  key={`${airport.city}-${airport.iataCode}`}
-                                    value={airport.city}
-                                    onSelect={() => handleCityChange(index, 'origin', airport.city)}
-                                  >
-                                    <Check
-                                      className={cn(
-                                        "mr-2 h-4 w-4",
-                                        leg.originCity === airport.city ? "opacity-100" : "opacity-0"
-                                      )}
-                                    />
-                                    {airport.city}
-                                  </CommandItem>
-                                ))}
-                              </CommandGroup>
-                            </CommandList>
-                          </Command>
-                        </PopoverContent>
-                      </Popover>
+                        <OutlinedSelectTrigger label="Origin City">
+                          <OutlinedSelectValue placeholder="Select Origin City" />
+                        </OutlinedSelectTrigger>
+                        <OutlinedSelectContent>
+                          {uniqueCities.map((airport) => (
+                            <OutlinedSelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
+                              {airport.city}
+                            </OutlinedSelectItem>
+                          ))}
+                        </OutlinedSelectContent>
+                      </OutlinedSelect>
                       <OutlinedSelect
                         value={leg.originTZ}
                         onValueChange={(value) => updateLeg(index, 'originTZ', value)}
@@ -489,49 +454,21 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
 
                     {/* Destination */}
                     <div className="space-y-4">
-                      <Popover 
-                        open={openPopovers[`${index}-dest`] || false}
-                        onOpenChange={(open) => setOpenPopovers(prev => ({ ...prev, [`${index}-dest`]: open }))}
+                      <OutlinedSelect
+                        value={leg.destCity}
+                        onValueChange={(value) => handleCityChange(index, 'dest', value)}
                       >
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant="outline"
-                            role="combobox"
-                            className={cn(
-                              "w-full h-14 justify-between",
-                              !leg.destCity && "text-muted-foreground"
-                            )}
-                          >
-                            {leg.destCity || "Select Destination City"}
-                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-full p-0" align="start">
-                          <Command>
-                            <CommandInput placeholder="Search city..." />
-                            <CommandList>
-                              <CommandEmpty>No city found.</CommandEmpty>
-                              <CommandGroup>
-                                {uniqueCities.map((airport) => (
-                                  <CommandItem
-                                    key={`${airport.city}-${airport.iataCode}`}
-                                    value={airport.city}
-                                    onSelect={() => handleCityChange(index, 'dest', airport.city)}
-                                  >
-                                    <Check
-                                      className={cn(
-                                        "mr-2 h-4 w-4",
-                                        leg.destCity === airport.city ? "opacity-100" : "opacity-0"
-                                      )}
-                                    />
-                                    {airport.city}
-                                  </CommandItem>
-                                ))}
-                              </CommandGroup>
-                            </CommandList>
-                          </Command>
-                        </PopoverContent>
-                      </Popover>
+                        <OutlinedSelectTrigger label="Destination City">
+                          <OutlinedSelectValue placeholder="Select Destination City" />
+                        </OutlinedSelectTrigger>
+                        <OutlinedSelectContent>
+                          {uniqueCities.map((airport) => (
+                            <OutlinedSelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
+                              {airport.city}
+                            </OutlinedSelectItem>
+                          ))}
+                        </OutlinedSelectContent>
+                      </OutlinedSelect>
                       <OutlinedSelect
                         value={leg.destTZ}
                         onValueChange={(value) => updateLeg(index, 'destTZ', value)}
