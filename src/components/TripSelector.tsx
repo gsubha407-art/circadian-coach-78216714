@@ -142,15 +142,10 @@ export const TripSelector = ({
   return <div className="space-y-6">
       {/* Hero Section */}
       <div className="text-center space-y-6 py-12">
-        <h1 className="text-5xl font-bold bg-gradient-hero bg-clip-text text-primary">
-          Beat Jet Lag Before You Land
-        </h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-          Tired of travel days wasted feeling groggy? Our Smart Jet Lag Planner uses your personal habits and detailed flight data to create a custom plan for optimizing your sleep and energy across time zones.
-        </p>
+        <h1 className="text-5xl font-bold bg-gradient-hero bg-clip-text text-primary">Find your rhythm across time zones</h1>
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">Thoughtful timing for sleep, light, and rest, to ease jet lag as you travel</p>
         <div className="flex justify-center">
-          <Button variant="default" size="lg" onClick={() => setShowCustomForm(true)} className="shadow-glow">
-            <Plane className="h-5 w-5 mr-2" />
+          <Button variant="default" size="lg" onClick={() => setShowCustomForm(true)} className="shadow-glow">dfsoixgoiedsg<Plane className="h-5 w-5 mr-2" />
             Create Your Trip Plan
           </Button>
         </div>
