@@ -52,8 +52,10 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
     const isFloating = isFocused || hasContent(currentValue)
 
     // Ensure "outfocus" happens even if something prevents native blur (e.g. overlays)
+    // Skip this for time/date inputs as it interferes with native pickers
     React.useEffect(() => {
       if (!isFocused) return
+      if (type === "time" || type === "date" || type === "datetime-local") return
 
       const onPointerDownCapture = (e: PointerEvent) => {
         const container = containerRef.current
@@ -68,7 +70,7 @@ const OutlinedTextField = React.forwardRef<HTMLInputElement, OutlinedTextFieldPr
 
       document.addEventListener("pointerdown", onPointerDownCapture, true)
       return () => document.removeEventListener("pointerdown", onPointerDownCapture, true)
-    }, [isFocused])
+    }, [isFocused, type])
 
     return (
       <div ref={containerRef} className="relative w-full">
