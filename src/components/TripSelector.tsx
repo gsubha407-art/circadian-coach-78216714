@@ -189,7 +189,7 @@ jet lag affects you</CardTitle>
               <CardTitle className="text-lg">Optional Melatonin guidance</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">Gentle suggestions on when melatonin may help support your adjustment.</p>
+              <p className="text-sm text-muted-foreground">Gentle suggestions on when Melatonin may help support your adjustment.</p>
             </CardContent>
           </Card>
 
