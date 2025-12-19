@@ -167,15 +167,15 @@ export const OptimizationPlan = ({ plan, trip, onBack }: OptimizationPlanProps) 
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-center p-4 bg-background/50 rounded-lg">
+            <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
               <div className="text-2xl font-bold text-primary">{Math.abs(plan.totalTimeZoneDifference)}h</div>
               <div className="text-sm text-muted-foreground">Time difference</div>
             </div>
-            <div className="text-center p-4 bg-background/50 rounded-lg">
+            <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
               <div className="text-2xl font-bold text-primary">{plan.days.length}</div>
               <div className="text-sm text-muted-foreground">Total plan days</div>
             </div>
-            <div className="text-center p-4 bg-background/50 rounded-lg">
+            <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
               <div className="text-2xl font-bold text-primary">{plan.keyActions.length}</div>
               <div className="text-sm text-muted-foreground">Key actions</div>
             </div>
