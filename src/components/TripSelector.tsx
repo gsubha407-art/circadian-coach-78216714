@@ -186,7 +186,7 @@ jet lag affects you</CardTitle>
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Clock className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-lg">Optional melatonin guidance</CardTitle>
+              <CardTitle className="text-lg">Optional Melatonin guidance</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">Gentle suggestions on when melatonin may help support your adjustment.</p>
