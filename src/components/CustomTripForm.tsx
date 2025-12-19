@@ -368,7 +368,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   control={form.control}
                   name="melatoninOptIn"
                   render={({ field }) => (
-                    <FormItem className="flex flex-col justify-end">
+                    <FormItem className="flex flex-col justify-center">
                       <FormLabel>Melatonin Recommendations</FormLabel>
                       <div className="flex items-center space-x-2">
                         <FormControl>
