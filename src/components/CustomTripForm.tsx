@@ -471,7 +471,7 @@ export const CustomTripForm = ({
               Cancel
             </Button>
             <Button type="submit" disabled={Object.keys(legErrors).length > 0}>
-              Create Optimization Plan
+              Create my plan
             </Button>
           </div>
         </form>
