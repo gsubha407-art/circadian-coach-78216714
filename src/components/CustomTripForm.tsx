@@ -307,7 +307,7 @@ export const CustomTripForm = ({
                 field
               }) => <FormItem>
                       <FormControl>
-                        <OutlinedTextField label="Usual Wake Time" type="time" {...field} />
+                        <OutlinedTextField label="Usual Wake Up Time" type="time" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>} />
