@@ -378,7 +378,7 @@ export const CustomTripForm = ({
                         <FormControl>
                           <Switch checked={field.value} onCheckedChange={field.onChange} />
                         </FormControl>
-                        <Label className="text-sm">Suggest Melatonin</Label>
+                        <Label className="text-sm text-foreground">Suggest Melatonin</Label>
                       <FormMessage />
                     </FormItem>} />
               </div>
