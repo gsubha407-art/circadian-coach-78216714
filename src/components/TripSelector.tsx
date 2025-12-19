@@ -189,7 +189,7 @@ jet lag affects you</CardTitle>
               <CardTitle className="text-lg">Optional melatonin guidance</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">Gentle suggestions on when melatonin may help support your adjustment.</p>
+              <p className="text-sm text-muted-foreground">Optional Melatonin guidance</p>
             </CardContent>
           </Card>
 
@@ -228,11 +228,7 @@ jet lag affects you</CardTitle>
               </div>
               <CardTitle className="text-lg">Complex Journeys</CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Easily model complex trips like long-haul flights, managing significant time shifts.
-              </p>
-            </CardContent>
+            
           </Card>
         </div>
         
