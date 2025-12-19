@@ -399,7 +399,7 @@ export const CustomTripForm = ({
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-4">
+              {legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-5">
                   <div className="flex items-center justify-between">
                     <h4 className="font-medium">Flight {index + 1}</h4>
                     {legs.length > 1 && <Button type="button" variant="ghost" size="sm" onClick={() => removeLeg(index)}>
