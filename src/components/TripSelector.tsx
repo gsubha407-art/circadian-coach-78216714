@@ -193,43 +193,6 @@ jet lag affects you</CardTitle>
             </CardContent>
           </Card>
 
-          <Card className="border-primary/20">
-            <CardHeader>
-              <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
-                <Badge className="h-6 w-6 flex items-center justify-center bg-melatonin text-white">M</Badge>
-              </div>
-              <CardTitle className="text-lg">Melatonin Integration</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Opt-in for guidance on using melatonin supplement as part of your adjustment strategy.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-primary/20">
-            <CardHeader>
-              <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
-                <Plane className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle className="text-lg">Cabin Context</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                Considers your cabin type to factor in onboard sleep quality and amenities.
-              </p>
-            </CardContent>
-          </Card>
-
-          <Card className="border-primary/20">
-            <CardHeader>
-              <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
-                <MapPin className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle className="text-lg">Complex Journeys</CardTitle>
-            </CardHeader>
-            
-          </Card>
         </div>
         
         <div className="text-center mt-12">
