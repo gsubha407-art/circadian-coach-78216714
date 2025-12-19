@@ -368,9 +368,7 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                   control={form.control}
                   name="melatoninOptIn"
                   render={({ field }) => (
-                    <FormItem className="flex flex-col justify-center">
-                      <FormLabel>Melatonin Recommendations</FormLabel>
-                      <div className="flex items-center space-x-2">
+                    <FormItem className="flex flex-row items-center justify-center space-x-2">
                         <FormControl>
                           <Switch
                             checked={field.value}
@@ -378,7 +376,6 @@ export const CustomTripForm = ({ onBack, onTripCreate }: CustomTripFormProps) =>
                           />
                         </FormControl>
                         <Label className="text-sm">Include melatonin guidance</Label>
-                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
