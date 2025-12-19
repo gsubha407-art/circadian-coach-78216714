@@ -242,9 +242,7 @@ export const TripSelector = ({
         </div>
         
         <div className="text-center mt-12">
-          <p className="text-lg font-semibold text-primary">
-            Start your next journey feeling refreshed—not fatigued.
-          </p>
+          <p className="text-lg font-semibold text-primary">Give your body a little help catching up.</p>
         </div>
       </div>
 
