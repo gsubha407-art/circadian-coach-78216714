@@ -459,10 +459,10 @@ export const CustomTripForm = ({
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
-                    <div className="min-w-0 overflow-hidden">
+                    <div className="min-w-0">
                       <OutlinedTextField label="Departure" type="datetime-local" value={leg.departLocal} onChange={e => updateLeg(index, 'departLocal', e.target.value)} error={!!legErrors[index]} className="w-full" />
                     </div>
-                    <div className="min-w-0 overflow-hidden">
+                    <div className="min-w-0">
                       <OutlinedTextField label="Arrival" type="datetime-local" value={leg.arriveLocal} onChange={e => updateLeg(index, 'arriveLocal', e.target.value)} error={!!legErrors[index]} className="w-full" />
                     </div>
                   </div>
