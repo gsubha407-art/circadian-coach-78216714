@@ -264,7 +264,7 @@ export const CustomTripForm = ({
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back
         </Button>
-        <div className="mb-8">
+        <div className="mb-10">
           <h1 className="headline-small bg-gradient-hero bg-clip-text text-transparent">
             Create Custom Trip
           </h1>
