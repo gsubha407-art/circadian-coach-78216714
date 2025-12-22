@@ -269,6 +269,7 @@ export const CustomTripForm = ({
             Create Custom Trip
           </h1>
           <p className="title-small text-3xl font-bold text-text-primary">Create Your Adjustment Plan</p>
+          <p className="body-medium text-muted-foreground mt-3">Enter your trip details to generate a personalized jet lag plan</p>
         </div>
       </div>
 
