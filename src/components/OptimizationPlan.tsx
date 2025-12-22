@@ -165,9 +165,9 @@ export const OptimizationPlan = ({
       </div>
 
       {/* Page Title */}
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold tracking-tight">Here's Your Plan to Adjust Faster</h1>
-        <p className="text-lg text-muted-foreground">A simple, personalised plan to help your body adjust smoothly</p>
+      <div className="space-y-1">
+        <h1 className="text-2xl font-bold tracking-tight">Here's Your Plan to Adjust Faster</h1>
+        <p className="text-base text-muted-foreground">A simple, personalised plan to help your body adjust smoothly</p>
       </div>
 
       {/* Summary */}
@@ -183,15 +183,15 @@ export const OptimizationPlan = ({
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
-              <div className="text-2xl font-bold text-primary">{Math.abs(plan.totalTimeZoneDifference)}h</div>
+              <div className="text-xl font-bold text-primary">{Math.abs(plan.totalTimeZoneDifference)}h</div>
               <div className="text-sm text-muted-foreground">Time difference</div>
             </div>
             <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
-              <div className="text-2xl font-bold text-primary">{plan.days.length}</div>
+              <div className="text-xl font-bold text-primary">{plan.days.length}</div>
               <div className="text-sm text-muted-foreground">Total plan days</div>
             </div>
             <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
-              <div className="text-2xl font-bold text-primary">{plan.keyActions.length}</div>
+              <div className="text-xl font-bold text-primary">{plan.keyActions.length}</div>
               <div className="text-sm text-muted-foreground">Key actions</div>
             </div>
           </div>
