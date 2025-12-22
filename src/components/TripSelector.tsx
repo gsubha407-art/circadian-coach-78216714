@@ -143,8 +143,8 @@ export const TripSelector = ({
       {/* Hero Section */}
       <div className="text-left sm:text-center space-y-8 pt-12 pb-0 sm:py-12">
         <div className="space-y-3">
-          <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary text-4xl sm:text-5xl font-bold">A calmer way through jet lag</h1>
-          <p className="title-small max-w-3xl mx-auto leading-relaxed text-lg text-text-primary font-normal">Thoughtful timing for sleep, light, and rest, to ease jet lag as you travel</p>
+          <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary sm:text-5xl font-bold text-5xl">Jet Lag Planner</h1>
+          <p className="title-small max-w-3xl mx-auto leading-relaxed text-lg text-text-primary font-normal">A personalized schedule for sleep, light, and rest to help you adjust faster</p>
         </div>
         <div className="flex justify-start sm:justify-center">
           <Button variant="default" size="lg" onClick={() => setShowCustomForm(true)} className="shadow-glow text-base font-medium">
