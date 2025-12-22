@@ -268,7 +268,7 @@ export const CustomTripForm = ({
           <h1 className="headline-small bg-gradient-hero bg-clip-text text-transparent">
             Create Custom Trip
           </h1>
-          <p className="title-small text-muted-foreground">
+          <p className="title-small text-muted-foreground text-3xl font-bold">
             Plan your personalized circadian optimization schedule
           </p>
         </div>
