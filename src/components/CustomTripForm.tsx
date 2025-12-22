@@ -406,9 +406,9 @@ export const CustomTripForm = ({
               {legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-5">
                   <div className="flex items-center justify-between pb-2">
                     <h4 className="font-medium">Flight {index + 1}</h4>
-                    {legs.length > 1 && <Button type="button" variant="ghost" size="sm" onClick={() => removeLeg(index)}>
-                        <Trash2 className="h-4 w-4" />
-                      </Button>}
+                    <Button type="button" variant="ghost" size="sm" onClick={() => removeLeg(index)}>
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
