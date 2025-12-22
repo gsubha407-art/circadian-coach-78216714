@@ -142,8 +142,8 @@ export const TripSelector = ({
   return <div className="space-y-6">
       {/* Hero Section */}
       <div className="text-center space-y-6 py-12">
-        <h1 className="text-5xl font-bold bg-gradient-hero bg-clip-text text-primary">A calmer way through jet lag</h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">Thoughtful timing for sleep, light, and rest, to ease jet lag as you travel</p>
+        <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary">A calmer way through jet lag</h1>
+        <p className="title-small text-muted-foreground max-w-3xl mx-auto leading-relaxed">Thoughtful timing for sleep, light, and rest, to ease jet lag as you travel</p>
         <div className="flex justify-center">
           <Button variant="default" size="lg" onClick={() => setShowCustomForm(true)} className="shadow-glow">
             <Plane className="h-5 w-5 mr-2" />
@@ -154,17 +154,17 @@ export const TripSelector = ({
 
       {/* Key Features */}
       <div className="max-w-5xl mx-auto py-8">
-        <h2 className="text-3xl font-bold text-center mb-8">We create a plan that helps with</h2>
+        <h2 className="title-large text-center mb-8">We create a plan that helps with</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card className="border-primary/20">
             <CardHeader>
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Users className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-lg">Understands your entire journey</CardTitle>
+              <CardTitle className="title-small">Understands your entire journey</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">Considers every flight, time zone, and your cabin experience to guide rest along the way.</p>
+              <p className="body-medium text-muted-foreground">Considers every flight, time zone, and your cabin experience to guide rest along the way.</p>
             </CardContent>
           </Card>
 
@@ -173,11 +173,10 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <MapPin className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-lg">Adapts to how 
-jet lag affects you</CardTitle>
+              <CardTitle className="title-small">Adapts to how jet lag affects you</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">Shapes your plan around how strongly you tend to feel jet lag.</p>
+              <p className="body-medium text-muted-foreground">Shapes your plan around how strongly you tend to feel jet lag.</p>
             </CardContent>
           </Card>
 
@@ -186,17 +185,17 @@ jet lag affects you</CardTitle>
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Clock className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="text-lg">Optional Melatonin guidance</CardTitle>
+              <CardTitle className="title-small">Optional Melatonin guidance</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground">Gentle suggestions on when Melatonin may help support your adjustment.</p>
+              <p className="body-medium text-muted-foreground">Gentle suggestions on when Melatonin may help support your adjustment.</p>
             </CardContent>
           </Card>
 
         </div>
         
         <div className="text-center mt-12">
-          <p className="text-lg font-semibold text-primary">Give your body a little help catching up.</p>
+          <p className="title-small font-semibold text-primary">Give your body a little help catching up.</p>
         </div>
       </div>
 
@@ -205,7 +204,7 @@ jet lag affects you</CardTitle>
         {savedTrips.length > 0 && <div className="space-y-4">
             <div className="flex items-center gap-2">
               <Bookmark className="h-5 w-5 text-primary" />
-              <h2 className="text-2xl font-semibold">Your Saved Trips</h2>
+              <h2 className="title-large">Your Saved Trips</h2>
             </div>
             {savedTrips.map(({
           trip,
@@ -219,7 +218,7 @@ jet lag affects you</CardTitle>
                       {/* Trip Name */}
                       <div className="flex items-start justify-between">
                         <div className="flex items-center gap-2">
-                          <CardTitle className="text-2xl">{trip.name}</CardTitle>
+                          <CardTitle className="title-large">{trip.name}</CardTitle>
                           <Badge variant="outline" className="text-primary border-primary">
                             <Bookmark className="h-3 w-3 mr-1" />
                             Saved
@@ -243,7 +242,7 @@ jet lag affects you</CardTitle>
                       {/* Route */}
                       <div className="flex items-center gap-2 text-muted-foreground">
                         <MapPin className="h-4 w-4 flex-shrink-0" />
-                        <span className="text-sm">{getRouteString(trip)}</span>
+                        <span className="body-medium">{getRouteString(trip)}</span>
                       </div>
 
                       {/* Next Action */}
@@ -251,10 +250,10 @@ jet lag affects you</CardTitle>
                           <div className="flex items-start gap-3">
                             <Clock className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                             <div>
-                              <div className="text-xs font-medium text-primary uppercase tracking-wide mb-1">
+                              <div className="body-small font-medium text-primary uppercase tracking-wide mb-1">
                                 Current Recommendation
                               </div>
-                              <div className="text-sm font-medium text-foreground">
+                              <div className="body-medium font-medium text-foreground">
                                 {recommendation.text}
                               </div>
                             </div>
@@ -264,7 +263,7 @@ jet lag affects you</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-4 body-medium text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Clock className="h-4 w-4" />
                           <span>Sleep: {trip.usualSleepStart} - {trip.usualSleepEnd}</span>
