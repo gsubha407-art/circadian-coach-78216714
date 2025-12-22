@@ -163,7 +163,7 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Users className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="title-small font-bold text-xl">Understands your entire journey</CardTitle>
+              <CardTitle className="title-small font-bold text-lg">Understands your entire journey</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
               <p className="body-medium text-muted-foreground font-normal text-base">Considers every flight, time zone, and your cabin experience to guide rest along the way.</p>
@@ -175,7 +175,7 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <MapPin className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="title-small text-xl font-bold">Adapts to how jet lag affects you</CardTitle>
+              <CardTitle className="title-small font-bold text-lg">Adapts to how jet lag affects you</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
               <p className="body-medium text-muted-foreground font-normal text-base">Shapes your plan around how strongly you tend to feel jet lag.</p>
@@ -187,7 +187,7 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Clock className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="title-small text-xl font-bold">Optional Melatonin guidance</CardTitle>
+              <CardTitle className="title-small font-bold text-lg">Optional Melatonin guidance</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
               <p className="body-medium text-muted-foreground font-normal text-base">Gentle suggestions on when Melatonin may help support your adjustment.</p>
@@ -197,7 +197,7 @@ export const TripSelector = ({
         </div>
         
         <div className="text-center mt-12">
-          <p className="title-small font-semibold text-primary">Give your body a little help catching up.</p>
+          <p className="title-small font-semibold text-text-primary">Give your body a little help catching up.</p>
         </div>
       </div>
 
