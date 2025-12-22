@@ -187,7 +187,7 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Pill className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="title-small font-bold text-lg">Optional Melatonin guidance</CardTitle>
+              <CardTitle className="title-small font-bold text-lg">Melatonin guidance (Optional)</CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
               <p className="body-medium text-muted-foreground font-normal text-base">Gentle suggestions on when Melatonin may help support your adjustment.</p>
