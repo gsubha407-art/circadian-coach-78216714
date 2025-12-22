@@ -152,7 +152,7 @@ export const OptimizationPlan = ({
 
       {/* Page Title */}
       <div className="space-y-1">
-        <h1 className="headline-small">Here's Your Plan to Adjust Faster</h1>
+        <h1 className="headline-small text-3xl font-bold">Here's Your Plan to Adjust Faster</h1>
         <p className="title-small text-muted-foreground">A simple, personalised plan to help your body adjust smoothly</p>
       </div>
 
@@ -219,11 +219,11 @@ export const OptimizationPlan = ({
             <CardTitle className="title-large flex items-center gap-2">
               <Clock className="h-5 w-5" />
               {new Date(plan.days[selectedDay].date).toLocaleDateString(undefined, {
-            weekday: 'long',
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric'
-          })}
+              weekday: 'long',
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            })}
             </CardTitle>
             <p className="body-medium text-muted-foreground">{plan.days[selectedDay].summary}</p>
           </CardHeader>
