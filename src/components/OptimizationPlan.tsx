@@ -153,7 +153,7 @@ export const OptimizationPlan = ({
       {/* Page Title */}
       <div className="space-y-1">
         <h1 className="headline-small text-3xl font-bold">Here's Your Plan to Adjust Faster</h1>
-        <p className="title-small text-muted-foreground">A simple, personalised plan to help your body adjust smoothly</p>
+        <p className="title-small text-muted-foreground text-lg font-normal">A simple, personalised plan to help your body adjust smoothly</p>
       </div>
 
       {/* Summary */}
