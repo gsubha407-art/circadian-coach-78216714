@@ -265,10 +265,10 @@ export const CustomTripForm = ({
           Back
         </Button>
         <div>
-          <h1 className="text-3xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+          <h1 className="headline-small bg-gradient-hero bg-clip-text text-transparent">
             Create Custom Trip
           </h1>
-          <p className="text-2xl text-black font-semibold">
+          <p className="title-small text-muted-foreground">
             Plan your personalized circadian optimization schedule
           </p>
         </div>
@@ -278,8 +278,8 @@ export const CustomTripForm = ({
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <Card>
             <CardHeader>
-              <CardTitle>Trip Details</CardTitle>
-              <CardDescription>
+              <CardTitle className="title-large">Trip Details</CardTitle>
+              <CardDescription className="body-medium">
                 Basic information about your trip and sleep preferences
               </CardDescription>
             </CardHeader>
@@ -387,21 +387,21 @@ export const CustomTripForm = ({
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center justify-between">
+              <CardTitle className="title-large flex items-center justify-between">
                 Flight Itinerary
                 <Button type="button" variant="outline" size="sm" onClick={addLeg}>
                   <Plus className="h-4 w-4 mr-2" />
                   Add Flight
                 </Button>
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="body-medium">
                 Add all flight segments for your trip
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-5">
                   <div className="flex items-center justify-between pb-2">
-                    <h4 className="font-medium">Flight {index + 1}</h4>
+                    <h4 className="title-small">Flight {index + 1}</h4>
                     {legs.length > 1 && <Button type="button" variant="ghost" size="sm" onClick={() => removeLeg(index)}>
                         <Trash2 className="h-4 w-4" />
                       </Button>}

@@ -152,15 +152,15 @@ export const OptimizationPlan = ({
 
       {/* Page Title */}
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold tracking-tight">Here's Your Plan to Adjust Faster</h1>
-        <p className="text-base text-muted-foreground">A simple, personalised plan to help your body adjust smoothly</p>
+        <h1 className="headline-small">Here's Your Plan to Adjust Faster</h1>
+        <p className="title-small text-muted-foreground">A simple, personalised plan to help your body adjust smoothly</p>
       </div>
 
       {/* Summary */}
       <Card className="bg-gradient-card border-0">
         <CardHeader className="p-0 pb-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="font-bold text-lg">Plan Overview</CardTitle>
+            <CardTitle className="title-large">Plan Overview</CardTitle>
             <Badge className={getStrategyColor(plan.shiftStrategy)} variant="secondary">
               {plan.shiftStrategy} strategy
             </Badge>
@@ -169,23 +169,23 @@ export const OptimizationPlan = ({
         <CardContent className="p-0 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
-              <div className="text-xl font-bold text-primary">{Math.abs(plan.totalTimeZoneDifference)}h</div>
-              <div className="text-sm text-muted-foreground">Time difference</div>
+              <div className="title-large text-primary">{Math.abs(plan.totalTimeZoneDifference)}h</div>
+              <div className="body-medium text-muted-foreground">Time difference</div>
             </div>
             <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
-              <div className="text-xl font-bold text-primary">{plan.days.length}</div>
-              <div className="text-sm text-muted-foreground">Total plan days</div>
+              <div className="title-large text-primary">{plan.days.length}</div>
+              <div className="body-medium text-muted-foreground">Total plan days</div>
             </div>
             <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
-              <div className="text-xl font-bold text-primary">{plan.keyActions.length}</div>
-              <div className="text-sm text-muted-foreground">Key actions</div>
+              <div className="title-large text-primary">{plan.keyActions.length}</div>
+              <div className="body-medium text-muted-foreground">Key actions</div>
             </div>
           </div>
 
           <div className="space-y-2">
-            <h4 className="font-semibold text-base">Key Actions:</h4>
+            <h4 className="title-small">Key Actions:</h4>
             <div className="space-y-2">
-              {plan.keyActions.map((action, index) => <div key={index} className="flex items-center gap-2 text-sm">
+              {plan.keyActions.map((action, index) => <div key={index} className="flex items-center gap-2 body-medium">
                   <div className="w-2 h-2 bg-primary rounded-full" />
                   {action}
                 </div>)}
@@ -196,8 +196,8 @@ export const OptimizationPlan = ({
 
       {/* Day selector section */}
       <div className="space-y-2 pt-3">
-        <h2 className="font-bold text-lg">Daily Schedule</h2>
-        <p className="text-sm text-muted-foreground">
+        <h2 className="title-large">Daily Schedule</h2>
+        <p className="body-medium text-muted-foreground">
           Your plan focuses on key adjustment days: pre-travel preparation and post-arrival adaptation. Days without activities are skipped to keep your schedule focused.
         </p>
       </div>
@@ -216,7 +216,7 @@ export const OptimizationPlan = ({
         {/* Selected day details */}
         {plan.days[selectedDay] && <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="title-large flex items-center gap-2">
               <Clock className="h-5 w-5" />
               {new Date(plan.days[selectedDay].date).toLocaleDateString(undefined, {
             weekday: 'long',
@@ -225,24 +225,24 @@ export const OptimizationPlan = ({
             year: 'numeric'
           })}
             </CardTitle>
-            <p className="text-sm text-muted-foreground">{plan.days[selectedDay].summary}</p>
+            <p className="body-medium text-muted-foreground">{plan.days[selectedDay].summary}</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               {plan.days[selectedDay].activities.length > 0 ? plan.days[selectedDay].activities.map((activity, index) => <div key={index} className={cn("flex items-center gap-4 p-4 rounded-lg transition-all hover:shadow-timeline", getActivityColor(activity.type))}>
                     <div className="flex items-center gap-2 min-w-0">
                       {getActivityIcon(activity.type)}
-                      <div className="font-medium capitalize">{activity.type.replace('-', ' ')}</div>
+                      <div className="title-small capitalize">{activity.type.replace('-', ' ')}</div>
                     </div>
-                    <div className="flex items-center gap-2 text-sm">
+                    <div className="flex items-center gap-2 body-medium">
                       <Clock className="h-3 w-3" />
                       {formatTime(activity.startTime)}
                       {activity.endTime && activity.endTime !== activity.startTime && <span>- {formatTime(activity.endTime)}</span>}
                     </div>
-                    <div className="flex-1 text-sm opacity-90">
+                    <div className="flex-1 body-medium opacity-90">
                       {activity.description}
                     </div>
-                  </div>) : <div className="text-center py-8 text-muted-foreground">
+                  </div>) : <div className="text-center py-8 body-medium text-muted-foreground">
                   No specific activities for this day
                 </div>}
             </div>
