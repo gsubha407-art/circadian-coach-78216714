@@ -84,9 +84,7 @@ export const CustomTripForm = ({
     }
   };
   const removeLeg = (index: number) => {
-    if (legs.length > 1) {
-      setLegs(legs.filter((_, i) => i !== index));
-    }
+    setLegs(legs.filter((_, i) => i !== index));
   };
   const updateLeg = (index: number, field: keyof FlightLeg, value: string) => {
     const updatedLegs = [...legs];
