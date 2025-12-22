@@ -264,7 +264,7 @@ export const CustomTripForm = ({
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back
         </Button>
-        <div>
+        <div className="mb-8">
           <h1 className="headline-small bg-gradient-hero bg-clip-text text-transparent">
             Create Custom Trip
           </h1>
@@ -275,7 +275,7 @@ export const CustomTripForm = ({
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="title-large">Trip Details</CardTitle>
