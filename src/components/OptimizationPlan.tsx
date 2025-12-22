@@ -195,7 +195,7 @@ export const OptimizationPlan = ({
       </Card>
 
       {/* Day selector */}
-      <div className="space-y-2">
+      <div className="space-y-2 pt-3">
         <p className="text-sm text-muted-foreground">
           Your plan focuses on key adjustment days: pre-travel preparation and post-arrival adaptation. Days without activities are skipped to keep your schedule focused.
         </p>
