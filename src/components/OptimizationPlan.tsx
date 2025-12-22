@@ -180,16 +180,19 @@ export const OptimizationPlan = ({
         <div className="flex gap-2">
           <Button variant={saved ? "default" : "outline"} size="sm" onClick={handleSaveTrip} disabled={saved}>
             {saved ? <>
-                <Check className="h-4 w-4 mr-2" />
-                Saved
+                <Check className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Saved</span>
+                <span className="sm:hidden">Saved</span>
               </> : <>
-                <Save className="h-4 w-4 mr-2" />
-                Save Trip
+                <Save className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Save Trip</span>
+                <span className="sm:hidden">Save</span>
               </>}
           </Button>
           <Button size="sm" onClick={handleExportPDF}>
-            <Download className="h-4 w-4 mr-2" />
-            Export PDF
+            <Download className="h-4 w-4 sm:mr-2" />
+            <span className="hidden sm:inline">Export PDF</span>
+            <span className="sm:hidden">Export</span>
           </Button>
         </div>
       </div>
