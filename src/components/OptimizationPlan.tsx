@@ -9,13 +9,11 @@ import jsPDF from 'jspdf';
 import { cn } from '@/lib/utils';
 import { saveTrip, isTripSaved } from '@/lib/savedTrips';
 import { useToast } from '@/hooks/use-toast';
-
 interface OptimizationPlanProps {
   plan: OptimizationPlanType;
   trip: Trip;
   onBack: () => void;
 }
-
 export const OptimizationPlan = ({
   plan,
   trip,
@@ -26,7 +24,6 @@ export const OptimizationPlan = ({
   const {
     toast
   } = useToast();
-
   const handleSaveTrip = () => {
     try {
       saveTrip(trip, plan);
@@ -43,7 +40,6 @@ export const OptimizationPlan = ({
       });
     }
   };
-
   const getActivityIcon = (type: string) => {
     switch (type) {
       case 'sleep':
@@ -62,7 +58,6 @@ export const OptimizationPlan = ({
         return <Clock className="h-4 w-4" />;
     }
   };
-
   const getActivityColor = (type: string) => {
     switch (type) {
       case 'sleep':
@@ -81,7 +76,6 @@ export const OptimizationPlan = ({
         return 'bg-secondary text-secondary-foreground';
     }
   };
-
   const formatTime = (time: string) => {
     const [hours, minutes] = time.split(':');
     const hour24 = parseInt(hours);
@@ -89,7 +83,6 @@ export const OptimizationPlan = ({
     const ampm = hour24 >= 12 ? 'PM' : 'AM';
     return `${hour12}:${minutes} ${ampm}`;
   };
-
   const getStrategyColor = (strategy: string) => {
     switch (strategy) {
       case 'advance':
@@ -102,7 +95,6 @@ export const OptimizationPlan = ({
         return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
     }
   };
-
   const handleExportPDF = async () => {
     try {
       const element = document.getElementById('optimization-plan-content');
@@ -134,9 +126,7 @@ export const OptimizationPlan = ({
       });
     }
   };
-
-  return (
-    <div id="optimization-plan-content" className="space-y-6">
+  return <div id="optimization-plan-content" className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={onBack} className="gap-2">
@@ -145,17 +135,13 @@ export const OptimizationPlan = ({
         </Button>
         <div className="flex gap-2">
           <Button variant={saved ? "default" : "outline"} size="sm" onClick={handleSaveTrip} disabled={saved}>
-            {saved ? (
-              <>
+            {saved ? <>
                 <Check className="h-4 w-4 mr-2" />
                 Saved
-              </>
-            ) : (
-              <>
+              </> : <>
                 <Save className="h-4 w-4 mr-2" />
                 Save Trip
-              </>
-            )}
+              </>}
           </Button>
           <Button size="sm" onClick={handleExportPDF}>
             <Download className="h-4 w-4 mr-2" />
@@ -174,7 +160,7 @@ export const OptimizationPlan = ({
       <Card className="bg-gradient-card">
         <CardHeader>
           <div className="flex items-center justify-between">
-            <CardTitle>Plan Overview</CardTitle>
+            <CardTitle className="font-bold text-lg">Plan Overview</CardTitle>
             <Badge className={getStrategyColor(plan.shiftStrategy)} variant="secondary">
               {plan.shiftStrategy} strategy
             </Badge>
@@ -197,14 +183,12 @@ export const OptimizationPlan = ({
           </div>
 
           <div className="space-y-2">
-            <h4 className="font-semibold">Key Actions:</h4>
+            <h4 className="font-semibold text-base">Key Actions:</h4>
             <div className="space-y-2">
-              {plan.keyActions.map((action, index) => (
-                <div key={index} className="flex items-center gap-2 text-sm">
+              {plan.keyActions.map((action, index) => <div key={index} className="flex items-center gap-2 text-sm">
                   <div className="w-2 h-2 bg-primary rounded-full" />
                   {action}
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </CardContent>
@@ -216,49 +200,32 @@ export const OptimizationPlan = ({
           Your plan focuses on key adjustment days: pre-travel preparation and post-arrival adaptation. Days without activities are skipped to keep your schedule focused.
         </p>
         <div className="flex gap-2 overflow-x-auto pb-2">
-          {plan.days.map((day, index) => (
-            <Button
-              key={index}
-              variant={selectedDay === index ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedDay(index)}
-              className="whitespace-nowrap"
-            >
+          {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap">
               {new Date(day.date).toLocaleDateString(undefined, {
-                month: 'short',
-                day: 'numeric'
-              })}
-            </Button>
-          ))}
+            month: 'short',
+            day: 'numeric'
+          })}
+            </Button>)}
         </div>
       </div>
 
       {/* Selected day details */}
-      {plan.days[selectedDay] && (
-        <Card>
+      {plan.days[selectedDay] && <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="h-5 w-5" />
               {new Date(plan.days[selectedDay].date).toLocaleDateString(undefined, {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric'
-              })}
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+          })}
             </CardTitle>
             <p className="text-sm text-muted-foreground">{plan.days[selectedDay].summary}</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {plan.days[selectedDay].activities.length > 0 ? (
-                plan.days[selectedDay].activities.map((activity, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      "flex items-center gap-4 p-4 rounded-lg transition-all hover:shadow-timeline",
-                      getActivityColor(activity.type)
-                    )}
-                  >
+              {plan.days[selectedDay].activities.length > 0 ? plan.days[selectedDay].activities.map((activity, index) => <div key={index} className={cn("flex items-center gap-4 p-4 rounded-lg transition-all hover:shadow-timeline", getActivityColor(activity.type))}>
                     <div className="flex items-center gap-2 min-w-0">
                       {getActivityIcon(activity.type)}
                       <div className="font-medium capitalize">{activity.type.replace('-', ' ')}</div>
@@ -266,24 +233,16 @@ export const OptimizationPlan = ({
                     <div className="flex items-center gap-2 text-sm">
                       <Clock className="h-3 w-3" />
                       {formatTime(activity.startTime)}
-                      {activity.endTime && activity.endTime !== activity.startTime && (
-                        <span>- {formatTime(activity.endTime)}</span>
-                      )}
+                      {activity.endTime && activity.endTime !== activity.startTime && <span>- {formatTime(activity.endTime)}</span>}
                     </div>
                     <div className="flex-1 text-sm opacity-90">
                       {activity.description}
                     </div>
-                  </div>
-                ))
-              ) : (
-                <div className="text-center py-8 text-muted-foreground">
+                  </div>) : <div className="text-center py-8 text-muted-foreground">
                   No specific activities for this day
-                </div>
-              )}
+                </div>}
             </div>
           </CardContent>
-        </Card>
-      )}
-    </div>
-  );
+        </Card>}
+    </div>;
 };
