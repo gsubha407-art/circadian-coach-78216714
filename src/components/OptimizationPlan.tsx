@@ -166,7 +166,7 @@ export const OptimizationPlan = ({
             </Badge>
           </div>
         </CardHeader>
-        <CardContent className="p-0 space-y-4">
+        <CardContent className="p-0 space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="text-center p-4 bg-sky-100 dark:bg-sky-900/30 rounded-lg">
               <div className="text-xl font-bold text-primary">{Math.abs(plan.totalTimeZoneDifference)}h</div>
