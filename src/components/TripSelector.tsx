@@ -156,14 +156,14 @@ export const TripSelector = ({
 
       {/* Key Features */}
       <div className="max-w-5xl mx-auto py-8">
-        <h2 className="title-large text-center mb-8">We create a plan that helps with</h2>
+        <h2 className="title-large text-center mb-8 text-2xl font-bold">We create a plan that helps with</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card className="border-primary/20">
             <CardHeader>
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Users className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="title-small">Understands your entire journey</CardTitle>
+              <CardTitle className="title-small text-lg font-bold">Understands your entire journey</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="body-medium text-muted-foreground">Considers every flight, time zone, and your cabin experience to guide rest along the way.</p>
