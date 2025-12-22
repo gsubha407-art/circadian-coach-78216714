@@ -194,20 +194,22 @@ export const OptimizationPlan = ({
         </CardContent>
       </Card>
 
-      {/* Day selector */}
+      {/* Day selector section */}
       <div className="space-y-2 pt-3">
         <h2 className="font-bold text-lg">Daily Schedule</h2>
         <p className="text-sm text-muted-foreground">
           Your plan focuses on key adjustment days: pre-travel preparation and post-arrival adaptation. Days without activities are skipped to keep your schedule focused.
         </p>
-        <div className="flex gap-2 overflow-x-auto pb-2">
-          {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap">
-              {new Date(day.date).toLocaleDateString(undefined, {
-            month: 'short',
-            day: 'numeric'
-          })}
-            </Button>)}
-        </div>
+      </div>
+
+      {/* Date tabs */}
+      <div className="flex gap-2 overflow-x-auto pb-3">
+        {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap">
+            {new Date(day.date).toLocaleDateString(undefined, {
+          month: 'short',
+          day: 'numeric'
+        })}
+          </Button>)}
       </div>
 
       {/* Selected day details */}
