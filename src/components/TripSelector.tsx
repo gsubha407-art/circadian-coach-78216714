@@ -161,7 +161,7 @@ export const TripSelector = ({
           <Card className="border-primary/20">
             <CardHeader className="pb-2">
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
-                <Users className="h-6 w-6 text-primary" />
+                <Plane className="h-6 w-6 text-primary" />
               </div>
               <CardTitle className="title-small font-bold text-lg">Understands your entire journey</CardTitle>
             </CardHeader>
