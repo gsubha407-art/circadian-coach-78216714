@@ -175,7 +175,8 @@ export const OptimizationPlan = ({
       <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={onBack} className="gap-2">
           <ArrowLeft className="h-4 w-4" />
-          Back to Trips
+          <span className="hidden sm:inline">Back to Trips</span>
+          <span className="sm:hidden">Back</span>
         </Button>
         <div className="flex gap-2">
           <Button variant={saved ? "default" : "outline"} size="sm" onClick={handleSaveTrip} disabled={saved}>
