@@ -100,6 +100,9 @@ export const OptimizationPlan = ({
       const element = document.getElementById('pdf-export-content');
       if (!element) return;
       
+      // A4 dimensions in pixels at 96 DPI (standard screen)
+      const a4WidthPx = 794; // 210mm at 96 DPI
+      
       // Create a wrapper with padding for PDF export
       const wrapper = document.createElement('div');
       wrapper.style.padding = '60px 40px';
@@ -107,11 +110,13 @@ export const OptimizationPlan = ({
       wrapper.style.position = 'absolute';
       wrapper.style.left = '-9999px';
       wrapper.style.top = '0';
-      wrapper.style.width = '800px';
+      wrapper.style.width = `${a4WidthPx - 80}px`; // Account for 40px padding on each side
+      wrapper.style.color = '#000000';
       
       // Clone the content
       const clone = element.cloneNode(true) as HTMLElement;
       clone.style.backgroundColor = '#ffffff';
+      clone.style.color = '#000000';
       wrapper.appendChild(clone);
       document.body.appendChild(wrapper);
       
@@ -135,17 +140,18 @@ export const OptimizationPlan = ({
       const pageWidth = 210;
       const pageHeight = 297;
       const imgWidth = pageWidth;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
       
-      // Handle multiple pages if content is too long
       let heightLeft = imgHeight;
       let position = 0;
       
+      // Add first page
       pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
       
+      // Add subsequent pages
       while (heightLeft > 0) {
-        position = heightLeft - imgHeight;
+        position -= pageHeight;
         pdf.addPage();
         pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
