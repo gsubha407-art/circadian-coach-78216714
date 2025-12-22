@@ -319,7 +319,7 @@ export const CustomTripForm = ({
               }) => <FormItem>
                       <OutlinedSelect onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
-                          <OutlinedSelectTrigger label="Jet Lag Sensitivity">
+                          <OutlinedSelectTrigger label="How Do You Usually Handle Jet Lag?">
                             <OutlinedSelectValue />
                           </OutlinedSelectTrigger>
                         </FormControl>
