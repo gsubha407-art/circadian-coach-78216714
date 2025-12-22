@@ -47,7 +47,14 @@ export const CustomTripForm = ({
   onBack,
   onTripCreate
 }: CustomTripFormProps) => {
-  const [legs, setLegs] = useState<FlightLeg[]>([]);
+  const [legs, setLegs] = useState<FlightLeg[]>([{
+    originCity: '',
+    originTZ: '',
+    destCity: '',
+    destTZ: '',
+    departLocal: getCurrentDateTimeLocal(),
+    arriveLocal: getCurrentDateTimeLocal()
+  }]);
   const [legErrors, setLegErrors] = useState<Record<number, string>>({});
   const form = useForm<TripFormData>({
     resolver: zodResolver(tripSchema),
@@ -62,26 +69,15 @@ export const CustomTripForm = ({
     }
   });
   const addLeg = () => {
-    if (legs.length === 0) {
-      setLegs([{
-        originCity: '',
-        originTZ: '',
-        destCity: '',
-        destTZ: '',
-        departLocal: getCurrentDateTimeLocal(),
-        arriveLocal: getCurrentDateTimeLocal()
-      }]);
-    } else {
-      const lastLeg = legs[legs.length - 1];
-      setLegs([...legs, {
-        originCity: lastLeg.destCity,
-        originTZ: lastLeg.destTZ,
-        destCity: '',
-        destTZ: '',
-        departLocal: getCurrentDateTimeLocal(),
-        arriveLocal: getCurrentDateTimeLocal()
-      }]);
-    }
+    const lastLeg = legs[legs.length - 1];
+    setLegs([...legs, {
+      originCity: lastLeg.destCity,
+      originTZ: lastLeg.destTZ,
+      destCity: '',
+      destTZ: '',
+      departLocal: getCurrentDateTimeLocal(),
+      arriveLocal: getCurrentDateTimeLocal()
+    }]);
   };
   const removeLeg = (index: number) => {
     if (legs.length > 1) {
@@ -399,14 +395,11 @@ export const CustomTripForm = ({
                 </Button>
               </CardTitle>
               <CardDescription>
-                Add your flight details for a more tailored plan
+                Add all flight segments for your trip
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {legs.length === 0 ? <div className="flex flex-col items-center justify-center py-8 text-center text-muted-foreground">
-                  <p>No flights added yetClick "Add Flight" to get started</p>
-                  <p className="text-sm">Click "Add Flight" to get started</p>
-                </div> : legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-5">
+              {legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-5">
                   <div className="flex items-center justify-between pb-2">
                     <h4 className="font-medium">Flight {index + 1}</h4>
                     {legs.length > 1 && <Button type="button" variant="ghost" size="sm" onClick={() => removeLeg(index)}>
@@ -477,7 +470,7 @@ export const CustomTripForm = ({
             <Button type="button" variant="outline" onClick={onBack}>
               Cancel
             </Button>
-            <Button type="submit" disabled={Object.keys(legErrors).length > 0 || legs.length === 0}>
+            <Button type="submit" disabled={Object.keys(legErrors).length > 0}>
               Create my plan
             </Button>
           </div>
