@@ -471,11 +471,11 @@ export const CustomTripForm = ({
             </CardContent>
           </Card>
 
-          <div className="flex justify-end gap-4">
-            <Button type="button" variant="outline" onClick={onBack}>
+          <div className="flex flex-col sm:flex-row sm:justify-end gap-4">
+            <Button type="button" variant="outline" onClick={onBack} className="w-full sm:w-auto">
               Cancel
             </Button>
-            <Button type="submit" disabled={Object.keys(legErrors).length > 0}>
+            <Button type="submit" disabled={Object.keys(legErrors).length > 0} className="w-full sm:w-auto">
               Create my plan
             </Button>
           </div>
