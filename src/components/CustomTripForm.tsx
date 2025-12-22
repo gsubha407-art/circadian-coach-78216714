@@ -471,7 +471,7 @@ export const CustomTripForm = ({
             </CardContent>
           </Card>
 
-          <div className="flex sm:justify-end gap-4">
+          <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border sm:static sm:p-0 sm:bg-transparent sm:border-0 flex sm:justify-end gap-4 z-50">
             <Button type="button" variant="outline" onClick={onBack} className="flex-1 sm:flex-none sm:w-auto">
               Cancel
             </Button>
@@ -479,6 +479,8 @@ export const CustomTripForm = ({
               Create my plan
             </Button>
           </div>
+          {/* Spacer for fixed buttons on mobile */}
+          <div className="h-20 sm:hidden" />
         </form>
       </Form>
     </div>;
