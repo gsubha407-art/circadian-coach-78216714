@@ -160,7 +160,7 @@ export const OptimizationPlan = ({
       <Card className="bg-gradient-card border-0">
         <CardHeader className="p-0 pb-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="title-large">Plan Overview</CardTitle>
+            <CardTitle className="title-large font-bold text-lg">Plan Overview</CardTitle>
             <Badge className={getStrategyColor(plan.shiftStrategy)} variant="secondary">
               {plan.shiftStrategy} strategy
             </Badge>
@@ -183,7 +183,7 @@ export const OptimizationPlan = ({
           </div>
 
           <div className="space-y-2">
-            <h4 className="title-small">Key Actions:</h4>
+            <h4 className="title-small text-base font-bold">Key Actions:</h4>
             <div className="space-y-2">
               {plan.keyActions.map((action, index) => <div key={index} className="flex items-center gap-2 body-medium">
                   <div className="w-2 h-2 bg-primary rounded-full" />
@@ -196,8 +196,8 @@ export const OptimizationPlan = ({
 
       {/* Day selector section */}
       <div className="space-y-2 pt-3">
-        <h2 className="title-large">Daily Schedule</h2>
-        <p className="body-medium text-muted-foreground">
+        <h2 className="title-large text-lg font-bold">Daily Schedule</h2>
+        <p className="body-medium text-muted-foreground text-base font-normal">
           Your plan focuses on key adjustment days: pre-travel preparation and post-arrival adaptation. Days without activities are skipped to keep your schedule focused.
         </p>
       </div>
