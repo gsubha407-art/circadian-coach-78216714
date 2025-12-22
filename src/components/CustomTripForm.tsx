@@ -386,7 +386,7 @@ export const CustomTripForm = ({
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader className="py-0">
               <CardTitle className="flex items-center justify-between">
                 Flight Itinerary
                 <Button type="button" variant="outline" size="sm" onClick={addLeg}>
