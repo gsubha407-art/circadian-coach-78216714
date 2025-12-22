@@ -397,14 +397,16 @@ export const CustomTripForm = ({
                 Add all flight segments for your trip
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
-              {legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-5 overflow-hidden">
-                  <div className="flex items-center justify-between pb-2">
+            <CardContent className="space-y-0">
+              {legs.map((leg, index) => <div key={index} className="space-y-5 overflow-hidden">
+                  {index > 0 && <hr className="border-border my-6" />}
+                  <div className="flex items-center justify-between">
                     <h4 className="title-small">Flight {index + 1}</h4>
                     {legs.length > 1 && <Button type="button" variant="ghost" size="sm" onClick={() => removeLeg(index)}>
                         <Trash2 className="h-4 w-4" />
                       </Button>}
                   </div>
+                  <hr className="border-border" />
 
                   <div className="grid md:grid-cols-2 gap-4">
                     {/* Origin */}
