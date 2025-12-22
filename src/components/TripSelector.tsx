@@ -149,7 +149,8 @@ export const TripSelector = ({
         <div className="flex justify-start sm:justify-center">
           <Button variant="default" size="lg" onClick={() => setShowCustomForm(true)} className="shadow-glow text-base font-medium">
             <Plane className="h-5 w-5 mr-2" />
-            Create My Plan
+            <span className="hidden sm:inline">Create My Plan</span>
+            <span className="sm:hidden">Create Plan</span>
           </Button>
         </div>
       </div>
