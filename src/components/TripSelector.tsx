@@ -141,7 +141,7 @@ export const TripSelector = ({
   };
   return <div className="space-y-6">
       {/* Hero Section */}
-      <div className="text-center space-y-8 pt-12 pb-0 sm:py-12">
+      <div className="text-left sm:text-center space-y-8 pt-12 pb-0 sm:py-12">
         <div className="space-y-3">
           <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary text-4xl sm:text-5xl font-bold">A calmer way through jet lag</h1>
           <p className="title-small max-w-3xl mx-auto leading-relaxed text-lg text-text-primary font-normal">Thoughtful timing for sleep, light, and rest, to ease jet lag as you travel</p>
