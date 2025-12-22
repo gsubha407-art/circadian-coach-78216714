@@ -404,7 +404,7 @@ export const CustomTripForm = ({
             </CardHeader>
             <CardContent className="space-y-4">
               {legs.length === 0 ? <div className="flex flex-col items-center justify-center py-8 text-center text-muted-foreground">
-                  <p>No flights added yet</p>
+                  <p>No flights added yetClick "Add Flight" to get started</p>
                   <p className="text-sm">Click "Add Flight" to get started</p>
                 </div> : legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-5">
                   <div className="flex items-center justify-between pb-2">
