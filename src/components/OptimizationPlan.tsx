@@ -100,19 +100,30 @@ export const OptimizationPlan = ({
       const element = document.getElementById('pdf-export-content');
       if (!element) return;
       
-      // Add padding for PDF export
-      const originalPadding = element.style.padding;
-      element.style.padding = '60px 40px';
+      // Create a wrapper with padding for PDF export
+      const wrapper = document.createElement('div');
+      wrapper.style.padding = '60px 40px';
+      wrapper.style.backgroundColor = '#ffffff';
+      wrapper.style.position = 'absolute';
+      wrapper.style.left = '-9999px';
+      wrapper.style.top = '0';
+      wrapper.style.width = '800px';
       
-      const canvas = await html2canvas(element, {
+      // Clone the content
+      const clone = element.cloneNode(true) as HTMLElement;
+      clone.style.backgroundColor = '#ffffff';
+      wrapper.appendChild(clone);
+      document.body.appendChild(wrapper);
+      
+      const canvas = await html2canvas(wrapper, {
         scale: 2,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff'
       });
       
-      // Restore original padding
-      element.style.padding = originalPadding;
+      // Clean up
+      document.body.removeChild(wrapper);
       
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
