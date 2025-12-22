@@ -157,7 +157,7 @@ export const OptimizationPlan = ({
       </div>
 
       {/* Summary */}
-      <Card className="bg-gradient-card">
+      <Card className="bg-gradient-card border-0">
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="font-bold text-lg">Plan Overview</CardTitle>
