@@ -167,7 +167,7 @@ export const OptimizationPlan = ({
   };
   return <div className="space-y-6">
       {/* Header - excluded from PDF */}
-      <div className="flex items-center justify-between">
+      <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50 flex items-center justify-between sm:static sm:p-0 sm:border-0">
         <Button variant="ghost" onClick={onBack} className="gap-2">
           <ArrowLeft className="h-4 w-4" />
           <span className="hidden sm:inline">Back to Trips</span>
@@ -192,6 +192,8 @@ export const OptimizationPlan = ({
           </Button>
         </div>
       </div>
+      {/* Spacer for fixed header on mobile */}
+      <div className="h-16 sm:hidden" />
 
       {/* PDF Export Content - starts here */}
       <div id="pdf-export-content" className="space-y-6 bg-background">
