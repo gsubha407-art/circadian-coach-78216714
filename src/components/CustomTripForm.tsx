@@ -398,7 +398,7 @@ export const CustomTripForm = ({
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              {legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-5">
+              {legs.map((leg, index) => <div key={index} className="p-4 border rounded-lg space-y-5 overflow-hidden">
                   <div className="flex items-center justify-between pb-2">
                     <h4 className="title-small">Flight {index + 1}</h4>
                     {legs.length > 1 && <Button type="button" variant="ghost" size="sm" onClick={() => removeLeg(index)}>
@@ -408,7 +408,7 @@ export const CustomTripForm = ({
 
                   <div className="grid md:grid-cols-2 gap-4">
                     {/* Origin */}
-                    <div className="space-y-4">
+                    <div className="space-y-4 min-w-0">
                       <OutlinedSelect value={leg.originCity} onValueChange={value => handleCityChange(index, 'origin', value)}>
                         <OutlinedSelectTrigger label="Origin City">
                           <OutlinedSelectValue placeholder="Select Origin City" />
@@ -432,7 +432,7 @@ export const CustomTripForm = ({
                     </div>
 
                     {/* Destination */}
-                    <div className="space-y-4">
+                    <div className="space-y-4 min-w-0">
                       <OutlinedSelect value={leg.destCity} onValueChange={value => handleCityChange(index, 'dest', value)}>
                         <OutlinedSelectTrigger label="Destination City">
                           <OutlinedSelectValue placeholder="Select Destination City" />
