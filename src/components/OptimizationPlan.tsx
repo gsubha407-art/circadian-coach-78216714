@@ -202,18 +202,19 @@ export const OptimizationPlan = ({
         </p>
       </div>
 
-      {/* Date tabs */}
-      <div className="flex gap-2 overflow-x-auto pb-3">
-        {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap">
-            {new Date(day.date).toLocaleDateString(undefined, {
-          month: 'short',
-          day: 'numeric'
-        })}
-          </Button>)}
-      </div>
+      {/* Date tabs and Selected day details */}
+      <div className="space-y-3">
+        <div className="flex gap-2 overflow-x-auto">
+          {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap">
+              {new Date(day.date).toLocaleDateString(undefined, {
+            month: 'short',
+            day: 'numeric'
+          })}
+            </Button>)}
+        </div>
 
-      {/* Selected day details */}
-      {plan.days[selectedDay] && <Card>
+        {/* Selected day details */}
+        {plan.days[selectedDay] && <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Clock className="h-5 w-5" />
@@ -247,5 +248,6 @@ export const OptimizationPlan = ({
             </div>
           </CardContent>
         </Card>}
+      </div>
     </div>;
 };
