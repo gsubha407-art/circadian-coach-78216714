@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Trip, OptimizationPlan as OptimizationPlanType } from '@/types/trip';
-import { Plane, Clock, MapPin, Users, Bookmark, Trash2 } from 'lucide-react';
+import { Plane, Clock, MapPin, Users, Bookmark, Trash2, Pill } from 'lucide-react';
 import { CustomTripForm } from './CustomTripForm';
 import { CircadianOptimizer } from '@/lib/circadianOptimizer';
 import { getSavedTrips, deleteSavedTrip, SavedTrip } from '@/lib/savedTrips';
@@ -185,7 +185,7 @@ export const TripSelector = ({
           <Card className="border-primary/20">
             <CardHeader className="pb-2">
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
-                <Clock className="h-6 w-6 text-primary" />
+                <Pill className="h-6 w-6 text-primary" />
               </div>
               <CardTitle className="title-small font-bold text-lg">Optional Melatonin guidance</CardTitle>
             </CardHeader>
