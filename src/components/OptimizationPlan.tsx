@@ -162,7 +162,7 @@ export const OptimizationPlan = ({
           <div className="flex items-center gap-md">
             <CardTitle className="title-large font-bold text-lg">Plan Overview</CardTitle>
             <Badge className={getStrategyColor(plan.shiftStrategy)} variant="secondary">
-              {plan.shiftStrategy} strategy
+              {plan.shiftStrategy.charAt(0).toUpperCase() + plan.shiftStrategy.slice(1)} strategy
             </Badge>
           </div>
         </CardHeader>
