@@ -198,7 +198,7 @@ export const TripSelector = ({
         </div>
         
         <div className="text-center mt-12">
-          <p className="title-small text-text-primary text-lg font-normal">Give your body a little help catching up.</p>
+          <p className="title-small text-text-primary text-lg font-normal">Give your body a little help catching up!</p>
         </div>
       </div>
 
