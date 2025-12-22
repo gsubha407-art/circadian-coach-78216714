@@ -267,7 +267,7 @@ export const CustomTripForm = ({
         </Button>
       </div>
       {/* Spacer for fixed back button on mobile */}
-      <div className="h-14 sm:hidden" />
+      <div className="h-10 sm:hidden" />
       
       <div className="space-y-4">
         <div className="mb-10">
