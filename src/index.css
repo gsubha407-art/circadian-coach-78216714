@@ -554,13 +554,4 @@
   .text-on-error {
     color: hsl(var(--error-foreground));
   }
-  
-  /* Hide scrollbar utility */
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
 }

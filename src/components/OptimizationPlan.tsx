@@ -99,10 +99,10 @@ export const OptimizationPlan = ({
     try {
       const element = document.getElementById('pdf-export-content');
       if (!element) return;
-
+      
       // A4 dimensions in pixels at 96 DPI (standard screen)
       const a4WidthPx = 794; // 210mm at 96 DPI
-
+      
       // Create a wrapper with padding for PDF export
       const wrapper = document.createElement('div');
       wrapper.style.padding = '60px 40px';
@@ -112,39 +112,43 @@ export const OptimizationPlan = ({
       wrapper.style.top = '0';
       wrapper.style.width = `${a4WidthPx - 80}px`; // Account for 40px padding on each side
       wrapper.style.color = '#000000';
-
+      
       // Clone the content
       const clone = element.cloneNode(true) as HTMLElement;
       clone.style.backgroundColor = '#ffffff';
       clone.style.color = '#000000';
       wrapper.appendChild(clone);
       document.body.appendChild(wrapper);
+      
       const canvas = await html2canvas(wrapper, {
         scale: 2,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff'
       });
-
+      
       // Clean up
       document.body.removeChild(wrapper);
+      
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
         format: 'a4'
       });
+      
       const pageWidth = 210;
       const pageHeight = 297;
       const imgWidth = pageWidth;
-      const imgHeight = canvas.height * imgWidth / canvas.width;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      
       let heightLeft = imgHeight;
       let position = 0;
-
+      
       // Add first page
       pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
-
+      
       // Add subsequent pages
       while (heightLeft > 0) {
         position -= pageHeight;
@@ -152,6 +156,7 @@ export const OptimizationPlan = ({
         pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
+      
       pdf.save(`${trip.name || 'trip'}-optimization-plan.pdf`);
       toast({
         title: "PDF exported!",
@@ -167,7 +172,7 @@ export const OptimizationPlan = ({
   };
   return <div className="space-y-6">
       {/* Header - excluded from PDF */}
-      <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50 flex items-center justify-between sm:static sm:p-0 sm:border-0">
+      <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={onBack} className="gap-2">
           <ArrowLeft className="h-4 w-4" />
           <span className="hidden sm:inline">Back to Trips</span>
@@ -192,8 +197,6 @@ export const OptimizationPlan = ({
           </Button>
         </div>
       </div>
-      {/* Spacer for fixed header on mobile */}
-      <div className="h-16 sm:hidden" />
 
       {/* PDF Export Content - starts here */}
       <div id="pdf-export-content" className="space-y-6 bg-background">
@@ -251,12 +254,12 @@ export const OptimizationPlan = ({
 
       {/* Date tabs and Selected day details */}
       <div className="space-y-3">
-        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
-          {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap flex-shrink-0">
+        <div className="flex gap-2 overflow-x-auto">
+          {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap">
               {new Date(day.date).toLocaleDateString(undefined, {
-              month: 'short',
-              day: 'numeric'
-            })}
+            month: 'short',
+            day: 'numeric'
+          })}
             </Button>)}
         </div>
 
@@ -266,27 +269,27 @@ export const OptimizationPlan = ({
             <CardTitle className="title-large flex items-center gap-2">
               <Clock className="h-5 w-5" />
               {new Date(plan.days[selectedDay].date).toLocaleDateString(undefined, {
-                weekday: 'long',
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric'
-              })}
+              weekday: 'long',
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            })}
             </CardTitle>
             <p className="body-medium text-muted-foreground">{plan.days[selectedDay].summary}</p>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {plan.days[selectedDay].activities.length > 0 ? plan.days[selectedDay].activities.map((activity, index) => <div key={index} className={cn("flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 p-4 rounded-lg transition-all hover:shadow-timeline", getActivityColor(activity.type))}>
+              {plan.days[selectedDay].activities.length > 0 ? plan.days[selectedDay].activities.map((activity, index) => <div key={index} className={cn("flex items-center gap-4 p-4 rounded-lg transition-all hover:shadow-timeline", getActivityColor(activity.type))}>
                     <div className="flex items-center gap-2 min-w-0">
                       {getActivityIcon(activity.type)}
                       <div className="title-small capitalize">{activity.type.replace('-', ' ')}</div>
                     </div>
-                    <div className="flex items-center body-medium text-sm sm:text-base pl-6 sm:pl-0 gap-sm px-0">
+                    <div className="flex items-center gap-2 body-medium">
                       <Clock className="h-3 w-3" />
                       {formatTime(activity.startTime)}
                       {activity.endTime && activity.endTime !== activity.startTime && <span>- {formatTime(activity.endTime)}</span>}
                     </div>
-                    <div className="flex-1 body-medium opacity-90 text-sm sm:text-base pl-6 sm:pl-0 px-0">
+                    <div className="flex-1 body-medium opacity-90">
                       {activity.description}
                     </div>
                   </div>) : <div className="text-center py-8 body-medium text-muted-foreground">

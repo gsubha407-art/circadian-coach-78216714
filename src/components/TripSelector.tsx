@@ -140,24 +140,20 @@ export const TripSelector = ({
     }
   };
   return <div className="space-y-6">
-      {/* Fixed Hero Section on mobile */}
-      <div className="fixed top-0 left-0 right-0 bg-background border-b border-border p-4 sm:static sm:p-0 sm:bg-transparent sm:border-0 z-50">
-        <div className="text-center space-y-4 sm:space-y-8 sm:pt-12 sm:pb-0">
-          <div className="space-y-1 sm:space-y-3">
-            <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary text-2xl sm:text-5xl font-bold">Jet Lag Planner</h1>
-            <p className="title-small max-w-3xl mx-auto leading-relaxed text-sm sm:text-lg text-text-primary font-normal hidden sm:block">Create a personalised schedule for sleep, light, and rest to adjust faster</p>
-          </div>
-          <div className="flex justify-center">
-            <Button variant="default" size="default" onClick={() => setShowCustomForm(true)} className="shadow-glow text-base font-medium sm:size-lg">
-              <Plane className="h-5 w-5 mr-2" />
-              <span className="hidden sm:inline">Create My Plan</span>
-              <span className="sm:hidden">Create Plan</span>
-            </Button>
-          </div>
+      {/* Hero Section */}
+      <div className="text-center space-y-8 pt-12 pb-0 sm:py-12">
+        <div className="space-y-3">
+          <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary sm:text-5xl font-bold text-5xl">Jet Lag Planner</h1>
+          <p className="title-small max-w-3xl mx-auto leading-relaxed text-lg text-text-primary font-normal">Create a personalised schedule for sleep, light, and rest to adjust faster</p>
+        </div>
+        <div className="flex justify-center">
+          <Button variant="default" size="lg" onClick={() => setShowCustomForm(true)} className="shadow-glow text-base font-medium">
+            <Plane className="h-5 w-5 mr-2" />
+            <span className="hidden sm:inline">Create My Plan</span>
+            <span className="sm:hidden">Create Plan</span>
+          </Button>
         </div>
       </div>
-      {/* Spacer for fixed header on mobile */}
-      <div className="h-28 sm:hidden" />
 
       {/* Key Features */}
       <div className="max-w-5xl mx-auto py-8">
