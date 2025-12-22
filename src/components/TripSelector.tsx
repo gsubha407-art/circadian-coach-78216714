@@ -141,9 +141,11 @@ export const TripSelector = ({
   };
   return <div className="space-y-6">
       {/* Hero Section */}
-      <div className="text-center space-y-6 py-12">
-        <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary text-5xl font-bold">A calmer way through jet lag</h1>
-        <p className="title-small text-muted-foreground max-w-3xl mx-auto leading-relaxed text-lg">Thoughtful timing for sleep, light, and rest, to ease jet lag as you travel</p>
+      <div className="text-center space-y-8 py-12">
+        <div className="space-y-3">
+          <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary text-5xl font-bold">A calmer way through jet lag</h1>
+          <p className="title-small text-muted-foreground max-w-3xl mx-auto leading-relaxed text-lg">Thoughtful timing for sleep, light, and rest, to ease jet lag as you travel</p>
+        </div>
         <div className="flex justify-center">
           <Button variant="default" size="lg" onClick={() => setShowCustomForm(true)} className="shadow-glow">
             <Plane className="h-5 w-5 mr-2" />
