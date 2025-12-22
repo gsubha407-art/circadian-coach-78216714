@@ -254,8 +254,8 @@ export const OptimizationPlan = ({
 
       {/* Date tabs and Selected day details */}
       <div className="space-y-3">
-        <div className="flex gap-2 overflow-x-auto">
-          {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap">
+        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-4 px-4 sm:mx-0 sm:px-0">
+          {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap flex-shrink-0">
               {new Date(day.date).toLocaleDateString(undefined, {
             month: 'short',
             day: 'numeric'
