@@ -97,22 +97,49 @@ export const OptimizationPlan = ({
   };
   const handleExportPDF = async () => {
     try {
-      const element = document.getElementById('optimization-plan-content');
+      const element = document.getElementById('pdf-export-content');
       if (!element) return;
+      
+      // Add padding for PDF export
+      const originalPadding = element.style.padding;
+      element.style.padding = '60px 40px';
+      
       const canvas = await html2canvas(element, {
         scale: 2,
         useCORS: true,
-        logging: false
+        logging: false,
+        backgroundColor: '#ffffff'
       });
+      
+      // Restore original padding
+      element.style.padding = originalPadding;
+      
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
         format: 'a4'
       });
-      const imgWidth = 210;
+      
+      const pageWidth = 210;
+      const pageHeight = 297;
+      const imgWidth = pageWidth;
       const imgHeight = canvas.height * imgWidth / canvas.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+      
+      // Handle multiple pages if content is too long
+      let heightLeft = imgHeight;
+      let position = 0;
+      
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+      heightLeft -= pageHeight;
+      
+      while (heightLeft > 0) {
+        position = heightLeft - imgHeight;
+        pdf.addPage();
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+      }
+      
       pdf.save(`${trip.name || 'trip'}-optimization-plan.pdf`);
       toast({
         title: "PDF exported!",
@@ -126,8 +153,8 @@ export const OptimizationPlan = ({
       });
     }
   };
-  return <div id="optimization-plan-content" className="space-y-6">
-      {/* Header */}
+  return <div className="space-y-6">
+      {/* Header - excluded from PDF */}
       <div className="flex items-center justify-between">
         <Button variant="ghost" onClick={onBack} className="gap-2">
           <ArrowLeft className="h-4 w-4" />
@@ -150,11 +177,13 @@ export const OptimizationPlan = ({
         </div>
       </div>
 
-      {/* Page Title */}
-      <div className="space-y-1">
-        <h1 className="headline-small text-3xl font-bold">Here's Your Plan to Adjust Faster</h1>
-        <p className="title-small text-muted-foreground text-lg font-normal">A simple, personalised plan to help your body adjust smoothly</p>
-      </div>
+      {/* PDF Export Content - starts here */}
+      <div id="pdf-export-content" className="space-y-6 bg-background">
+        {/* Page Title */}
+        <div className="space-y-1">
+          <h1 className="headline-small text-3xl font-bold">Here's Your Plan to Adjust Faster</h1>
+          <p className="title-small text-muted-foreground text-lg font-normal">A simple, personalised plan to help your body adjust smoothly</p>
+        </div>
 
       {/* Summary */}
       <Card className="bg-gradient-card border-0">
@@ -248,6 +277,7 @@ export const OptimizationPlan = ({
             </div>
           </CardContent>
         </Card>}
+      </div>
       </div>
     </div>;
 };
