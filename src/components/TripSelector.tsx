@@ -163,10 +163,10 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Users className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="title-small text-lg font-bold">Understands your entire journey</CardTitle>
+              <CardTitle className="title-small font-bold text-xl">Understands your entire journey</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="body-medium text-muted-foreground">Considers every flight, time zone, and your cabin experience to guide rest along the way.</p>
+              <p className="body-medium text-muted-foreground font-normal text-base">Considers every flight, time zone, and your cabin experience to guide rest along the way.</p>
             </CardContent>
           </Card>
 
@@ -175,10 +175,10 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <MapPin className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="title-small">Adapts to how jet lag affects you</CardTitle>
+              <CardTitle className="title-small text-xl font-bold">Adapts to how jet lag affects you</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="body-medium text-muted-foreground">Shapes your plan around how strongly you tend to feel jet lag.</p>
+              <p className="body-medium text-muted-foreground font-normal text-base">Shapes your plan around how strongly you tend to feel jet lag.</p>
             </CardContent>
           </Card>
 
@@ -187,10 +187,10 @@ export const TripSelector = ({
               <div className="h-12 w-12 rounded-md bg-primary/10 flex items-center justify-center mb-2">
                 <Clock className="h-6 w-6 text-primary" />
               </div>
-              <CardTitle className="title-small">Optional Melatonin guidance</CardTitle>
+              <CardTitle className="title-small text-xl font-bold">Optional Melatonin guidance</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="body-medium text-muted-foreground">Gentle suggestions on when Melatonin may help support your adjustment.</p>
+              <p className="body-medium text-muted-foreground font-normal text-base">Gentle suggestions on when Melatonin may help support your adjustment.</p>
             </CardContent>
           </Card>
 
