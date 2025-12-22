@@ -144,10 +144,10 @@ export const TripSelector = ({
       <div className="text-center space-y-8 py-12">
         <div className="space-y-3">
           <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary text-5xl font-bold">A calmer way through jet lag</h1>
-          <p className="title-small text-muted-foreground max-w-3xl mx-auto leading-relaxed text-lg">Thoughtful timing for sleep, light, and rest, to ease jet lag as you travel</p>
+          <p className="title-small max-w-3xl mx-auto leading-relaxed text-lg text-text-primary font-normal">Thoughtful timing for sleep, light, and rest, to ease jet lag as you travel</p>
         </div>
         <div className="flex justify-center">
-          <Button variant="default" size="lg" onClick={() => setShowCustomForm(true)} className="shadow-glow">
+          <Button variant="default" size="lg" onClick={() => setShowCustomForm(true)} className="shadow-glow text-base font-medium">
             <Plane className="h-5 w-5 mr-2" />
             Create My Plan
           </Button>
