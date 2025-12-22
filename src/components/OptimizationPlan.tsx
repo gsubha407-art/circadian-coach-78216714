@@ -279,17 +279,17 @@ export const OptimizationPlan = ({
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {plan.days[selectedDay].activities.length > 0 ? plan.days[selectedDay].activities.map((activity, index) => <div key={index} className={cn("flex items-center gap-4 p-4 rounded-lg transition-all hover:shadow-timeline", getActivityColor(activity.type))}>
+              {plan.days[selectedDay].activities.length > 0 ? plan.days[selectedDay].activities.map((activity, index) => <div key={index} className={cn("flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 p-4 rounded-lg transition-all hover:shadow-timeline", getActivityColor(activity.type))}>
                     <div className="flex items-center gap-2 min-w-0">
                       {getActivityIcon(activity.type)}
                       <div className="title-small capitalize">{activity.type.replace('-', ' ')}</div>
                     </div>
-                    <div className="flex items-center gap-2 body-medium">
+                    <div className="flex items-center gap-2 body-medium text-sm sm:text-base pl-6 sm:pl-0">
                       <Clock className="h-3 w-3" />
                       {formatTime(activity.startTime)}
                       {activity.endTime && activity.endTime !== activity.startTime && <span>- {formatTime(activity.endTime)}</span>}
                     </div>
-                    <div className="flex-1 body-medium opacity-90">
+                    <div className="flex-1 body-medium opacity-90 text-sm sm:text-base pl-6 sm:pl-0">
                       {activity.description}
                     </div>
                   </div>) : <div className="text-center py-8 body-medium text-muted-foreground">
