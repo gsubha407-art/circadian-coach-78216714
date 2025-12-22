@@ -269,7 +269,7 @@ export const CustomTripForm = ({
             Create Custom Trip
           </h1>
           <p className="title-small text-3xl font-bold text-text-primary">Create Your Adjustment Plan</p>
-          <p className="body-medium text-muted-foreground mt-3">Share a few details to build a schedule that helps your body adjust</p>
+          <p className="body-medium text-muted-foreground mt-2">Share a few details to build a schedule that helps your body adjust</p>
         </div>
       </div>
 
