@@ -156,7 +156,7 @@ export const TripSelector = ({
 
       {/* Key Features */}
       <div className="max-w-5xl mx-auto py-8">
-        <h2 className="title-large text-center mb-8 text-2xl font-bold">We create a plan that helps with</h2>
+        <h2 className="title-large text-left sm:text-center mb-8 text-2xl font-bold">We create a plan that helps with</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card className="border-primary/20">
             <CardHeader className="pb-2">
