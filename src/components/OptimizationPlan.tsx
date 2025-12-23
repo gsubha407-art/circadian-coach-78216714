@@ -171,32 +171,37 @@ export const OptimizationPlan = ({
     }
   };
   return <div className="space-y-6">
-      {/* Header - excluded from PDF */}
-      <div className="flex items-center justify-between">
-        <Button variant="ghost" onClick={onBack} className="gap-2">
-          <ArrowLeft className="h-4 w-4" />
-          <span className="hidden sm:inline">Back to Trips</span>
-          <span className="sm:hidden">Back</span>
-        </Button>
-        <div className="flex gap-2">
-          <Button variant={saved ? "default" : "outline"} size="sm" onClick={handleSaveTrip} disabled={saved}>
-            {saved ? <>
-                <Check className="h-4 w-4 sm:mr-2" />
-                <span className="hidden sm:inline">Saved</span>
-                <span className="sm:hidden">Saved</span>
-              </> : <>
-                <Save className="h-4 w-4 sm:mr-2" />
-                <span className="hidden sm:inline">Save Trip</span>
-                <span className="sm:hidden">Save</span>
-              </>}
+      {/* Fixed Header */}
+      <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50">
+        <div className="flex items-center justify-between max-w-4xl mx-auto">
+          <Button variant="ghost" onClick={onBack} className="gap-2">
+            <ArrowLeft className="h-4 w-4" />
+            <span className="hidden sm:inline">Back to Trips</span>
+            <span className="sm:hidden">Back</span>
           </Button>
-          <Button size="sm" onClick={handleExportPDF}>
-            <Download className="h-4 w-4 sm:mr-2" />
-            <span className="hidden sm:inline">Export PDF</span>
-            <span className="sm:hidden">Export</span>
-          </Button>
+          <div className="flex gap-2">
+            <Button variant={saved ? "default" : "outline"} size="sm" onClick={handleSaveTrip} disabled={saved}>
+              {saved ? <>
+                  <Check className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Saved</span>
+                  <span className="sm:hidden">Saved</span>
+                </> : <>
+                  <Save className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Save Trip</span>
+                  <span className="sm:hidden">Save</span>
+                </>}
+            </Button>
+            <Button size="sm" onClick={handleExportPDF}>
+              <Download className="h-4 w-4 sm:mr-2" />
+              <span className="hidden sm:inline">Export PDF</span>
+              <span className="sm:hidden">Export</span>
+            </Button>
+          </div>
         </div>
       </div>
+      
+      {/* Spacer for fixed header */}
+      <div className="h-14" />
 
       {/* PDF Export Content - starts here */}
       <div id="pdf-export-content" className="space-y-6 bg-background">
