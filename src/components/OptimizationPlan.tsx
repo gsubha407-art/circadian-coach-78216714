@@ -196,7 +196,7 @@ export const OptimizationPlan = ({
       </header>
 
       {/* Content starts: 56px header + 40px gap */}
-      <main className="pt-[60px] pb-10 max-w-[1080px] mx-auto px-0">
+      <main className="pt-24 pb-[60px] max-w-[1080px] mx-auto px-6">
         {/* PDF Export Content - starts here */}
         <div id="pdf-export-content" className="space-y-10 bg-background">
           {/* Page Title */}
