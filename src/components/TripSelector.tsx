@@ -215,7 +215,7 @@ export const TripSelector = ({
         }) => {
           const recommendation = getNextAction(plan);
           return <Card key={trip.id} className={`cursor-pointer transition-all duration-200 hover:shadow-card ${selectedTrip === trip.id ? 'ring-2 ring-primary shadow-glow' : ''}`} onClick={() => handleTripClick(trip, plan)}>
-                  <CardHeader>
+                  <CardHeader className="pt-4">
                     <div className="space-y-4">
                       {/* Trip Name */}
                       <div className="flex items-center justify-between">
