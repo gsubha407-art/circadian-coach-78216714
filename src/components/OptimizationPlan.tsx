@@ -99,10 +99,10 @@ export const OptimizationPlan = ({
     try {
       const element = document.getElementById('pdf-export-content');
       if (!element) return;
-      
+
       // A4 dimensions in pixels at 96 DPI (standard screen)
       const a4WidthPx = 794; // 210mm at 96 DPI
-      
+
       // Create a wrapper with padding for PDF export
       const wrapper = document.createElement('div');
       wrapper.style.padding = '60px 40px';
@@ -112,43 +112,39 @@ export const OptimizationPlan = ({
       wrapper.style.top = '0';
       wrapper.style.width = `${a4WidthPx - 80}px`; // Account for 40px padding on each side
       wrapper.style.color = '#000000';
-      
+
       // Clone the content
       const clone = element.cloneNode(true) as HTMLElement;
       clone.style.backgroundColor = '#ffffff';
       clone.style.color = '#000000';
       wrapper.appendChild(clone);
       document.body.appendChild(wrapper);
-      
       const canvas = await html2canvas(wrapper, {
         scale: 2,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff'
       });
-      
+
       // Clean up
       document.body.removeChild(wrapper);
-      
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
         format: 'a4'
       });
-      
       const pageWidth = 210;
       const pageHeight = 297;
       const imgWidth = pageWidth;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      
+      const imgHeight = canvas.height * imgWidth / canvas.width;
       let heightLeft = imgHeight;
       let position = 0;
-      
+
       // Add first page
       pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
-      
+
       // Add subsequent pages
       while (heightLeft > 0) {
         position -= pageHeight;
@@ -156,7 +152,6 @@ export const OptimizationPlan = ({
         pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
         heightLeft -= pageHeight;
       }
-      
       pdf.save(`${trip.name || 'trip'}-optimization-plan.pdf`);
       toast({
         title: "PDF exported!",
@@ -170,8 +165,7 @@ export const OptimizationPlan = ({
       });
     }
   };
-  return (
-    <div>
+  return <div>
       {/* Fixed header */}
       <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-background border-b border-border px-4">
         <div className="flex h-full items-center justify-between">
@@ -201,7 +195,7 @@ export const OptimizationPlan = ({
       </header>
 
       {/* Content starts: 56px header + 40px gap */}
-      <main className="pt-24">
+      <main className="pt-24 py-[60px]">
         {/* PDF Export Content - starts here */}
         <div id="pdf-export-content" className="space-y-6 bg-background">
           {/* Page Title */}
@@ -263,9 +257,9 @@ export const OptimizationPlan = ({
         <div className="flex gap-2 overflow-x-auto">
           {plan.days.map((day, index) => <Button key={index} variant={selectedDay === index ? "default" : "outline"} size="sm" onClick={() => setSelectedDay(index)} className="whitespace-nowrap">
               {new Date(day.date).toLocaleDateString(undefined, {
-            month: 'short',
-            day: 'numeric'
-          })}
+                month: 'short',
+                day: 'numeric'
+              })}
             </Button>)}
         </div>
 
@@ -275,11 +269,11 @@ export const OptimizationPlan = ({
             <CardTitle className="title-large flex items-center gap-2">
               <Clock className="h-5 w-5" />
               {new Date(plan.days[selectedDay].date).toLocaleDateString(undefined, {
-              weekday: 'long',
-              month: 'long',
-              day: 'numeric',
-              year: 'numeric'
-            })}
+                  weekday: 'long',
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric'
+                })}
             </CardTitle>
             <p className="body-medium text-muted-foreground">{plan.days[selectedDay].summary}</p>
           </CardHeader>
@@ -307,6 +301,5 @@ export const OptimizationPlan = ({
       </div>
     </div>
   </main>
-</div>
-  );
+  </div>;
 };
