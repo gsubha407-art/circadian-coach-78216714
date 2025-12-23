@@ -26,7 +26,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-[1080px] mx-auto px-5 sm:px-6 md:px-10 py-8">
+      <div className="max-w-[1080px] mx-auto px-4 md:px-10 py-8">
         {optimizationPlan && selectedTrip ? (
           <OptimizationPlan plan={optimizationPlan} trip={selectedTrip} onBack={handleBack} />
         ) : (
