@@ -258,8 +258,7 @@ export const CustomTripForm = ({
     value: 'Africa/Johannesburg',
     label: 'SAST (Johannesburg)'
   }];
-  return (
-    <div>
+  return <div>
       {/* Fixed header */}
       <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-background border-b border-border px-4">
         <div className="flex h-full items-center justify-between">
@@ -271,7 +270,7 @@ export const CustomTripForm = ({
       </header>
 
       {/* Content starts: 56px header + 40px gap */}
-      <main className="pt-24">
+      <main className="pt-24 py-[60px]">
         <div className="space-y-6">
           <div className="mb-10">
             <p className="title-small text-3xl font-bold text-text-primary">Create Your Adjustment Plan</p>
@@ -291,8 +290,8 @@ export const CustomTripForm = ({
             </CardHeader>
             <CardContent className="space-y-6">
               <FormField control={form.control} name="name" render={({
-              field
-            }) => <FormItem>
+                  field
+                }) => <FormItem>
                     <FormControl>
                       <OutlinedTextField label="Trip Name" placeholder="e.g., Tokyo Business Trip" {...field} />
                     </FormControl>
@@ -301,8 +300,8 @@ export const CustomTripForm = ({
 
               <div className="grid md:grid-cols-2 gap-4">
                 <FormField control={form.control} name="usualSleepStart" render={({
-                field
-              }) => <FormItem>
+                    field
+                  }) => <FormItem>
                       <FormControl>
                         <OutlinedTextField label="Usual Bedtime" type="time" {...field} />
                       </FormControl>
@@ -310,8 +309,8 @@ export const CustomTripForm = ({
                     </FormItem>} />
 
                 <FormField control={form.control} name="usualSleepEnd" render={({
-                field
-              }) => <FormItem>
+                    field
+                  }) => <FormItem>
                       <FormControl>
                         <OutlinedTextField label="Usual Wake Up Time" type="time" {...field} />
                       </FormControl>
@@ -321,8 +320,8 @@ export const CustomTripForm = ({
 
               <div className="grid md:grid-cols-2 gap-4">
                 <FormField control={form.control} name="sensitivity" render={({
-                field
-              }) => <FormItem>
+                    field
+                  }) => <FormItem>
                       <OutlinedSelect onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <OutlinedSelectTrigger label="How Do You Handle Jet Lag?">
@@ -339,8 +338,8 @@ export const CustomTripForm = ({
                     </FormItem>} />
 
                 <FormField control={form.control} name="cabinType" render={({
-                field
-              }) => <FormItem>
+                    field
+                  }) => <FormItem>
                       <OutlinedSelect onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <OutlinedSelectTrigger label="Cabin Type">
@@ -360,8 +359,8 @@ export const CustomTripForm = ({
 
               <div className="grid md:grid-cols-2 gap-4">
                 <FormField control={form.control} name="caffeineHabits" render={({
-                field
-              }) => <FormItem>
+                    field
+                  }) => <FormItem>
                       <OutlinedSelect onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <OutlinedSelectTrigger label="Caffeine Habits">
@@ -379,8 +378,8 @@ export const CustomTripForm = ({
                     </FormItem>} />
 
                 <FormField control={form.control} name="melatoninOptIn" render={({
-                field
-              }) => <FormItem className="flex-row gap-2 self-center flex items-center justify-start">
+                    field
+                  }) => <FormItem className="flex-row gap-2 self-center flex items-center justify-start">
                         <FormControl>
                           <Switch checked={field.value} onCheckedChange={field.onChange} />
                         </FormControl>
@@ -494,6 +493,5 @@ export const CustomTripForm = ({
           Create my plan
         </Button>
       </div>
-    </div>
-  );
+    </div>;
 };
