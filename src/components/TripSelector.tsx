@@ -219,7 +219,7 @@ export const TripSelector = ({
                   <CardHeader>
                     <div className="space-y-4">
                       {/* Trip Name */}
-                      <div className="flex items-start justify-between">
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <CardTitle className="title-large">{trip.name}</CardTitle>
                           
