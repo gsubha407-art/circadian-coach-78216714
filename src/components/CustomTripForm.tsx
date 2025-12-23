@@ -270,7 +270,7 @@ export const CustomTripForm = ({
       </header>
 
       {/* Content starts: 56px header + 40px gap */}
-      <main className="pt-24 py-[60px]">
+      <main className="pt-24 py-[60px] max-w-[640px] mx-auto px-4">
         <div className="space-y-6">
           <div className="mb-10">
             <p className="title-small text-3xl font-bold text-text-primary">Create Your Adjustment Plan</p>
