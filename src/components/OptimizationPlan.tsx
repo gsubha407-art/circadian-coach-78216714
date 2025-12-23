@@ -199,11 +199,11 @@ export const OptimizationPlan = ({
         </div>
       </div>
       
-      {/* Spacer for fixed header */}
-      <div className="h-10" />
+      {/* Spacer for fixed header - 56px header + 40px gap = 96px total */}
+      <div className="h-24" />
 
       {/* PDF Export Content - starts here */}
-      <div id="pdf-export-content" className="space-y-6 bg-background">
+      <div id="pdf-export-content" className="space-y-6 bg-background -mt-4">
         {/* Page Title */}
         <div className="space-y-1">
           <h1 className="headline-small text-3xl font-bold">Here's Your Plan to Adjust Faster</h1>

@@ -268,11 +268,11 @@ export const CustomTripForm = ({
           </Button>
         </div>
       </div>
-      {/* Spacer for fixed header */}
-      <div className="h-10" />
+      {/* Spacer for fixed header - 56px header + 40px gap = 96px total */}
+      <div className="h-24" />
       
       <div className="space-y-4">
-        <div className="mb-10">
+        <div className="mb-10 -mt-4">
           <h1 className="headline-small bg-gradient-hero bg-clip-text text-transparent">
             Create Custom Trip
           </h1>
