@@ -259,15 +259,15 @@ export const CustomTripForm = ({
     label: 'SAST (Johannesburg)'
   }];
   return <div className="space-y-6">
-      {/* Fixed back button on mobile */}
-      <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border sm:static sm:p-0 sm:bg-transparent sm:border-0 z-50">
+      {/* Fixed back button header */}
+      <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50">
         <Button variant="ghost" size="sm" onClick={onBack}>
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back
         </Button>
       </div>
-      {/* Spacer for fixed back button on mobile */}
-      <div className="h-3 sm:hidden" />
+      {/* Spacer for fixed header */}
+      <div className="h-10" />
       
       <div className="space-y-4">
         <div className="mb-10">
