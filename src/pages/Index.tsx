@@ -20,7 +20,7 @@ const Index = () => {
     setSelectedTrip(null);
     setOptimizationPlan(null);
   };
-  return <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background px-5 sm:px-6">
       {optimizationPlan && selectedTrip ? <OptimizationPlan plan={optimizationPlan} trip={selectedTrip} onBack={handleBack} /> : <TripSelector onTripSelect={handleTripSelect} />}
     </div>;
 };
