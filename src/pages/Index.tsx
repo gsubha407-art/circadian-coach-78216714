@@ -21,7 +21,7 @@ const Index = () => {
     setOptimizationPlan(null);
   };
   return <div className="min-h-screen bg-background">
-      <div className="max-w-[1080px] mx-auto md:px-10 py-8 px-[20px]">
+      <div className="max-w-[1080px] mx-auto px-6 py-8">
         {optimizationPlan && selectedTrip ? <OptimizationPlan plan={optimizationPlan} trip={selectedTrip} onBack={handleBack} /> : <TripSelector onTripSelect={handleTripSelect} />}
       </div>
     </div>;
