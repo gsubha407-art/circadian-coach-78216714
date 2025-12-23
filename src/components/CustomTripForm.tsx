@@ -274,9 +274,6 @@ export const CustomTripForm = ({
       <main className="pt-24">
         <div className="space-y-6">
           <div className="mb-10">
-            <h1 className="headline-small bg-gradient-hero bg-clip-text text-transparent">
-              Create Custom Trip
-            </h1>
             <p className="title-small text-3xl font-bold text-text-primary">Create Your Adjustment Plan</p>
             <p className="body-medium text-muted-foreground mt-2 text-lg font-normal">
               Share a few details to build a schedule that helps your body adjust
