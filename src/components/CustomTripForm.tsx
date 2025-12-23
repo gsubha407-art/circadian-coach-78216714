@@ -258,7 +258,7 @@ export const CustomTripForm = ({
     value: 'Africa/Johannesburg',
     label: 'SAST (Johannesburg)'
   }];
-  return <div className="space-y-6">
+  return <div>
       {/* Fixed back button header */}
       <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50">
         <div className="flex items-center justify-between">
@@ -268,18 +268,18 @@ export const CustomTripForm = ({
           </Button>
         </div>
       </div>
-      {/* Spacer for fixed header - 56px header + 40px gap = 96px total */}
-      <div className="h-24" />
       
-      <div className="space-y-4">
-        <div className="mb-10 -mt-4">
+      {/* Spacer: 56px header + 40px gap */}
+      <div style={{ height: '96px' }} />
+      
+      <div className="space-y-6">
+        <div className="mb-10">
           <h1 className="headline-small bg-gradient-hero bg-clip-text text-transparent">
             Create Custom Trip
           </h1>
           <p className="title-small text-3xl font-bold text-text-primary">Create Your Adjustment Plan</p>
           <p className="body-medium text-muted-foreground mt-2 text-lg font-normal">Share a few details to build a schedule that helps your body adjust</p>
         </div>
-      </div>
 
       <Form {...form}>
         <form id="trip-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -483,6 +483,7 @@ export const CustomTripForm = ({
           <div className="h-20" />
         </form>
       </Form>
+      </div>
       
       {/* Fixed bottom buttons */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border flex justify-end gap-4 z-50">
