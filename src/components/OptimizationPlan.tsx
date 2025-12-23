@@ -197,7 +197,7 @@ export const OptimizationPlan = ({
       {/* Content starts: 56px header + 40px gap */}
       <main className="pt-24 py-[60px] max-w-[1080px] mx-auto px-4 md:px-10">
         {/* PDF Export Content - starts here */}
-        <div id="pdf-export-content" className="space-y-6 bg-background">
+        <div id="pdf-export-content" className="space-y-10 bg-background">
           {/* Page Title */}
           <div className="space-y-1">
             <h1 className="headline-small text-3xl font-bold">Here's Your Plan to Adjust Faster</h1>
