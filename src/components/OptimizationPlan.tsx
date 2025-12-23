@@ -281,7 +281,7 @@ export const OptimizationPlan = ({
             <p className="body-medium text-muted-foreground">{plan.days[selectedDay].summary}</p>
           </CardHeader>
           <CardContent>
-            <div className="space-y-3 pb-4">
+            <div className="space-y-3">
               {plan.days[selectedDay].activities.length > 0 ? plan.days[selectedDay].activities.map((activity, index) => <div key={index} className={cn("flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 p-4 rounded-lg transition-all hover:shadow-timeline", getActivityColor(activity.type))}>
                     <div className="flex items-center gap-2 min-w-0">
                       {getActivityIcon(activity.type)}
