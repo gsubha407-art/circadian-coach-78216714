@@ -391,7 +391,7 @@ export const CustomTripForm = ({
           </Card>
 
           <Card>
-            <CardHeader>
+            <CardHeader className="pt-4">
               <CardTitle className="title-large flex items-center justify-between">
                 Flight Itinerary
                 <Button type="button" variant="outline" size="sm" onClick={addLeg}>
