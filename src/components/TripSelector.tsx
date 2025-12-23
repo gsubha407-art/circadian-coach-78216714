@@ -139,7 +139,7 @@ export const TripSelector = ({
         return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200';
     }
   };
-  return <div className="space-y-[60px]">
+  return <div className="space-y-[60px] pb-[60px]">
       {/* Hero Section */}
       <div className="text-center space-y-8 pt-12 pb-0 sm:py-12">
         <div className="space-y-3">
