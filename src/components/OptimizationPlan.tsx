@@ -170,7 +170,7 @@ export const OptimizationPlan = ({
       });
     }
   };
-  return <div className="space-y-6">
+  return <div>
       {/* Fixed Header */}
       <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50">
         <div className="flex items-center justify-between">
@@ -199,11 +199,11 @@ export const OptimizationPlan = ({
         </div>
       </div>
       
-      {/* Spacer for fixed header - 56px header + 40px gap = 96px total */}
-      <div className="h-24" />
+      {/* Spacer: 56px header + 40px gap */}
+      <div style={{ height: '96px' }} />
 
       {/* PDF Export Content - starts here */}
-      <div id="pdf-export-content" className="space-y-6 bg-background -mt-4">
+      <div id="pdf-export-content" className="space-y-6 bg-background">
         {/* Page Title */}
         <div className="space-y-1">
           <h1 className="headline-small text-3xl font-bold">Here's Your Plan to Adjust Faster</h1>
