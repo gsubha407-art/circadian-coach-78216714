@@ -258,31 +258,33 @@ export const CustomTripForm = ({
     value: 'Africa/Johannesburg',
     label: 'SAST (Johannesburg)'
   }];
-  return <div>
-      {/* Fixed back button header */}
-      <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50">
-        <div className="flex items-center justify-between">
+  return (
+    <div>
+      {/* Fixed header */}
+      <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-background border-b border-border px-4">
+        <div className="flex h-full items-center justify-between">
           <Button variant="ghost" size="sm" onClick={onBack} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Back
           </Button>
         </div>
-      </div>
-      
-      {/* Spacer: 56px header + 40px gap */}
-      <div style={{ height: '96px' }} />
-      
-      <div className="space-y-6">
-        <div className="mb-10">
-          <h1 className="headline-small bg-gradient-hero bg-clip-text text-transparent">
-            Create Custom Trip
-          </h1>
-          <p className="title-small text-3xl font-bold text-text-primary">Create Your Adjustment Plan</p>
-          <p className="body-medium text-muted-foreground mt-2 text-lg font-normal">Share a few details to build a schedule that helps your body adjust</p>
-        </div>
+      </header>
 
-      <Form {...form}>
-        <form id="trip-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      {/* Content starts: 56px header + 40px gap */}
+      <main className="pt-24">
+        <div className="space-y-6">
+          <div className="mb-10">
+            <h1 className="headline-small bg-gradient-hero bg-clip-text text-transparent">
+              Create Custom Trip
+            </h1>
+            <p className="title-small text-3xl font-bold text-text-primary">Create Your Adjustment Plan</p>
+            <p className="body-medium text-muted-foreground mt-2 text-lg font-normal">
+              Share a few details to build a schedule that helps your body adjust
+            </p>
+          </div>
+
+          <Form {...form}>
+            <form id="trip-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="title-large">Trip Details</CardTitle>
@@ -483,7 +485,8 @@ export const CustomTripForm = ({
           <div className="h-20" />
         </form>
       </Form>
-      </div>
+        </div>
+      </main>
       
       {/* Fixed bottom buttons */}
       <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border flex justify-end gap-4 z-50">
@@ -494,5 +497,6 @@ export const CustomTripForm = ({
           Create my plan
         </Button>
       </div>
-    </div>;
+    </div>
+  );
 };
