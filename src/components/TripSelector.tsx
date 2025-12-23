@@ -220,23 +220,18 @@ export const TripSelector = ({
                     <div className="space-y-4">
                       {/* Trip Name */}
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-3">
                           <CardTitle className="title-large">{trip.name}</CardTitle>
-                          
+                          <Badge className={getSensitivityColor(trip.sensitivity)}>
+                            {trip.sensitivity} sensitivity
+                          </Badge>
+                          {trip.melatoninOptIn && <Badge variant="outline" className="text-melatonin border-melatonin">
+                              Melatonin
+                            </Badge>}
                         </div>
-                        <div className="flex items-center gap-2">
-                          <div className="flex flex-col gap-2">
-                            <Badge className={getSensitivityColor(trip.sensitivity)}>
-                              {trip.sensitivity} sensitivity
-                            </Badge>
-                            {trip.melatoninOptIn && <Badge variant="outline" className="text-melatonin border-melatonin">
-                                Melatonin
-                              </Badge>}
-                          </div>
-                          <Button variant="ghost" size="sm" onClick={e => handleDeleteSavedTrip(trip.id, e)} className="text-destructive hover:text-destructive">
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </div>
+                        <Button variant="ghost" size="sm" onClick={e => handleDeleteSavedTrip(trip.id, e)} className="text-destructive hover:text-destructive">
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
                       </div>
 
                       {/* Route */}
