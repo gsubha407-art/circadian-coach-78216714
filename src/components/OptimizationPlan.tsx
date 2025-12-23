@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { OptimizationPlan as OptimizationPlanType, ActivityBlock, Trip } from '@/types/trip';
 import { ArrowLeft, Download, Clock, Moon, Sun, Coffee, Power, Lightbulb, Save, Check } from 'lucide-react';
+import { Separator } from '@/components/ui/separator';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { cn } from '@/lib/utils';
@@ -243,6 +244,8 @@ export const OptimizationPlan = ({
           </div>
         </CardContent>
       </Card>
+
+      <Separator />
 
       {/* Day selector section */}
       <div className="space-y-2">
