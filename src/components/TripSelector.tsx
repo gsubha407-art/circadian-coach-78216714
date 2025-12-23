@@ -222,10 +222,7 @@ export const TripSelector = ({
                       <div className="flex items-start justify-between">
                         <div className="flex items-center gap-2">
                           <CardTitle className="title-large">{trip.name}</CardTitle>
-                          <Badge variant="outline" className="text-primary border-primary">
-                            <Bookmark className="h-3 w-3 mr-1" />
-                            Saved
-                          </Badge>
+                          
                         </div>
                         <div className="flex items-center gap-2">
                           <div className="flex flex-col gap-2">
