@@ -156,7 +156,7 @@ export const TripSelector = ({
       </div>
 
       {/* Key Features */}
-      <div className="max-w-5xl mx-auto py-8">
+      <div className="max-w-5xl mx-auto py-0">
         <h2 className="title-large text-left sm:text-center mb-8 text-2xl font-bold">We create a plan that helps with</h2>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <Card className="border-primary/20">
@@ -235,12 +235,10 @@ export const TripSelector = ({
                       </div>
 
                       {/* Route - only show if origin/destination cities are provided */}
-                      {trip.legs && trip.legs.length > 0 && trip.legs[0].originCity && trip.legs[0].destCity && (
-                        <div className="flex items-center gap-2 text-muted-foreground">
+                      {trip.legs && trip.legs.length > 0 && trip.legs[0].originCity && trip.legs[0].destCity && <div className="flex items-center gap-2 text-muted-foreground">
                           <MapPin className="h-4 w-4 flex-shrink-0" />
                           <span className="body-medium">{getRouteString(trip)}</span>
-                        </div>
-                      )}
+                        </div>}
 
                       {/* Next Action */}
                       {recommendation.show && <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
