@@ -204,7 +204,7 @@ export const TripSelector = ({
 
       <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-1 max-w-4xl mx-auto">
         {/* Saved Trips Section */}
-        {savedTrips.length > 0 && <div className="space-y-4">
+        {savedTrips.length > 0 && <div className="space-y-4 max-w-[1024px] mx-auto">
             <div className="flex items-center gap-2">
               <Bookmark className="h-5 w-5 text-primary" />
               <h2 className="title-large">Your Saved Trips</h2>
