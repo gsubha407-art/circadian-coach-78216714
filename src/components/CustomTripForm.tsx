@@ -379,7 +379,7 @@ export const CustomTripForm = ({
 
                 <FormField control={form.control} name="melatoninOptIn" render={({
                     field
-                  }) => <FormItem className="gap-2 space-y-0 flex-row flex items-start justify-center">
+                  }) => <FormItem className="gap-2 space-y-0 flex-row flex items-center justify-start">
                         <FormControl>
                           <Switch checked={field.value} onCheckedChange={field.onChange} />
                         </FormControl>
