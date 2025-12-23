@@ -235,10 +235,12 @@ export const TripSelector = ({
                       </div>
 
                       {/* Route */}
-                      <div className="flex items-center gap-2 text-muted-foreground">
-                        <MapPin className="h-4 w-4 flex-shrink-0" />
-                        <span className="body-medium">{getRouteString(trip)}</span>
-                      </div>
+                      {trip.legs && trip.legs.length > 0 && (
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                          <MapPin className="h-4 w-4 flex-shrink-0" />
+                          <span className="body-medium">{getRouteString(trip)}</span>
+                        </div>
+                      )}
 
                       {/* Next Action */}
                       {recommendation.show && <div className="p-4 bg-primary/10 border border-primary/20 rounded-lg">
