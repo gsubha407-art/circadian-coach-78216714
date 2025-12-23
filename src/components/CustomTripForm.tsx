@@ -403,7 +403,7 @@ export const CustomTripForm = ({
                 Add all flight segments for your trip
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-0">
+            <CardContent className="space-y-0 pb-4">
               {legs.map((leg, index) => <div key={index} className="space-y-5 overflow-hidden">
                   {index > 0 && <hr className="border-border my-6" />}
                   <div className="flex items-center justify-between">
