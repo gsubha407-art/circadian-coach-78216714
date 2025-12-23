@@ -170,10 +170,11 @@ export const OptimizationPlan = ({
       });
     }
   };
-  return <div>
-      {/* Fixed Header */}
-      <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50">
-        <div className="flex items-center justify-between">
+  return (
+    <div>
+      {/* Fixed header */}
+      <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-background border-b border-border px-4">
+        <div className="flex h-full items-center justify-between">
           <Button variant="ghost" size="sm" onClick={onBack} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
             Back
@@ -197,18 +198,19 @@ export const OptimizationPlan = ({
             </Button>
           </div>
         </div>
-      </div>
-      
-      {/* Spacer: 56px header + 40px gap */}
-      <div style={{ height: '96px' }} />
+      </header>
 
-      {/* PDF Export Content - starts here */}
-      <div id="pdf-export-content" className="space-y-6 bg-background">
-        {/* Page Title */}
-        <div className="space-y-1">
-          <h1 className="headline-small text-3xl font-bold">Here's Your Plan to Adjust Faster</h1>
-          <p className="title-small text-muted-foreground text-lg font-normal">A simple, personalised plan to help your body adjust smoothly</p>
-        </div>
+      {/* Content starts: 56px header + 40px gap */}
+      <main className="pt-24">
+        {/* PDF Export Content - starts here */}
+        <div id="pdf-export-content" className="space-y-6 bg-background">
+          {/* Page Title */}
+          <div className="space-y-1">
+            <h1 className="headline-small text-3xl font-bold">Here's Your Plan to Adjust Faster</h1>
+            <p className="title-small text-muted-foreground text-lg font-normal">
+              A simple, personalised plan to help your body adjust smoothly
+            </p>
+          </div>
 
       {/* Summary */}
       <Card className="bg-gradient-card border-0">
@@ -303,6 +305,8 @@ export const OptimizationPlan = ({
           </CardContent>
         </Card>}
       </div>
-      </div>
-    </div>;
+    </div>
+  </main>
+</div>
+  );
 };
