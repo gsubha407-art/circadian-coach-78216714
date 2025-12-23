@@ -141,7 +141,7 @@ export const TripSelector = ({
   };
   return <div className="space-y-[60px] pb-[60px]">
       {/* Hero Section */}
-      <div className="text-center space-y-8 pt-12 pb-5 sm:py-12">
+      <div className="text-center space-y-8 pt-12 pb-0 sm:py-12">
         <div className="space-y-3">
           <h1 className="headline-small bg-gradient-hero bg-clip-text text-primary sm:text-5xl font-bold text-5xl">Jet Lag Planner</h1>
           <p className="title-small max-w-3xl mx-auto leading-relaxed text-lg text-text-primary font-normal">Create a personalised schedule for sleep, light, and rest to adjust faster</p>
