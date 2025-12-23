@@ -234,8 +234,8 @@ export const TripSelector = ({
                         </Button>
                       </div>
 
-                      {/* Route */}
-                      {trip.legs && trip.legs.length > 0 && (
+                      {/* Route - only show if origin/destination cities are provided */}
+                      {trip.legs && trip.legs.length > 0 && trip.legs[0].originCity && trip.legs[0].destCity && (
                         <div className="flex items-center gap-2 text-muted-foreground">
                           <MapPin className="h-4 w-4 flex-shrink-0" />
                           <span className="body-medium">{getRouteString(trip)}</span>
