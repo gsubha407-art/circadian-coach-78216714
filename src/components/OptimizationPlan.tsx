@@ -173,11 +173,10 @@ export const OptimizationPlan = ({
   return <div className="space-y-6">
       {/* Fixed Header */}
       <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50">
-        <div className="flex items-center justify-between max-w-4xl mx-auto">
-          <Button variant="ghost" onClick={onBack} className="gap-2">
+        <div className="flex items-center justify-between">
+          <Button variant="ghost" size="sm" onClick={onBack} className="gap-2">
             <ArrowLeft className="h-4 w-4" />
-            <span className="hidden sm:inline">Back to Trips</span>
-            <span className="sm:hidden">Back</span>
+            Back
           </Button>
           <div className="flex gap-2">
             <Button variant={saved ? "default" : "outline"} size="sm" onClick={handleSaveTrip} disabled={saved}>
@@ -201,7 +200,7 @@ export const OptimizationPlan = ({
       </div>
       
       {/* Spacer for fixed header */}
-      <div className="h-14" />
+      <div className="h-10" />
 
       {/* PDF Export Content - starts here */}
       <div id="pdf-export-content" className="space-y-6 bg-background">

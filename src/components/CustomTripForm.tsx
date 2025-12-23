@@ -261,10 +261,12 @@ export const CustomTripForm = ({
   return <div className="space-y-6">
       {/* Fixed back button header */}
       <div className="fixed top-0 left-0 right-0 p-4 bg-background border-b border-border z-50">
-        <Button variant="ghost" size="sm" onClick={onBack}>
-          <ArrowLeft className="h-4 w-4 mr-2" />
-          Back
-        </Button>
+        <div className="flex items-center justify-between">
+          <Button variant="ghost" size="sm" onClick={onBack} className="gap-2">
+            <ArrowLeft className="h-4 w-4" />
+            Back
+          </Button>
+        </div>
       </div>
       {/* Spacer for fixed header */}
       <div className="h-10" />
