@@ -233,7 +233,7 @@ export const OptimizationPlan = ({
           </div>
 
           <div className="space-y-2">
-            <h4 className="title-small font-bold text-text-secondary text-sm">Key Actions:</h4>
+            <h4 className="title-small text-base font-bold">Key Actions:</h4>
             <div className="space-y-2">
               {plan.keyActions.map((action, index) => <div key={index} className="flex items-center gap-2 body-medium">
                   <div className="w-2 h-2 bg-primary rounded-full" />
@@ -245,7 +245,7 @@ export const OptimizationPlan = ({
       </Card>
 
       {/* Day selector section */}
-      <div className="space-y-2 pt-3 py-0">
+      <div className="space-y-2 pt-3">
         <h2 className="title-large text-lg font-bold">Daily Schedule</h2>
         <p className="body-medium text-muted-foreground text-base font-normal">
           Your plan focuses on key adjustment days: pre-travel preparation and post-arrival adaptation. Days without activities are skipped to keep your schedule focused.
