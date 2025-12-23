@@ -256,8 +256,8 @@ export const TripSelector = ({
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4 body-medium text-muted-foreground">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 body-medium text-muted-foreground">
                         <div className="flex items-center gap-1">
                           <Clock className="h-4 w-4" />
                           <span>Sleep: {trip.usualSleepStart} - {trip.usualSleepEnd}</span>
@@ -267,7 +267,7 @@ export const TripSelector = ({
                           <span className="capitalize">{trip.cabinType}</span>
                         </div>
                       </div>
-                      <Button variant={selectedTrip === trip.id ? "default" : "outline"} size="sm">
+                      <Button variant={selectedTrip === trip.id ? "default" : "outline"} size="sm" className="w-full sm:w-auto">
                         {selectedTrip === trip.id ? "Selected" : "View Plan"}
                       </Button>
                     </div>
