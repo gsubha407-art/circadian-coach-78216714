@@ -21,9 +21,7 @@ const Index = () => {
     setOptimizationPlan(null);
   };
   return <div className="min-h-screen bg-background">
-      <div className="max-w-[1080px] mx-auto px-6 py-8">
-        {optimizationPlan && selectedTrip ? <OptimizationPlan plan={optimizationPlan} trip={selectedTrip} onBack={handleBack} /> : <TripSelector onTripSelect={handleTripSelect} />}
-      </div>
+      {optimizationPlan && selectedTrip ? <OptimizationPlan plan={optimizationPlan} trip={selectedTrip} onBack={handleBack} /> : <TripSelector onTripSelect={handleTripSelect} />}
     </div>;
 };
 export default Index;
