@@ -280,7 +280,7 @@ export const CustomTripForm = ({
       </div>
 
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <form id="trip-form" onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <Card>
             <CardHeader>
               <CardTitle className="title-large">Trip Details</CardTitle>
@@ -477,17 +477,19 @@ export const CustomTripForm = ({
             </CardContent>
           </Card>
 
-          <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border sm:static sm:p-0 sm:bg-transparent sm:border-0 flex sm:justify-end gap-4 z-50">
-            <Button type="button" variant="outline" onClick={onBack} className="flex-1 sm:flex-none sm:w-auto">
-              Cancel
-            </Button>
-            <Button type="submit" disabled={Object.keys(legErrors).length > 0} className="flex-1 sm:flex-none sm:w-auto">
-              Create my plan
-            </Button>
-          </div>
-          {/* Spacer for fixed buttons on mobile */}
-          <div className="h-20 sm:hidden" />
+          {/* Spacer for fixed buttons */}
+          <div className="h-20" />
         </form>
       </Form>
+      
+      {/* Fixed bottom buttons */}
+      <div className="fixed bottom-0 left-0 right-0 p-4 bg-background border-t border-border flex justify-end gap-4 z-50">
+        <Button type="button" variant="outline" onClick={onBack} className="flex-1 sm:flex-none sm:w-auto">
+          Cancel
+        </Button>
+        <Button type="submit" form="trip-form" disabled={Object.keys(legErrors).length > 0} className="flex-1 sm:flex-none sm:w-auto">
+          Create my plan
+        </Button>
+      </div>
     </div>;
 };
