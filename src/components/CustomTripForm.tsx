@@ -164,100 +164,78 @@ export const CustomTripForm = ({
       setLegs(updatedLegs);
     }
   };
-  const commonTimezones = [{
-    value: 'America/New_York',
-    label: 'Eastern Time (New York)'
-  }, {
-    value: 'America/Chicago',
-    label: 'Central Time (Chicago)'
-  }, {
-    value: 'America/Denver',
-    label: 'Mountain Time (Denver)'
-  }, {
-    value: 'America/Los_Angeles',
-    label: 'Pacific Time (Los Angeles)'
-  }, {
-    value: 'America/Toronto',
-    label: 'Eastern Time (Toronto)'
-  }, {
-    value: 'America/Vancouver',
-    label: 'Pacific Time (Vancouver)'
-  }, {
-    value: 'America/Mexico_City',
-    label: 'Central Time (Mexico City)'
-  }, {
-    value: 'America/Sao_Paulo',
-    label: 'Brasília Time (São Paulo)'
-  }, {
-    value: 'America/Argentina/Buenos_Aires',
-    label: 'Argentina Time (Buenos Aires)'
-  }, {
-    value: 'Europe/London',
-    label: 'GMT (London)'
-  }, {
-    value: 'Europe/Paris',
-    label: 'CET (Paris)'
-  }, {
-    value: 'Europe/Berlin',
-    label: 'CET (Berlin)'
-  }, {
-    value: 'Europe/Rome',
-    label: 'CET (Rome)'
-  }, {
-    value: 'Europe/Madrid',
-    label: 'CET (Madrid)'
-  }, {
-    value: 'Europe/Amsterdam',
-    label: 'CET (Amsterdam)'
-  }, {
-    value: 'Europe/Moscow',
-    label: 'MSK (Moscow)'
-  }, {
-    value: 'Europe/Istanbul',
-    label: 'TRT (Istanbul)'
-  }, {
-    value: 'Asia/Dubai',
-    label: 'GST (Dubai)'
-  }, {
-    value: 'Asia/Singapore',
-    label: 'SGT (Singapore)'
-  }, {
-    value: 'Asia/Tokyo',
-    label: 'JST (Tokyo)'
-  }, {
-    value: 'Asia/Hong_Kong',
-    label: 'HKT (Hong Kong)'
-  }, {
-    value: 'Asia/Shanghai',
-    label: 'CST (Shanghai)'
-  }, {
-    value: 'Asia/Seoul',
-    label: 'KST (Seoul)'
-  }, {
-    value: 'Asia/Kolkata',
-    label: 'IST (Mumbai)'
-  }, {
-    value: 'Asia/Bangkok',
-    label: 'ICT (Bangkok)'
-  }, {
-    value: 'Australia/Sydney',
-    label: 'AEDT (Sydney)'
-  }, {
-    value: 'Australia/Melbourne',
-    label: 'AEDT (Melbourne)'
-  }, {
-    value: 'Pacific/Auckland',
-    label: 'NZDT (Auckland)'
-  }, {
-    value: 'Pacific/Honolulu',
-    label: 'HST (Honolulu)'
-  }, {
-    value: 'Africa/Cairo',
-    label: 'EET (Cairo)'
-  }, {
-    value: 'Africa/Johannesburg',
-    label: 'SAST (Johannesburg)'
-  }];
+  const allTimezones = [
+    { value: 'America/New_York', label: 'Eastern Time (New York)' },
+    { value: 'America/Chicago', label: 'Central Time (Chicago)' },
+    { value: 'America/Denver', label: 'Mountain Time (Denver)' },
+    { value: 'America/Los_Angeles', label: 'Pacific Time (Los Angeles)' },
+    { value: 'America/Toronto', label: 'Eastern Time (Toronto)' },
+    { value: 'America/Vancouver', label: 'Pacific Time (Vancouver)' },
+    { value: 'America/Mexico_City', label: 'Central Time (Mexico City)' },
+    { value: 'America/Sao_Paulo', label: 'Brasília Time (São Paulo)' },
+    { value: 'America/Argentina/Buenos_Aires', label: 'Argentina Time (Buenos Aires)' },
+    { value: 'America/Phoenix', label: 'Arizona Time (Phoenix)' },
+    { value: 'America/Detroit', label: 'Eastern Time (Detroit)' },
+    { value: 'America/Edmonton', label: 'Mountain Time (Calgary)' },
+    { value: 'America/Cancun', label: 'Eastern Time (Cancún)' },
+    { value: 'America/Monterrey', label: 'Central Time (Monterrey)' },
+    { value: 'America/Bogota', label: 'Colombia Time (Bogotá)' },
+    { value: 'America/Lima', label: 'Peru Time (Lima)' },
+    { value: 'America/Santiago', label: 'Chile Time (Santiago)' },
+    { value: 'America/Anchorage', label: 'Alaska Time (Anchorage)' },
+    { value: 'Europe/London', label: 'GMT (London)' },
+    { value: 'Europe/Paris', label: 'CET (Paris)' },
+    { value: 'Europe/Berlin', label: 'CET (Berlin)' },
+    { value: 'Europe/Rome', label: 'CET (Rome)' },
+    { value: 'Europe/Madrid', label: 'CET (Madrid)' },
+    { value: 'Europe/Amsterdam', label: 'CET (Amsterdam)' },
+    { value: 'Europe/Brussels', label: 'CET (Brussels)' },
+    { value: 'Europe/Zurich', label: 'CET (Zurich)' },
+    { value: 'Europe/Vienna', label: 'CET (Vienna)' },
+    { value: 'Europe/Stockholm', label: 'CET (Stockholm)' },
+    { value: 'Europe/Copenhagen', label: 'CET (Copenhagen)' },
+    { value: 'Europe/Oslo', label: 'CET (Oslo)' },
+    { value: 'Europe/Helsinki', label: 'EET (Helsinki)' },
+    { value: 'Europe/Warsaw', label: 'CET (Warsaw)' },
+    { value: 'Europe/Prague', label: 'CET (Prague)' },
+    { value: 'Europe/Budapest', label: 'CET (Budapest)' },
+    { value: 'Europe/Athens', label: 'EET (Athens)' },
+    { value: 'Europe/Lisbon', label: 'WET (Lisbon)' },
+    { value: 'Europe/Moscow', label: 'MSK (Moscow)' },
+    { value: 'Europe/Istanbul', label: 'TRT (Istanbul)' },
+    { value: 'Asia/Dubai', label: 'GST (Dubai)' },
+    { value: 'Asia/Qatar', label: 'AST (Doha)' },
+    { value: 'Asia/Jerusalem', label: 'IST (Tel Aviv)' },
+    { value: 'Asia/Riyadh', label: 'AST (Riyadh)' },
+    { value: 'Asia/Singapore', label: 'SGT (Singapore)' },
+    { value: 'Asia/Tokyo', label: 'JST (Tokyo)' },
+    { value: 'Asia/Hong_Kong', label: 'HKT (Hong Kong)' },
+    { value: 'Asia/Shanghai', label: 'CST (China)' },
+    { value: 'Asia/Seoul', label: 'KST (Seoul)' },
+    { value: 'Asia/Taipei', label: 'CST (Taipei)' },
+    { value: 'Asia/Kolkata', label: 'IST (India)' },
+    { value: 'Asia/Bangkok', label: 'ICT (Bangkok)' },
+    { value: 'Asia/Kuala_Lumpur', label: 'MYT (Kuala Lumpur)' },
+    { value: 'Asia/Jakarta', label: 'WIB (Jakarta)' },
+    { value: 'Asia/Manila', label: 'PHT (Manila)' },
+    { value: 'Asia/Ho_Chi_Minh', label: 'ICT (Vietnam)' },
+    { value: 'Asia/Makassar', label: 'WITA (Bali)' },
+    { value: 'Asia/Colombo', label: 'IST (Colombo)' },
+    { value: 'Asia/Karachi', label: 'PKT (Karachi)' },
+    { value: 'Asia/Dhaka', label: 'BST (Dhaka)' },
+    { value: 'Australia/Sydney', label: 'AEDT (Sydney)' },
+    { value: 'Australia/Melbourne', label: 'AEDT (Melbourne)' },
+    { value: 'Australia/Brisbane', label: 'AEST (Brisbane)' },
+    { value: 'Australia/Perth', label: 'AWST (Perth)' },
+    { value: 'Pacific/Auckland', label: 'NZDT (Auckland)' },
+    { value: 'Pacific/Honolulu', label: 'HST (Honolulu)' },
+    { value: 'Africa/Cairo', label: 'EET (Cairo)' },
+    { value: 'Africa/Johannesburg', label: 'SAST (Johannesburg)' },
+    { value: 'Africa/Lagos', label: 'WAT (Lagos)' },
+    { value: 'Africa/Nairobi', label: 'EAT (Nairobi)' },
+    { value: 'Africa/Casablanca', label: 'WET (Casablanca)' },
+    { value: 'Africa/Addis_Ababa', label: 'EAT (Addis Ababa)' },
+  ];
   return <div>
       {/* Fixed header */}
       <header className="fixed top-0 left-0 right-0 z-50 h-14 bg-background border-b border-border px-4">
@@ -432,7 +410,7 @@ export const CustomTripForm = ({
                           <OutlinedSelectValue placeholder="Select Time Zone" />
                         </OutlinedSelectTrigger>
                         <OutlinedSelectContent>
-                          {commonTimezones.map(tz => <OutlinedSelectItem key={tz.value} value={tz.value}>
+                          {allTimezones.map(tz => <OutlinedSelectItem key={tz.value} value={tz.value}>
                               {tz.label}
                             </OutlinedSelectItem>)}
                         </OutlinedSelectContent>
@@ -456,7 +434,7 @@ export const CustomTripForm = ({
                           <OutlinedSelectValue placeholder="Select Time Zone" />
                         </OutlinedSelectTrigger>
                         <OutlinedSelectContent>
-                          {commonTimezones.map(tz => <OutlinedSelectItem key={tz.value} value={tz.value}>
+                          {allTimezones.map(tz => <OutlinedSelectItem key={tz.value} value={tz.value}>
                               {tz.label}
                             </OutlinedSelectItem>)}
                         </OutlinedSelectContent>
