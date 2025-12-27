@@ -12,6 +12,7 @@ import { ArrowLeft, Plus, Trash2 } from 'lucide-react';
 import { Trip, Leg } from '@/types/trip';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { airports } from '@/data/airports';
+import { CityCombobox } from '@/components/ui/city-combobox';
 const tripSchema = z.object({
   name: z.string().min(1, 'Trip name is required'),
   usualSleepStart: z.string().min(1, 'Sleep start time is required'),
@@ -395,16 +396,13 @@ export const CustomTripForm = ({
                   <div className="grid md:grid-cols-2 gap-4">
                     {/* Origin */}
                     <div className="space-y-4 min-w-0">
-                      <OutlinedSelect value={leg.originCity} onValueChange={value => handleCityChange(index, 'origin', value)}>
-                        <OutlinedSelectTrigger label="Origin City">
-                          <OutlinedSelectValue placeholder="Select Origin City" />
-                        </OutlinedSelectTrigger>
-                        <OutlinedSelectContent>
-                          {uniqueCities.map(airport => <OutlinedSelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
-                              {airport.city}
-                            </OutlinedSelectItem>)}
-                        </OutlinedSelectContent>
-                      </OutlinedSelect>
+                      <CityCombobox
+                        cities={uniqueCities}
+                        value={leg.originCity}
+                        onValueChange={value => handleCityChange(index, 'origin', value)}
+                        label="Origin City"
+                        placeholder="Select Origin City"
+                      />
                       <OutlinedSelect value={leg.originTZ} onValueChange={value => updateLeg(index, 'originTZ', value)}>
                         <OutlinedSelectTrigger label="Origin Time Zone">
                           <OutlinedSelectValue placeholder="Select Time Zone" />
@@ -419,16 +417,13 @@ export const CustomTripForm = ({
 
                     {/* Destination */}
                     <div className="space-y-4 min-w-0">
-                      <OutlinedSelect value={leg.destCity} onValueChange={value => handleCityChange(index, 'dest', value)}>
-                        <OutlinedSelectTrigger label="Destination City">
-                          <OutlinedSelectValue placeholder="Select Destination City" />
-                        </OutlinedSelectTrigger>
-                        <OutlinedSelectContent>
-                          {uniqueCities.map(airport => <OutlinedSelectItem key={`${airport.city}-${airport.iataCode}`} value={airport.city}>
-                              {airport.city}
-                            </OutlinedSelectItem>)}
-                        </OutlinedSelectContent>
-                      </OutlinedSelect>
+                      <CityCombobox
+                        cities={uniqueCities}
+                        value={leg.destCity}
+                        onValueChange={value => handleCityChange(index, 'dest', value)}
+                        label="Destination City"
+                        placeholder="Select Destination City"
+                      />
                       <OutlinedSelect value={leg.destTZ} onValueChange={value => updateLeg(index, 'destTZ', value)}>
                         <OutlinedSelectTrigger label="Destination Time Zone">
                           <OutlinedSelectValue placeholder="Select Time Zone" />
